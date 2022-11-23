@@ -1,26 +1,99 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --primary: #502f8a;
+}
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: aliceblue;
+}
+.logo img {
+  display: block;
+  margin: 20px auto;
+}
+.connect-msg {
+  padding: 20px;
+  text-align: center;
+}
+.connect-wallet {
+  border: 1px solid #502f8a;
+  width: 500px;
+  margin-left: 430px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.text-center {
+  text-align: center;
+  color: #121212;
+}
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 20px;
+  /* align-items: center; */
+}
+.icons {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 30px;
+  margin: 10px 20px;
+}
+.btn-login {
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #502f8a;
+  /* width:500px ; */
+  padding: 20px 250px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (max-width: 600px) {
+  span {
+    font-size: 16px;
+    color: #502f8a;
+    font-weight: 400;
   }
-  body {
-    color: white;
-    background: black;
+  .logo img {
+    margin: 80px auto;
+    width: 100px;
+  }
+  .connect-msg {
+    margin: 30px auto;
+  }
+  .welcome {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .connect-wallet {
+    margin: 0 auto;
+    width: 400px;
+    cursor: pointer !important;
+    /* padding: 0px; */
+    /* margin-left: 20px; */
+  }
+  .connect-acct {
+    font-size: 16px;
+    font-weight: 400;
+    color: #121212;
+  }
+  .text-center {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .btn-login {
+    padding: 20px 190px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    margin: 0 30px;
   }
 }
