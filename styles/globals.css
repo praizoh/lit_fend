@@ -3,21 +3,26 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   --primary: #502f8a;
 }
+
 body {
   font-family: "Manrope", sans-serif;
   background-color: aliceblue;
 }
+
 .logo img {
   display: block;
   margin: 20px auto;
 }
+
 .connect-msg {
   padding: 20px;
   text-align: center;
 }
+
 .connect-wallet {
   border: 1px solid #502f8a;
   width: 500px;
@@ -26,16 +31,20 @@ body {
   padding: 20px;
   border-radius: 10px;
 }
+
 .text-center {
   text-align: center;
   color: #121212;
+  font-size: 24px;
+  margin: 10px;
 }
+
 .icon-container {
   display: flex;
   justify-content: center;
   margin: 10px 20px;
-  /* align-items: center; */
 }
+
 .icons {
   width: 50px;
   height: 50px;
@@ -43,16 +52,55 @@ body {
   background-color: #fff;
   padding: 30px;
   margin: 10px 20px;
+  position: relative;
 }
+
+.image-png {
+  display: inline-block;
+  margin: 0 auto;
+  width: 38px;
+  position: absolute;
+  top: 20px;
+  left: 2px;
+}
+.png1 {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 50px;
+}
+
+/* .fa-fingerprint {
+  font-size: 35px;
+  position: absolute;
+  top: 18px;
+  left: 0px;
+  color: #502F8A;
+} */
+
 .btn-login {
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
   color: #fff;
   background-color: #502f8a;
-  /* width:500px ; */
+  border: 0;
   padding: 20px 250px;
   border-radius: 10px;
+}
+
+.btn-login:hover {
   cursor: pointer;
+  color: #fff;
+  background-color: #7345c2;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+}
+
+.keys p {
+  margin: 0px 20px;
 }
 
 @media (max-width: 600px) {
@@ -61,39 +109,45 @@ body {
     color: #502f8a;
     font-weight: 400;
   }
+
   .logo img {
     margin: 80px auto;
     width: 100px;
   }
+
   .connect-msg {
     margin: 30px auto;
   }
+
   .welcome {
     color: var(--primary);
     font-size: 24px;
     font-weight: 600;
   }
+
   .connect-wallet {
     margin: 0 auto;
     width: 400px;
-    cursor: pointer !important;
     /* padding: 0px; */
     /* margin-left: 20px; */
   }
+
   .connect-acct {
     font-size: 16px;
     font-weight: 400;
     color: #121212;
   }
+
   .text-center {
     font-size: 16px;
     font-weight: 500;
   }
+
   .btn-login {
     padding: 20px 190px;
     font-size: 16px;
     font-weight: 500;
     border: none;
-    margin: 0 30px;
+    margin: 30px 30px;
   }
 }

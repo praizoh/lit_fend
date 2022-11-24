@@ -6,8 +6,28 @@ import Web3Modal from "web3modal";
 export default function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
   const [walletConnected, setWalletConnected] = useState(false);
+  // ENS
+  const [ens, setENS] = useState("");
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef();
+  // Save the address of the currently connected account
+  const [address, setAddress] = useState("");
+
+  /**
+   * Sets the ENS, if the current connected address has an associated ENS or else it sets
+   * the address of the connected account
+   */
+  const setENSOrAddress = async (address, web3Provider) => {
+    // Lookup the ENS related to the given address
+    var _ens = await web3Provider.lookupAddress(address);
+    // If the address has an ENS set the ENS or else just set the address
+    if (_ens) {
+      setENS(_ens);
+    } else {
+      setAddress(address);
+    }
+  };
+
   /*
       connectWallet: Connects the MetaMask wallet
     */
@@ -15,7 +35,7 @@ export default function Home() {
     try {
       // Get the provider from web3Modal, which in our case is MetaMask
       // When used for the first time, it prompts the user to connect their wallet
-      await getProviderOrSigner();
+      await getProviderOrSigner(true);
       setWalletConnected(true);
     } catch (err) {
       console.error(err);
@@ -49,9 +69,77 @@ export default function Home() {
 
     if (needSigner) {
       const signer = web3Provider.getSigner();
+      // Get the address associated to the signer which is connected to  MetaMask
+      const address = await signer.getAddress();
+      // Calls the function to set the ENS or Address
+      await setENSOrAddress(address, web3Provider);
       return signer;
     }
     return web3Provider;
+  };
+
+  /*
+      renderButton: Returns a button based on the state of the dapp
+    */
+  const renderButton = () => {
+    // If wallet is not connected, return a button which allows them to connect their wllet
+    if (!walletConnected) {
+      return (
+        <div>
+          <div class="connect-msg">
+            <p class="welcome"> Welcome Back To Lit</p>
+            <p class="connect-acct">
+              Connect your account to get started with Lit
+            </p>
+          </div>
+          <div class="connect-wallet" onClick={connectWallet}>
+            <img src="./images/wallet.png" alt="" />
+            <span>connect to wallet</span>
+          </div>
+          <p class="text-center">or use</p>
+          <div class="icon-container">
+            <div class="icons">
+              <img
+                src="./images/key.png"
+                alt=""
+                width="25px"
+                class="image-png"
+              />
+            </div>
+
+            <div class="icons">
+              <img
+                src="./images/ion_finger-print.png"
+                alt=""
+                width="25px"
+                class="image-png png1"
+              />
+            </div>
+          </div>
+          <div class="keys">
+            <p>ID Key</p>
+            <p> Fingerprint</p>
+          </div>
+
+          <button class="btn-login" onClick={connectWallet}> Log in</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          
+          <div class="connect-wallet">
+            <img src="./images/wallet.png" alt="" />
+            <h3>You are connected as {ens?ens:address}!</h3>
+          </div>
+        </div>
+      );
+    }
+
+    // If we are currently waiting for something, return a loading button
+    if (loading) {
+      return <button className={styles.button}>Loading...</button>;
+    }
   };
 
   useEffect(() => {
@@ -64,58 +152,9 @@ export default function Home() {
         providerOptions: {},
         disableInjectedProvider: false,
       });
+      connectWallet();
     }
   }, [walletConnected]);
-
-  /*
-      renderButton: Returns a button based on the state of the dapp
-    */
-  const renderButton = () => {
-    // If wallet is not connected, return a button which allows them to connect their wllet
-    if (!walletConnected) {
-      return (
-        <div>
-          <div className="connect-msg">
-          <p className="welcome"> Welcome Back To Lit</p>
-          <p className="connect-acct">
-            Connect your account to get started with Lit
-          </p>
-        </div>
-        <div className="connect-wallet" onClick={connectWallet}>
-          <img src="./images/wallet.png" alt="" />
-          <span>connect to wallet</span>
-        </div>
-        <p className="text-center">or use</p>
-        <div className="icon-container">
-          <div className="icons">
-            <img src="./images/key.png" alt="" width="25px" />
-          </div>
-
-          <div className="icons">
-            <img src="./images/ion_finger-print.png" alt="" width="25px" />
-          </div>
-        </div>
-        <div>
-          <p>ID Key</p>
-          <p> Finger</p>
-        </div>
-
-        <button className="btn-login"> Log in</button>
-        </div>
-      );
-    }else{
-      return (
-        <div>
-          <h3>You are connected!</h3>
-        </div>
-      )
-    }
-
-    // If we are currently waiting for something, return a loading button
-    if (loading) {
-      return <button className={styles.button}>Loading...</button>;
-    }
-  };
   return (
     <div>
       <Head>
