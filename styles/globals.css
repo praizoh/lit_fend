@@ -1,51 +1,53 @@
-* {
+.login * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
+.login :root {
   --primary: #502f8a;
 }
 
-body {
+.login body {
   font-family: "Manrope", sans-serif;
   background-color: aliceblue;
 }
 
-.logo img {
+.login .logo img {
   display: block;
   margin: 20px auto;
 }
 
-.connect-msg {
+.login .connect-msg {
   padding: 20px;
   text-align: center;
 }
 
-.connect-wallet {
+.login .connect-wallet {
   border: 1px solid #502f8a;
   width: 500px;
   margin-left: 430px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.text-center {
+.login .text-center {
   text-align: center;
   color: #121212;
   font-size: 24px;
   margin: 10px;
 }
 
-.icon-container {
+.login .icon-container {
   display: flex;
   justify-content: center;
   margin: 10px 20px;
 }
 
-.icons {
+.login .icons {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -55,7 +57,7 @@ body {
   position: relative;
 }
 
-.image-png {
+.login .image-png {
   display: inline-block;
   margin: 0 auto;
   width: 38px;
@@ -63,7 +65,7 @@ body {
   top: 20px;
   left: 2px;
 }
-.png1 {
+.login .png1 {
   position: absolute;
   top: 5px;
   left: 5px;
@@ -78,7 +80,7 @@ body {
   color: #502F8A;
 } */
 
-.btn-login {
+.login .btn-login {
   display: block;
   margin: 10px auto;
   color: #fff;
@@ -88,62 +90,55 @@ body {
   border-radius: 10px;
 }
 
-.btn-login:hover {
+.login .btn-login:hover {
   cursor: pointer;
   color: #fff;
   background-color: #7345c2;
 }
 
-.keys {
+.login .keys {
   display: flex;
   justify-content: center;
 }
 
-.keys p {
+.login .keys p {
   margin: 0px 20px;
 }
 
 @media (max-width: 600px) {
-  span {
+  .login span {
     font-size: 16px;
     color: #502f8a;
     font-weight: 400;
   }
 
-  .logo img {
+  .login .logo img {
     margin: 80px auto;
     width: 100px;
   }
 
-  .connect-msg {
+  .login .connect-msg {
     margin: 30px auto;
   }
 
-  .welcome {
+  .login .welcome {
     color: var(--primary);
     font-size: 24px;
     font-weight: 600;
   }
 
-  .connect-wallet {
-    margin: 0 auto;
-    width: 400px;
-    /* padding: 0px; */
-    /* margin-left: 20px; */
-  }
-
-  .connect-acct {
+  .login .connect-acct {
     font-size: 16px;
     font-weight: 400;
     color: #121212;
   }
 
-  .text-center {
+  .login .text-center {
     font-size: 16px;
     font-weight: 500;
   }
 
-  .btn-login {
+  .login .btn-login {
     padding: 20px 190px;
     font-size: 16px;
     font-weight: 500;
@@ -151,3 +146,192 @@ body {
     margin: 30px 30px;
   }
 }
+
+/* dashboard css */
+
+.dasboard *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.dasboard body{
+  font-family: 'Manrope', sans-serif;
+}
+/* .home{
+  margin: 40px 20px 0;
+} */
+.dasboard .nav{
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 20px 0;
+}
+.dasboard #story{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 ;
+  margin: 20px 20px 0;
+}
+.dasboard #story p{
+  font-size: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+.dasboard #story .status{
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 50%;
+  padding: 1px;
+}
+.dasboard #web3{
+  background-color: rgba(250, 244, 255, 1);
+  /* margin: unset; */
+  margin: 1rem 0;
+  height: 485px;
+  border-radius: 10px;
+  /* width: 428px; */
+}
+.dasboard .webl{
+  display: flex;
+  margin: 20px 16px 0 ;
+  padding-top: 0.8rem;
+}
+.dasboard .status{
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 50%;
+  padding: 1px;
+}
+.dasboard .webl p{
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 0.8rem;
+  padding-top: 0.5rem;
+}
+.dasboard .dot{
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color:rgba(217, 217, 217, 1);
+  border: none;
+  border-radius: 50px;
+  margin: 0.1rem;
+}
+.dasboard .dots{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 4rem;
+  /* padding: 0.5rem; */
+}
+.dasboard .posts{
+  margin: 0 ;
+  position: relative;
+  top: -1.3rem;
+  /* background-color: rgba(250, 244, 255, 1) ; */
+}
+.dasboard .interact{
+  display: flex;
+  justify-content: space-between;
+  margin: -2.5rem 1.1rem;
+}
+
+.dasboard .like img {
+  margin: 0 0.35rem;
+}
+.dasboard .liked{
+  left: 1.1rem;
+  position: absolute;
+  top: 540px;
+  display: flex;
+}
+.dasboard .liked p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  margin: 0.2rem 0.5rem;
+}
+.dasboard .content{
+  left: 0.8rem;
+  position: absolute;
+  top: 580px;
+  display: flex;
+}
+.dasboard .content p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0.2rem 0.5rem;
+}
+.dasboard .content .web3cont{
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.dasboard .content span{
+  color: rgba(137, 137, 137, 1);
+}
+.dasboard .comment{
+  display: flex;
+}
+.dasboard .comments{
+  display: flex;
+  left: 0.8rem;
+  position: absolute;
+  top: 625px;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+.dasboard .comments p{
+  font-size: 0.8rem;
+  margin: 0.2rem 1rem; 
+  color: rgba(137, 137, 137, 1);
+}
+.dasboard .comments .view{
+  margin-left: 7rem;
+}
+.dasboard .nfn{
+  display: flex;
+  margin: 20px 16px 0 ;
+  padding-top: 0.8rem;
+}
+.dasboard .nflike{
+  left: 1.3rem;
+  /* position: absolute; */
+  margin-top: 3rem;
+  display: flex;
+}
+.dasboard .nflike p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  margin: 0.2rem 0.5rem;
+}
+.dasboard .nfcont{
+  display: flex;
+  margin-top: 1rem;
+}
+.dasboard .nfcont p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0.2rem 0.8rem;
+}
+
+
+/* connect button */
+
+[data-rk] .ju367vec {
+  color: black;
+}
+
+[data-rk] .ju367v93 {
+  background-color: transparent;
+}
+
+[data-rk] .ju367v93 {
+  box-shadow: none;
+}
+
+[data-rk] .ju367v81 {
+  padding-top: 10px;
+}
+
+[data-rk] .ju367v1c {
+  font-weight: inherit;
+}
+
+
