@@ -149,40 +149,111 @@
 
 /* dashboard css */
 
-.dasboard *{
+.dasboard * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.dasboard body{
-  font-family: 'Manrope', sans-serif;
+.dasboard body {
+  font-family: "Manrope", sans-serif;
 }
 /* .home{
   margin: 40px 20px 0;
 } */
-.dasboard .nav{
+.dasboard .nav {
   display: flex;
   justify-content: space-between;
   margin: 40px 20px 0;
 }
-.dasboard #story{
+.dasboard .side-bar {
+  /* display: hidden; */
+  background-color: rgba(80, 47, 138, 1);
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: all 200ms ease-in-out;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
+    80px 1px 1px 0 rgba(31, 28, 28, 0.151);
+}
+.dasboard .side.side-show {
+  width: 85%;
+}
+.dasboard .side-head {
+  background-color: rgba(250, 244, 255, 1);
+  padding: 1rem;
+  transition: 2.3s;
+}
+.dasboard .side-profile {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 0 ;
+}
+.dasboard .side-profile p {
+  font-weight: 700;
+  color: rgba(80, 47, 138, 1);
+  font-size: 1.2rem;
+  margin-right: 8rem;
+  margin-top: 0.2rem;
+}
+.dasboard .followers {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+.dasboard .followers p {
+  font-weight: 400;
+  margin: 0 0.7rem;
+}
+.dasboard .followers span {
+  color: rgba(159, 159, 159, 1);
+}
+.dasboard .items {
+  padding: 0.8rem;
+  font-size: 1.2rem;
+}
+.dasboard .items a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+}
+.dasboard .items a:hover {
+  color: rgb(216, 168, 255);
+}
+.dasboard .items li {
+  padding: 1.6rem;
+  list-style: none;
+  /* margin: 0; */
+  /* padding: 0; */
+}
+.dasboard .items img {
+  position: absolute;
+  /* margin-top: 8px; */
+}
+.dasboard .side-logo {
+  font: 1em sans-serif;
+}
+.dasboard #story {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
   margin: 20px 20px 0;
 }
-.dasboard #story p{
+.dasboard #story p {
   font-size: 0.5rem;
   text-align: center;
   font-weight: 500;
   margin-top: 0.5rem;
 }
-.dasboard #story .status{
+.dasboard #story .status {
   border: 1px solid rgba(80, 47, 138, 1);
   border-radius: 50%;
   padding: 1px;
 }
-.dasboard #web3{
+.dasboard #web3 {
   background-color: rgba(250, 244, 255, 1);
   /* margin: unset; */
   margin: 1rem 0;
@@ -190,31 +261,31 @@
   border-radius: 10px;
   /* width: 428px; */
 }
-.dasboard .webl{
+.dasboard .webl {
   display: flex;
-  margin: 20px 16px 0 ;
+  margin: 20px 16px 0;
   padding-top: 0.8rem;
 }
-.dasboard .status{
+.dasboard .status {
   border: 1px solid rgba(80, 47, 138, 1);
   border-radius: 50%;
   padding: 1px;
 }
-.dasboard .webl p{
+.dasboard .webl p {
   font-size: 0.8rem;
   font-weight: 600;
   margin-left: 0.8rem;
   padding-top: 0.5rem;
 }
-.dasboard .dot{
+.dasboard .dot {
   width: 0.5rem;
   height: 0.5rem;
-  background-color:rgba(217, 217, 217, 1);
+  background-color: rgba(217, 217, 217, 1);
   border: none;
   border-radius: 50px;
   margin: 0.1rem;
 }
-.dasboard .dots{
+.dasboard .dots {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -222,13 +293,13 @@
   margin-right: 4rem;
   /* padding: 0.5rem; */
 }
-.dasboard .posts{
-  margin: 0 ;
+.dasboard .posts {
+  margin: 0;
   position: relative;
   top: -1.3rem;
   /* background-color: rgba(250, 244, 255, 1) ; */
 }
-.dasboard .interact{
+.dasboard .interact {
   display: flex;
   justify-content: space-between;
   margin: -2.5rem 1.1rem;
@@ -237,7 +308,7 @@
 .dasboard .like img {
   margin: 0 0.35rem;
 }
-.dasboard .liked{
+.dasboard .liked {
   left: 1.1rem;
   position: absolute;
   top: 540px;
@@ -248,7 +319,7 @@
   font-weight: 300;
   margin: 0.2rem 0.5rem;
 }
-.dasboard .content{
+.dasboard .content {
   left: 0.8rem;
   position: absolute;
   top: 580px;
@@ -259,17 +330,17 @@
   font-weight: 400;
   margin: 0.2rem 0.5rem;
 }
-.dasboard .content .web3cont{
+.dasboard .content .web3cont {
   font-size: 0.8rem;
   font-weight: 600;
 }
-.dasboard .content span{
+.dasboard .content span {
   color: rgba(137, 137, 137, 1);
 }
-.dasboard .comment{
+.dasboard .comment {
   display: flex;
 }
-.dasboard .comments{
+.dasboard .comments {
   display: flex;
   left: 0.8rem;
   position: absolute;
@@ -277,20 +348,20 @@
   justify-content: space-between;
   margin: 0.5rem;
 }
-.dasboard .comments p{
+.dasboard .comments p {
   font-size: 0.8rem;
-  margin: 0.2rem 1rem; 
+  margin: 0.2rem 1rem;
   color: rgba(137, 137, 137, 1);
 }
-.dasboard .comments .view{
+.dasboard .comments .view {
   margin-left: 7rem;
 }
-.dasboard .nfn{
+.dasboard .nfn {
   display: flex;
-  margin: 20px 16px 0 ;
+  margin: 20px 16px 0;
   padding-top: 0.8rem;
 }
-.dasboard .nflike{
+.dasboard .nflike {
   left: 1.3rem;
   /* position: absolute; */
   margin-top: 3rem;
@@ -301,7 +372,7 @@
   font-weight: 300;
   margin: 0.2rem 0.5rem;
 }
-.dasboard .nfcont{
+.dasboard .nfcont {
   display: flex;
   margin-top: 1rem;
 }
@@ -311,7 +382,48 @@
   margin: 0.2rem 0.8rem;
 }
 
-
+.dasboard .taskbar {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  /* margin: 1.1rem; */
+  background-color: rgba(250, 244, 255, 1);
+  padding: 1rem 0;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  /* position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  /* align-self: center; */
+}
+.dasboard .taskbar img:hover {
+  fill: rgba(80, 47, 138, 1);
+}
+.dasboard .taskbar p {
+  text-align: center;
+  font-size: 0.5rem;
+  color: rgba(171, 129, 205, 1);
+}
+.dasboard .taskbars {
+  position: sticky;
+  border: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.dasboard .createpost {
+  position: relative;
+  /* bottom: 200px; */
+  /* top: 1000px; */
+  /* transform: translate(-50%, -50%); */
+  right: 0;
+  left: 360px;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
 /* connect button */
 
 [data-rk] .ju367vec {
@@ -333,5 +445,3 @@
 [data-rk] .ju367v1c {
   font-weight: inherit;
 }
-
-
