@@ -412,6 +412,7 @@
   left: 0;
   right: 0;
 }
+
 .dasboard .createpost {
   position: relative;
   /* bottom: 200px; */
@@ -424,6 +425,105 @@
   margin: 0;
   padding: 0;
 }
+
+/* view comment page */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Manrope", sans-serif;
+}
+.view-comments .content {
+  padding: 1rem;
+  background-color: rgba(250, 244, 255, 1);
+  font-size: 0.7rem;
+  line-height: 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+.view-comments .web3cont {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+.view-comments .contenthead {
+  display: flex;
+  margin-bottom: 0.8rem;
+}
+.view-comments .content img {
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 50%;
+  padding: 1px;
+  height: 35px;
+  width: 35px;
+}
+.view-comments .hashtags {
+  margin-top: 1rem;
+  color: rgba(80, 47, 138, 1);
+}
+.view-comments .webcomment img {
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 50%;
+  padding: 1px;
+  height: 35px;
+  width: 35px;
+}
+.view-comments .all-comments {
+  margin: 1rem;
+  font-size: 0.7rem;
+}
+.view-comments .webcomment {
+  display: flex;
+}
+.view-comments .usercomment {
+  font-weight: 700;
+}
+.view-comments .webcomment p {
+  margin: 0.6rem 0.6rem;
+  text-align: left;
+}
+.view-comments .reply {
+  display: flex;
+  font-size: 0.5rem;
+  justify-content: flex-start;
+  margin: 0 0 1.2rem;
+}
+.view-comments .reply p {
+  margin: 0 0.6rem;
+  color: rgba(80, 47, 138, 1);
+  font-weight: 700;
+}
+.view-comments .enter-comment {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgba(250, 244, 255, 1);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view-comments .enter-comment textarea {
+  padding: 0.7rem 5rem 0 1rem;
+  margin: 0 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(80, 47, 138, 1);
+  text-align: left;
+  font-size: 0.8rem;
+}
+.view-comments .fa-paper-plane {
+  color: rgba(80, 47, 138, 1);
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+.view-comments .fa-paper-plane:hover {
+  color: rgb(127, 66, 231);
+}
+
 /* connect button */
 
 [data-rk] .ju367vec {
