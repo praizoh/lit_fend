@@ -524,6 +524,92 @@ body {
   color: rgb(127, 66, 231);
 }
 
+/* interest styling start here */
+.interestPage * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.interestPage body {
+  font-family: "Manrope", sans-serif;
+}
+.interestPage .skip {
+  color: #121212;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 20px;
+}
+.interestPage .interest h1 {
+  color: #502f8a;
+  font-size: 50px;
+  font-weight: 400;
+  margin: 20px;
+  text-align: center;
+}
+.interestPage .interest .app-experience {
+  color: #121212;
+  text-align: center;
+  font-size: 20px;
+}
+.interestPage .interest-opt {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 50px;
+}
+.interestPage .interest-opt p {
+  color: #121212;
+  padding: 10px 30px;
+  background-color: #f2f2f2;
+  margin: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1.25px;
+}
+.interestPage .btn-continue {
+  display: block;
+  padding: 1.25rem 10.75rem;
+  text-align: center;
+  margin: 1.25rem auto;
+  background: #c5bad8;
+  border-radius: 0.625rem;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 500;
+  transform: 200ms ease-in;
+}
+.interestPage .btn-continue:hover {
+  background-color: #502f8a;
+  color: #fff;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  .interestPage .interest h1 {
+    font-size: 24px;
+    text-align: left;
+  }
+  .interestPage .interest .app-experience {
+    color: #121212;
+    width: 380px;
+    margin: 20px;
+    text-align: left;
+  }
+
+  .interestPage .interest-opt p {
+    font-weight: 400;
+    font-size: 16px;
+  }
+  .interestPage .btn-continue {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
+
 /* connect button */
 
 [data-rk] .ju367vec {

@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       );
     } else {
-      Router.push('/dashboard')
+      Router.push('/select_interest')
     }
   };
   return (
