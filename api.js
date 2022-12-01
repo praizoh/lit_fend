@@ -9,11 +9,18 @@
 // })
 
 import { createClient } from 'urql';
+import { userService } from './services/userService'
+
 
 const APIURL = "https://api-mumbai.lens.dev";
 
 export const client = new createClient({
   url: APIURL,
+  fetchOptions: () => {
+    const token = userService ? userService.userValue.accessToken : '';
+    return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+  },
+
 });
 
 /* define a GraphQL query  */
@@ -1432,3 +1439,206 @@ fragment ReferenceModuleFields on ReferenceModule {
 }
 
 `
+
+export const getChallenge = `
+query Challenge($address: EthereumAddress!) {
+  challenge(request: { address: $address }) {
+    text
+  }
+}
+`
+
+export const Authentication = `
+mutation Authenticate($address: EthereumAddress!, $signature: Signature!) {
+  authenticate(request: {
+    address: $address,
+    signature: $signature
+  }) {
+    accessToken
+    refreshToken
+  }
+}
+`
+
+export const CreateProfileLens = `
+mutation CreateProfile($handle: CreateHandle!) {
+  createProfile(request:{ 
+                  handle: $handle,
+                  profilePictureUri: null,
+                  followNFTURI: null,
+                  followModule: null
+                }) {
+    ... on RelayerResult {
+      txHash
+    }
+    ... on RelayError {
+      reason
+    }
+    __typename
+  }
+}
+`
+
+export const HasTxHashBeenIndexed  = `
+query HasTxHashBeenIndexed($txHash: TxHash!) {
+  hasTxHashBeenIndexed(request: { txHash: $txHash }) {
+    ... on TransactionIndexedResult {
+      indexed
+      txReceipt {
+        to
+        from
+        contractAddress
+        transactionIndex
+        root
+        gasUsed
+        logsBloom
+        blockHash
+        transactionHash
+        blockNumber
+        confirmations
+        cumulativeGasUsed
+        effectiveGasPrice
+        byzantium
+        type
+        status
+        logs {
+          blockNumber
+          blockHash
+          transactionIndex
+          removed
+          address
+          data
+          topics
+          transactionHash
+          logIndex
+        }
+      }
+      metadataStatus {
+        status
+        reason
+      }
+    }
+    ... on TransactionError {
+      reason
+      txReceipt {
+        to
+        from
+        contractAddress
+        transactionIndex
+        root
+        gasUsed
+        logsBloom
+        blockHash
+        transactionHash
+        blockNumber
+        confirmations
+        cumulativeGasUsed
+        effectiveGasPrice
+        byzantium
+        type
+        status
+        logs {
+          blockNumber
+          blockHash
+          transactionIndex
+          removed
+          address
+          data
+          topics
+          transactionHash
+          logIndex
+        }
+      }
+    },
+    __typename
+  }
+}
+`
+
+export const GetDefaultProfile = `
+query DefaultProfile($address: EthereumAddress!) {
+  defaultProfile(request: { ethereumAddress: $address}) {
+    id
+    name
+    bio
+    isDefault
+    attributes {
+      displayType
+      traitType
+      key
+      value
+    }
+    followNftAddress
+    metadata
+    handle
+    picture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        chainId
+        verified
+      }
+      ... on MediaSet {
+        original {
+          url
+          mimeType
+        }
+      }
+    }
+    coverPicture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        chainId
+        verified
+      }
+      ... on MediaSet {
+        original {
+          url
+          mimeType
+        }
+      }
+    }
+    ownedBy
+    dispatcher {
+      address
+      canUseRelay
+    }
+    stats {
+      totalFollowers
+      totalFollowing
+      totalPosts
+      totalComments
+      totalMirrors
+      totalPublications
+      totalCollects
+    }
+    followModule {
+      ... on FeeFollowModuleSettings {
+        type
+        contractAddress
+        amount {
+          asset {
+            name
+            symbol
+            decimals
+            address
+          }
+          value
+        }
+        recipient
+      }
+      ... on ProfileFollowModuleSettings {
+       type
+      }
+      ... on RevertFollowModuleSettings {
+       type
+      }
+    }
+  }
+}
+`
+
+export const CreatePost = ``

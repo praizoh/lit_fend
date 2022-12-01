@@ -1,17 +1,20 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useSigner } from "wagmi";
 import { client, explorePublications } from "../api";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const { data: signer, isError, isLoading } = useSigner()
+
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   async function fetchPosts() {
+    console.log(signer)
     try {
       const response = await client.query(explorePublications).toPromise();
       console.log({ response });
@@ -54,7 +57,7 @@ export default function Home() {
                 alt="logo"
                 width="32px"
                 height="32px"
-                class="side-logo"
+                className="side-logo"
                 id="side-btn"
               />
             </div>
