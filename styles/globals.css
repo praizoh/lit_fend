@@ -169,7 +169,7 @@
   /* display: hidden; */
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
-  width: 0%;
+  width: 80%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -522,6 +522,96 @@ body {
 }
 .view-comments .fa-paper-plane:hover {
   color: rgb(127, 66, 231);
+}
+
+/* create profile page styling starts here */
+.createprofile * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.createprofile .cprofile {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.createprofile .cprofile img {
+  display: block;
+  margin: 2rem auto;
+}
+.createprofile .cprofile h3 {
+  color: rgba(80, 47, 138, 1);
+  margin: 0.2rem 0;
+}
+.createprofile .cprofile .addpicture {
+  display: block;
+  margin: 0 auto;
+}
+.createprofile .cprofile p {
+  font-size: 0.9rem;
+  margin: 0 0 2rem;
+}
+.createprofile .cprofile .padd {
+  font-size: 0.9rem;
+  margin: 0.6rem 0 1.7rem;
+  text-align: center;
+}
+.createprofile .cprofile input {
+  padding: 1rem;
+  color: rgba(80, 47, 138, 1);
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 0.6rem;
+}
+/* .createprofile .cprofile .imagep {
+  display: none;
+} */
+.createprofile .cprofile button {
+  margin: 2rem 0 0.7rem;
+  padding: 1rem;
+  background-color: rgba(80, 47, 138, 1);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+}
+.createprofile .cprofile .cuser {
+  text-align: center;
+  color: #403f41;
+  font-size: 0.9rem;
+}
+.createprofile .cprofile a {
+  text-decoration: none;
+  color: rgba(80, 47, 138, 1);
+}
+@media screen and (min-width: 1024px) {
+  .createprofile .cprofile {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .createprofile .cprofile h3 {
+    color: rgba(80, 47, 138, 1);
+    margin: 0.4rem 0;
+    text-align: center;
+    font-size: 2rem;
+  }
+  .createprofile .cprofile input {
+    margin: 0.5rem 0;
+    padding: 1.2rem 12rem 1.2rem 1rem;
+    color: rgba(80, 47, 138, 1);
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 0.6rem;
+  }
+  .createprofile .cprofile button {
+    margin: 2.5rem 0 0.7rem;
+    padding: 1rem 6rem;
+    background-color: rgba(80, 47, 138, 1);
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+  }
 }
 
 /* interest styling start here */
