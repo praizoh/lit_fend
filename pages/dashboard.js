@@ -260,17 +260,20 @@ export default function Home() {
                 {/* // } */}
               </div>
               <p>{post.profile.name}</p>
-              <div className="dots">
-                <div></div>
-              </div>
+              <img
+                src="images/more_icon.png"
+                alt="more"
+                width="4px"
+                height="24px"
+              />
             </div>
             {/* <!-- <div className="posts"> --> */}
             <img
               src="images/web3-polygon.png"
-              className="posts"
+              class="posts"
               alt=""
-              width="426px"
               height="300px"
+              width="359px"
             />
             {/* <video >
               <source src={post.metadata.media[0].original.url} type="video/mp4" control width="426px"
