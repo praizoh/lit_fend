@@ -18,7 +18,7 @@ export default function Home() {
     try {
       const response = await client.query(explorePublications).toPromise();
       console.log({ response });
-      setPosts(response.data.publications.items);
+      setPosts(response.data.explorePublications.items);
     } catch (err) {
       console.log(err);
     }
