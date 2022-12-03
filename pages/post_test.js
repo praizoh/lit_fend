@@ -18,6 +18,7 @@ const profileSubject = new BehaviorSubject(
 );
 import { client, GetDefaultProfile, HasTxHashBeenIndexed } from "../api";
 import { BigNumber, utils } from "ethers";
+import { createPost } from "../services/create_post";
 
 export default function Home() {
   const [token, setToken] = useState("");
@@ -29,9 +30,9 @@ export default function Home() {
   });
   const userServiceData = userService;
   const profileServiceData = profileService;
-  const profileInfoId = profileServiceData.profileValue.id
+  const profileInfoId = profileServiceData.profileValue.id;
 
-  useEffect(async() => {
+  useEffect(async () => {
     if (!account) {
       Router.push("/");
     }
@@ -39,22 +40,14 @@ export default function Home() {
       return;
     }
     await getDefaultProfile();
-    if(!getDefaultProfileData.profileValue.id){
-        console.log("user does not have profile")
-        Router.push("/");
-    }else{
-        console.log("profile created")
+    if (!getDefaultProfileData.profileValue.id) {
+      console.log("user does not have profile");
+      Router.push("/");
+    } else {
+      console.log("profile created");
     }
-    createPost()
   }, [account, signer]);
-
-  async function createPost() {
-    try {
-      
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  createPost(profileInfoId);
 
   return (
     <div>

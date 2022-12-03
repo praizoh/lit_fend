@@ -16,6 +16,7 @@ const userSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("user"))
 );
 
+
 export default function Home() {
   const [token, setToken] = useState("");
   const { data: account } = useAccount();
