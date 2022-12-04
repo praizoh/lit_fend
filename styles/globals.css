@@ -171,8 +171,7 @@
   width: 32px;
   height: 32px;
 }
-.side-bar {
-  /* display: hidden; */
+/* .side-bar {
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
   width: 0%;
@@ -197,15 +196,15 @@
 .side-profile {
   display: flex;
   justify-content: space-between;
-}
-.side-profile p {
+} */
+/* .side-profile p {
   font-weight: 700;
   color: rgba(80, 47, 138, 1);
   font-size: 1.2rem;
   margin-right: 6rem;
   margin-top: 0.2rem;
-}
-.followers {
+} */
+/* .followers {
   display: flex;
   justify-content: center;
   padding-top: 0.5rem;
@@ -216,8 +215,8 @@
 }
 .followers span {
   color: rgba(159, 159, 159, 1);
-}
-.items {
+} */
+/* .items {
   padding: 0.8rem;
   font-size: 1.2rem;
 }
@@ -233,23 +232,23 @@
   padding: 1.6rem;
   list-style: none;
   /* margin: 0; */
-  /* padding: 0; */
-}
-.items img {
+/* padding: 0;
+} */
+/* .items img {
   position: absolute;
-  /* margin-top: 8px; */
+  /* margin-top: 8px; 
 }
 .side-logo {
   font: 1em sans-serif;
-}
+} */
 .fa-heart {
   font-size: 1.5rem;
   color: rgba(80, 47, 138, 1);
   margin-right: 0.3rem;
 }
-.fa-heart:hover {
+/* .fa-heart:hover {
   color: rgba(80, 47, 138, 4);
-}
+} */
 #story {
   display: flex;
   justify-content: space-between;
@@ -635,7 +634,7 @@
     font-size: 0.6rem;
     color: rgba(171, 129, 205, 1);
   }
-  .createpost {
+  .dasboard .createpost {
     position: relative;
     /* bottom: 200px; */
     /* top: 1000px; */
@@ -1095,6 +1094,83 @@ input[type="file"] {
     color: #fff;
     border: none;
     border-radius: 0.6rem;
+  }
+}
+
+/* profile page styling starts here */
+.profile-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile-page .profilep {
+  background-color: rgba(250, 244, 255, 1);
+  padding: 2rem 2rem 1.3rem;
+  text-align: center;
+  border: none;
+  border-radius: 0 0 15px 15px;
+}
+.profile-page .profilep .userprofile {
+  color: rgba(80, 47, 138, 1);
+  margin: 0.8rem 0;
+  font-size: 1.2rem;
+}
+.profile-page .profilep .followers {
+  display: flex;
+  justify-content: center;
+  /* padding-top: 0.5rem; */
+}
+.profile-page .profilep .aboutuser {
+  font-size: 0.85rem;
+  color: rgb(70, 69, 69);
+  line-height: 1.3rem;
+}
+.profile-page .profilep .followers p {
+  font-weight: bold;
+  color: #502f8a;
+  margin: 0.4rem 0.7rem 0;
+  font-size: 0.9rem;
+}
+.profile-page .followers span {
+  color: rgb(110, 109, 109);
+  font-weight: 500;
+}
+.profile-page .profilep .followers {
+  margin: 1rem 0 0.6rem;
+}
+.profile-page .addingpost .addpost {
+  height: 35px;
+  width: 35px;
+}
+.profile-page .addingpost {
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 500;
+  color: #502f8a;
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile-page .addingpost {
+    position: absolute;
+    bottom: 0;
+    left: 5rem;
+    top: 6rem;
+  }
+  .profile-page .addingpost p {
+    font-weight: 500;
+    color: #502f8a;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 0.4rem 0;
+  }
+  .profile-page .profilep .aboutuser {
+    font-size: 1rem;
+    color: rgb(70, 69, 69);
+    line-height: 1.3rem;
   }
 }
 
