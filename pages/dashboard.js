@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Link from 'next/link'
 import {
   useAccount,
   useDisconnect,
@@ -9,17 +10,52 @@ import {
   useSigner,
 } from "wagmi";
 import { client, explorePublications } from "../api";
+import { ethers, providers } from 'ethers'
+import { addressService,userService, profileService } from "../services/userService";
+const addressServiceData = addressService
+  const userAddress = addressServiceData.addressValue
+
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const { data: signer, isError, isLoading } = useSigner();
+  const [ens, setENS] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+
+    if(!userAddress){
+      return
+    }
+    setENSOrAddress()
+  }, [userAddress]);
+
+  const setENSOrAddress = async () => {
+    console.log(userAddress)
+    const provider = new providers.Web3Provider(window.ethereum);
+
+    console.log("ens calling " + userAddress)
+    // Lookup the ENS related to the given address
+    var _ens = await provider.lookupAddress(userAddress);
+    console.log(_ens)
+    // If the address has an ENS set the ENS or else just set the address
+    if (_ens) {
+      setENS(_ens);
+    } else {
+      setAddress(userAddress);
+    }
+  };
+
+  // Captures 0x + 4 characters, then the last 4 characters.
+  const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
+
+  const truncateEthAddress = (address) => {
+    const match = address.match(truncateRegex);
+    if (!match) return address;
+    return `${match[1]}…${match[2]}`;
+  };
 
   async function fetchPosts() {
-    console.log(signer);
     try {
       const response = await client.query(explorePublications).toPromise();
       console.log({ response });
@@ -38,6 +74,7 @@ export default function Home() {
       <main>
         {/* nav bar */}
         <div className="nav">
+          <div>
           <img
             src="images/profile-picture.png"
             alt="profile"
@@ -45,9 +82,16 @@ export default function Home() {
             height="32px"
             id="side-p"
           />
+          {ens && (
+            <span>{ens}</span>
+          )}
+          {!ens &&  (
+            <span>{truncateEthAddress(address)}</span>
+          )}
+          </div>
           <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
-        <div className="side side-bar" id="side-bars">
+        {/* <div className="side side-bar" id="side-bars">
           <div className="side-head">
             <div className="side-profile">
               <img
@@ -168,7 +212,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         {/* <!-- story section --> */}
         <div id="story">
@@ -245,11 +289,13 @@ export default function Home() {
           </div>
         </div>
         {/* <!-- posts section --> */}
-        {posts.map((post) => (
-          <div id="web3">
+        {posts.map((post, index) => (
+            <div id="web3">
             <div className="webl">
+
               <div>
                 {/* { post. */}
+
                 <img
                   src="images/web3logo.png"
                   alt=""
@@ -259,12 +305,15 @@ export default function Home() {
                 />
                 {/* // } */}
               </div>
-              <p>{post.profile.name}</p>
+
+              <p><span>{post.profile.handle}</span></p>
               <div className="dots">
                 <div></div>
               </div>
             </div>
             {/* <!-- <div className="posts"> --> */}
+            <Link href={`/posts/${post.profile.id}-${post.id}`} key={index}>
+
             <img
               src="images/web3-polygon.png"
               className="posts"
@@ -272,6 +321,7 @@ export default function Home() {
               width="426px"
               height="300px"
             />
+            </Link>
             {/* <video >
               <source src={post.metadata.media[0].original.url} type="video/mp4" control width="426px"
               height="300px"/>
@@ -339,6 +389,7 @@ export default function Home() {
               </p>
             </div>
           </div>
+          
         ))}
 
         {/* task bar */}
