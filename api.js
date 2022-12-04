@@ -11,9 +11,9 @@
 import { createClient } from 'urql';
 import { userService } from './services/userService'
 
-
-// const APIURL = "https://api-mumbai.lens.dev";
-const APIURL = "https://api.lens.dev";
+console.log(userService)
+const APIURL = "https://api-mumbai.lens.dev";
+// const APIURL = "https://api.lens.dev";
 
 export const client = new createClient({
   url: APIURL,
@@ -388,8 +388,8 @@ export const explorePublications = `
   query {
     explorePublications(request: {
       sortCriteria: TOP_COMMENTED,
-      publicationTypes: [POST, COMMENT, MIRROR],
-      limit: 10
+      publicationTypes: [POST],
+      limit: 1
     }) {
       items {
         __typename 
@@ -1252,7 +1252,7 @@ fragment ReferenceModuleFields on ReferenceModule {
 
 `
 export const getPublicationById = `
-query Publication($id: PublicationId!) {
+query Publication($id: InternalPublicationId!) {
   publication(request: {
     publicationId: $id
   }) {

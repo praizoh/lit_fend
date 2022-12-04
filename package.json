@@ -10,13 +10,17 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@emotion/css": "^11.10.5",
     "@rainbow-me/rainbowkit": "^0.2.5",
     "ethers": "^5.7.2",
     "graphql": "^16.6.0",
+    "ipfs-http-client": "^59.0.0",
     "next": "13.0.4",
+    "omit-deep": "^0.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "urql": "^3.0.3",
+    "uuid": "^9.0.0",
     "wagmi": "^0.4.12",
     "web3modal": "^1.9.10"
   }

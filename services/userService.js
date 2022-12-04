@@ -7,6 +7,10 @@ const profileSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("profile"))
 );
 
+const addressSubject = new BehaviorSubject(
+  process.browser && JSON.parse(localStorage.getItem("address"))
+);
+
 
 export const userService = {
     user: userSubject.asObservable(),
@@ -19,5 +23,12 @@ export const profileService = {
   profile: profileSubject.asObservable(),
   get profileValue() {
     return profileSubject.value;
+  },
+};
+
+export const addressService = {
+  address: addressSubject.asObservable(),
+  get addressValue() {
+    return addressSubject.value;
   },
 };

@@ -3,7 +3,7 @@ import { getProfiles, getPublications } from './queries'
 import { createPostTypedData } from './mutations'
 import { refreshAuthToken, generateRandomColor, signedTypeData } from '../utils'
 
-export const APIURL = "https://api.lens.dev"
+export const APIURL = "https://api-mumbai.lens.dev"
 export const STORAGE_KEY = "LH_STORAGE_KEY"
 export const LENS_HUB_CONTRACT_ADDRESS = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d"
 export const PERIPHERY_CONTRACT_ADDRESS = "0xeff187b4190E551FC25a7fA4dFC6cf7fDeF7194f"
