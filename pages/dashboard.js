@@ -75,19 +75,15 @@ export default function Home() {
         {/* nav bar */}
         <div className="nav">
           <div>
-          <img
-            src="images/profile-picture.png"
-            alt="profile"
-            width="32px"
-            height="32px"
-            id="side-p"
-          />
-          {ens && (
-            <span>{ens}</span>
-          )}
-          {!ens &&  (
-            <span>{truncateEthAddress(address)}</span>
-          )}
+            <img
+              src="images/profile-picture.png"
+              alt="profile"
+              width="32px"
+              height="32px"
+              id="side-p"
+            />
+            {ens && <span>{ens}</span>}
+            {!ens && <span>{truncateEthAddress(address)}</span>}
           </div>
           <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
@@ -290,9 +286,8 @@ export default function Home() {
         </div>
         {/* <!-- posts section --> */}
         {posts.map((post, index) => (
-            <div id="web3">
+          <div id="web3">
             <div className="webl">
-
               <div>
                 {/* { post. */}
 
@@ -306,21 +301,25 @@ export default function Home() {
                 {/* // } */}
               </div>
 
-              <p><span>{post.profile.handle}</span></p>
-              <div className="dots">
-                <div></div>
-              </div>
+              <p>
+                <span>{post.profile.handle}</span>
+              </p>
+              <img
+                src="images/more_icon.png"
+                alt="more"
+                width="4px"
+                height="24px"
+              />
             </div>
             {/* <!-- <div className="posts"> --> */}
             <Link href={`/posts/${post.profile.id}-${post.id}`} key={index}>
-
-            <img
-              src="images/web3-polygon.png"
-              className="posts"
-              alt=""
-              width="426px"
-              height="300px"
-            />
+              <img
+                src="images/web3-polygon.png"
+                class="posts"
+                alt=""
+                height="300px"
+                width="359px"
+              />
             </Link>
             {/* <video >
               <source src={post.metadata.media[0].original.url} type="video/mp4" control width="426px"
@@ -389,7 +388,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
         ))}
 
         {/* task bar */}

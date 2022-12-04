@@ -1,24 +1,28 @@
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
-import { AppContext } from '../context'
+import { AppContext } from "../context";
 import { CreateProfileLens } from "../api";
 import { client, GetDefaultProfile, HasTxHashBeenIndexed } from "../api";
-import { addressService,userService, profileService } from "../services/userService";
+import {
+  addressService,
+  userService,
+  profileService,
+} from "../services/userService";
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 const profileSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("profile"))
-  );
+);
 export default function Createprofile() {
-  const [username, setUsername]= useState("")
-  const context = useContext(AppContext)
-  console.log(context)
-  const [userProfile, setUserProfile] = useState()
+  const [username, setUsername] = useState("");
+  const context = useContext(AppContext);
+  console.log(context);
+  const [userProfile, setUserProfile] = useState();
 
   const userServiceData = userService;
   const profileServiceData = profileService;
-  const addressServiceData = addressService
-  const userAddress = addressServiceData.addressValue
+  const addressServiceData = addressService;
+  const userAddress = addressServiceData.addressValue;
   useEffect(() => {
     if (!userAddress) {
       Router.push("/");
@@ -133,14 +137,16 @@ export default function Createprofile() {
         .query(GetDefaultProfile, { address: userAddress })
         .toPromise();
       console.log(response);
-      setUserProfile(response.data.defaultProfile)
+      setUserProfile(response.data.defaultProfile);
       profileSubject.next(response.data.defaultProfile);
-        localStorage.setItem("profile", JSON.stringify(response.data.defaultProfile));
+      localStorage.setItem(
+        "profile",
+        JSON.stringify(response.data.defaultProfile)
+      );
     } catch (err) {
       console.log(err);
     }
   }
-
 
   return (
     <div className="createprofile">
@@ -160,14 +166,30 @@ export default function Createprofile() {
           />
           <h3>Welcome To Lit</h3>
           <p>Create your account to get started with Lit</p>
+          <label for="file">
+            <img
+              src="images/add-story.png"
+              alt="add picture"
+              width="30px"
+              height="30px"
+              className="addpicture"
+            />
+            &nbsp; Add Profile Picture
+          </label>
           <input
             type="file"
-            id="cimage"
             accept="image/*"
             placeholder="add profile picture"
-            className="imagep"
+            id="imagep"
           ></input>
-          <input type="text" placeholder="User name" onChange={e => setUsername(e.target.value)} required minLength={5} maxLength={30}></input>
+          <input
+            type="text"
+            placeholder="User name"
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength={5}
+            maxLength={30}
+          ></input>
           <button onClick={createProfile}>Create Profile</button>
           <p className="cuser">
             Already have an account? <a href="index.js">Log in</a>
