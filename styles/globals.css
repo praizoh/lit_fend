@@ -157,19 +157,25 @@
 .dasboard body {
   font-family: "Manrope", sans-serif;
 }
+
 /* .home{
-  margin: 40px 20px 0;
+    margin: 40px 20px 0;
 } */
-.dasboard .nav {
+/* @media screen and (min-width: 320px) { */
+.nav {
   display: flex;
   justify-content: space-between;
-  margin: 40px 20px 0;
+  margin: 2rem 1rem 0;
 }
-.dasboard .side-bar {
+.nav #side-p {
+  width: 32px;
+  height: 32px;
+}
+.side-bar {
   /* display: hidden; */
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
-  width: 80%;
+  width: 0%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -180,104 +186,119 @@
   box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
     80px 1px 1px 0 rgba(31, 28, 28, 0.151);
 }
-.dasboard .side.side-show {
+.side.side-show {
   width: 85%;
 }
-.dasboard .side-head {
+.side-head {
   background-color: rgba(250, 244, 255, 1);
   padding: 1rem;
   transition: 2.3s;
 }
-.dasboard .side-profile {
+.side-profile {
   display: flex;
   justify-content: space-between;
 }
-.dasboard .side-profile p {
+.side-profile p {
   font-weight: 700;
   color: rgba(80, 47, 138, 1);
   font-size: 1.2rem;
-  margin-right: 8rem;
+  margin-right: 6rem;
   margin-top: 0.2rem;
 }
-.dasboard .followers {
+.followers {
   display: flex;
   justify-content: center;
   padding-top: 0.5rem;
 }
-.dasboard .followers p {
+.followers p {
   font-weight: 400;
   margin: 0 0.7rem;
 }
-.dasboard .followers span {
+.followers span {
   color: rgba(159, 159, 159, 1);
 }
-.dasboard .items {
+.items {
   padding: 0.8rem;
   font-size: 1.2rem;
 }
-.dasboard .items a {
+.items a {
   color: white;
   text-decoration: none;
   padding: 1rem 2.5rem;
 }
-.dasboard .items a:hover {
+.items a:hover {
   color: rgb(216, 168, 255);
 }
-.dasboard .items li {
+.items li {
   padding: 1.6rem;
   list-style: none;
   /* margin: 0; */
   /* padding: 0; */
 }
-.dasboard .items img {
+.items img {
   position: absolute;
   /* margin-top: 8px; */
 }
-.dasboard .side-logo {
+.side-logo {
   font: 1em sans-serif;
 }
-.dasboard #story {
+.fa-heart {
+  font-size: 1.5rem;
+  color: rgba(80, 47, 138, 1);
+  margin-right: 0.3rem;
+}
+.fa-heart:hover {
+  color: rgba(80, 47, 138, 4);
+}
+#story {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 0;
-  margin: 20px 20px 0;
+  /* margin: 1rem 0; */
+  margin: 1rem 1rem 0;
 }
-.dasboard #story p {
+#story p {
   font-size: 0.5rem;
   text-align: center;
   font-weight: 500;
   margin-top: 0.5rem;
 }
-.dasboard #story .status {
+#story .status {
   border: 1px solid rgba(80, 47, 138, 1);
   border-radius: 50%;
   padding: 1px;
 }
-.dasboard #web3 {
+#story img {
+  height: 48px;
+  width: 48px;
+}
+#web3 {
   background-color: rgba(250, 244, 255, 1);
   /* margin: unset; */
   margin: 1rem 0;
-  height: 485px;
+  height: 500px;
   border-radius: 10px;
   /* width: 428px; */
 }
-.dasboard .webl {
+.webl {
   display: flex;
-  margin: 20px 16px 0;
+  justify-content: space-between;
+  margin: 20px 19px 0;
   padding-top: 0.8rem;
 }
-.dasboard .status {
+.status {
   border: 1px solid rgba(80, 47, 138, 1);
   border-radius: 50%;
   padding: 1px;
+  height: 30px;
+  width: 30px;
 }
-.dasboard .webl p {
+.webl p {
   font-size: 0.8rem;
   font-weight: 600;
-  margin-left: 0.8rem;
+  margin-right: 11.5rem;
   padding-top: 0.5rem;
 }
-.dasboard .dot {
+.dot {
   width: 0.5rem;
   height: 0.5rem;
   background-color: rgba(217, 217, 217, 1);
@@ -285,7 +306,15 @@
   border-radius: 50px;
   margin: 0.1rem;
 }
-.dasboard .dots {
+.dots .active {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgba(80, 47, 138, 1);
+  border: none;
+  border-radius: 50px;
+  margin: 0.1rem;
+}
+.dots {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -293,96 +322,89 @@
   margin-right: 4rem;
   /* padding: 0.5rem; */
 }
-.dasboard .posts {
-  margin: 0;
+.posts {
+  /* margin: 0 auto; */
+  /* position: relative; */
+  margin: 0 auto;
+  /* width: 355px; */
+  display: block;
   position: relative;
-  top: -1.3rem;
-  /* background-color: rgba(250, 244, 255, 1) ; */
+  top: -1rem;
 }
-.dasboard .interact {
+/* .post { */
+/* position: absolute; */
+/* } */
+.interact {
   display: flex;
   justify-content: space-between;
-  margin: -2.5rem 1.1rem;
+  margin: -1.5rem 1.1rem;
 }
 
-.dasboard .like img {
+.like img {
   margin: 0 0.35rem;
 }
-.dasboard .liked {
-  left: 1.1rem;
-  position: absolute;
-  top: 540px;
+.liked {
+  /* left: 1.1rem; */
+  /* position: ; */
+  margin: 2.5rem 1.1rem 0;
   display: flex;
 }
-.dasboard .liked p {
+.liked p {
   font-size: 0.8rem;
   font-weight: 300;
   margin: 0.2rem 0.5rem;
 }
-.dasboard .content {
-  left: 0.8rem;
-  position: absolute;
-  top: 580px;
+.content {
+  /* left: 0.8rem;
+    position: absolute;
+    top: 580px; */
+  margin: 0.6rem 0.6rem 0;
   display: flex;
 }
-.dasboard .content p {
+.content p {
   font-size: 0.8rem;
   font-weight: 400;
   margin: 0.2rem 0.5rem;
 }
-.dasboard .content .web3cont {
+.content .web3cont {
   font-size: 0.8rem;
   font-weight: 600;
 }
-.dasboard .content span {
+.content span {
   color: rgba(137, 137, 137, 1);
 }
-.dasboard .comment {
+.comment {
   display: flex;
 }
-.dasboard .comments {
+.comments {
   display: flex;
-  left: 0.8rem;
-  position: absolute;
-  top: 625px;
+  /* left: 0.8rem;
+    position: absolute;
+    top: 625px; */
   justify-content: space-between;
-  margin: 0.5rem;
+  margin: 0.6rem 1rem;
 }
-.dasboard .comments p {
+.comments p {
   font-size: 0.8rem;
-  margin: 0.2rem 1rem;
+  margin: 0.3rem 1rem;
   color: rgba(137, 137, 137, 1);
 }
-.dasboard .comments .view {
-  margin-left: 7rem;
+.comments .view {
+  margin-left: 3rem;
 }
-.dasboard .nfn {
+.nfn {
   display: flex;
+  justify-content: space-between;
   margin: 20px 16px 0;
   padding-top: 0.8rem;
 }
-.dasboard .nflike {
-  left: 1.3rem;
-  /* position: absolute; */
-  margin-top: 3rem;
-  display: flex;
-}
-.dasboard .nflike p {
+.nfn p {
   font-size: 0.8rem;
-  font-weight: 300;
-  margin: 0.2rem 0.5rem;
+  font-weight: 600;
+  margin-right: 15rem;
+  padding-top: 0.5rem;
 }
-.dasboard .nfcont {
-  display: flex;
-  margin-top: 1rem;
-}
-.dasboard .nfcont p {
-  font-size: 0.8rem;
-  font-weight: 400;
-  margin: 0.2rem 0.8rem;
-}
-
-.dasboard .taskbar {
+.taskbar {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -391,39 +413,449 @@
   padding: 1rem 0;
   border: none;
   border-radius: 10px 10px 0 0;
-  /* position: sticky;
+  /* position: sticky; */
+
   bottom: 0;
   left: 0;
-  right: 0; */
+  right: 0;
   /* align-self: center; */
 }
-.dasboard .taskbar img:hover {
+.taskbar img:hover {
   fill: rgba(80, 47, 138, 1);
 }
-.dasboard .taskbar p {
+.taskbar p {
   text-align: center;
   font-size: 0.5rem;
   color: rgba(171, 129, 205, 1);
 }
-.dasboard .taskbars {
+.taskbars {
   position: sticky;
   border: none;
   bottom: 0;
   left: 0;
   right: 0;
 }
-
-.dasboard .createpost {
+.createpost {
   position: relative;
   /* bottom: 200px; */
   /* top: 1000px; */
   /* transform: translate(-50%, -50%); */
   right: 0;
-  left: 360px;
+  left: 310px;
   width: 50px;
   height: 50px;
   margin: 0;
   padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 2rem 0;
+  }
+  .nav #side-p {
+    width: 45px;
+    height: 45px;
+  }
+  .side-bar {
+    /* display: hidden; */
+    background-color: rgba(80, 47, 138, 1);
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: all 200ms ease-in-out;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
+      120px 1px 1px 0 rgba(31, 28, 28, 0.151);
+  }
+
+  #story {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 1rem 0; */
+    margin: 1rem 2rem 0;
+  }
+  #story img {
+    width: 60px;
+    height: 60px;
+  }
+  #story p {
+    font-size: 0.7rem;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  #story .status {
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 50%;
+    padding: 1px;
+  }
+  #web3 {
+    background-color: rgba(250, 244, 255, 1);
+    /* margin: unset; */
+    margin: 1.2rem 0;
+    height: 710px;
+    border-radius: 10px;
+    /* width: 428px; */
+  }
+  .webl {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.3rem 2rem 0;
+    padding-top: 1.3rem;
+  }
+  .status {
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 50%;
+    padding: 1px;
+    height: 45px;
+    width: 45px;
+  }
+  .webl p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 30rem;
+    padding-top: 0.8rem;
+  }
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 50px;
+    margin: 0.3rem;
+  }
+  .dots .active {
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: rgba(80, 47, 138, 1);
+    border: none;
+    border-radius: 50px;
+    margin: 0.1rem;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 4rem;
+    /* padding: 0.5rem; */
+  }
+  .posts {
+    /* margin: 0 auto; */
+    /* position: relative; */
+    margin: 0 auto;
+    /* width: 355px; */
+    display: block;
+    position: relative;
+    top: -1.1rem;
+    width: 700px;
+    height: 500px;
+  }
+  /* .post { */
+  /* position: absolute; */
+  /* } */
+  .interact {
+    display: flex;
+    justify-content: space-between;
+    margin: -1.5rem 2rem;
+  }
+
+  .like img {
+    margin: 0 0.5rem;
+  }
+  .liked {
+    /* left: 1.1rem; */
+    /* position: ; */
+    margin: 2.8rem 2.3rem 0;
+    display: flex;
+  }
+  .liked p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0.2rem 0.5rem;
+  }
+  .content {
+    /* left: 0.8rem;
+    position: absolute;
+    top: 580px; */
+    margin: 0.9rem 1.9rem 0;
+    display: flex;
+  }
+  .content p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0.2rem 0.5rem;
+  }
+  .content .web3cont {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .content span {
+    color: rgba(137, 137, 137, 1);
+  }
+  .comment {
+    display: flex;
+  }
+  .comments {
+    display: flex;
+    /* left: 0.8rem;
+    position: absolute;
+    top: 625px; */
+    justify-content: space-between;
+    margin: 0.9rem 2rem;
+  }
+  .comments p {
+    font-size: 0.8rem;
+    margin: 0.3rem 1rem;
+    color: rgba(137, 137, 137, 1);
+  }
+  .comments .view {
+    margin-left: 3rem;
+  }
+  .nfn {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 2rem 0;
+    padding-top: 0.8rem;
+  }
+  .nfn p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 34rem;
+    padding-top: 0.5rem;
+  }
+
+  .taskbar p {
+    text-align: center;
+    font-size: 0.6rem;
+    color: rgba(171, 129, 205, 1);
+  }
+  .createpost {
+    position: relative;
+    /* bottom: 200px; */
+    /* top: 1000px; */
+    /* transform: translate(-50%, -50%); */
+    right: 0;
+    left: 700px;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 2.5rem 3rem 0;
+  }
+  .nav #side-p {
+    width: 50px;
+    height: 50px;
+  }
+  .side-bar {
+    /* display: hidden; */
+    background-color: rgba(80, 47, 138, 1);
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: all 80ms ease-in-out;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
+      2px 1px 5px 0 rgba(31, 28, 28, 0.151);
+  }
+
+  #story {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 3rem 0;
+  }
+  #story img {
+    width: 80px;
+    height: 80px;
+  }
+  #story p {
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  #story .status {
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 50%;
+    padding: 1px;
+  }
+  #web3 {
+    background-color: rgba(250, 244, 255, 1);
+    margin: 1.2rem 0;
+    height: 850px;
+    border-radius: 10px;
+    /* width: 428px; */
+  }
+  .webl {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.3rem 2rem 0;
+    padding-top: 1.3rem;
+  }
+  .status {
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 50%;
+    padding: 1px;
+    height: 45px;
+    width: 45px;
+  }
+  .webl p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-right: 30rem;
+    padding-top: 0.8rem;
+  }
+  .dasboard .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 50px;
+    margin: 0.3rem;
+  }
+  .dasboard .dots .active {
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: rgba(80, 47, 138, 1);
+    border: none;
+    border-radius: 50px;
+    margin: 0.1rem;
+  }
+  .dasboard .dots {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 4rem;
+  }
+  .posts {
+    /* margin: 0 auto; */
+    /* position: relative; */
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: -1.1rem;
+    width: 900px;
+    height: 600px;
+  }
+  .interact {
+    display: flex;
+    justify-content: space-between;
+    margin: -1.5rem 2rem;
+  }
+
+  .dasboard .like img {
+    margin: 0 0.5rem;
+  }
+  .dasboard .liked {
+    /* left: 1.1rem; */
+    /* position: ; */
+    margin: 2.8rem 2.3rem 0;
+    display: flex;
+  }
+  .dasboard .liked p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0.2rem 0.5rem;
+  }
+  .dasboard .content {
+    /* left: 0.8rem;
+    position: absolute;
+    top: 580px; */
+    margin: 0.9rem 1.9rem 0;
+    display: flex;
+  }
+  .content p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0.2rem 0.5rem;
+  }
+  .content .web3cont {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .content span {
+    color: rgba(137, 137, 137, 1);
+  }
+  .comment {
+    display: flex;
+  }
+  .dasboard .comments {
+    display: flex;
+    /* left: 0.8rem;
+    position: absolute;
+    top: 625px; */
+    justify-content: space-between;
+    margin: 0.9rem 2rem;
+  }
+  .dasboard .comments p {
+    font-size: 0.9rem;
+    margin: 0.3rem 1rem;
+    color: rgba(137, 137, 137, 1);
+  }
+  .dasboard .comments .view {
+    margin-left: 3rem;
+  }
+  .nfn {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 2rem 0;
+    padding-top: 0.8rem;
+  }
+  .dasboard .nfn p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 34rem;
+    padding-top: 0.5rem;
+  }
+
+  .dasboard .taskbar p {
+    text-align: center;
+    font-size: 0.6rem;
+    color: rgba(171, 129, 205, 1);
+  }
+  .dasboard .createpost {
+    position: relative;
+    /* bottom: 200px; */
+    /* top: 1000px; */
+    /* transform: translate(-50%, -50%); */
+    right: 0;
+    left: 950px;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .dasboard .createpost {
+    position: relative;
+    /* bottom: 200px; */
+    /* top: 1000px; */
+    /* transform: translate(-50%, -50%); */
+    right: 0;
+    left: 1360px;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* view comment page */
@@ -530,6 +962,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+.createprofile body {
+  font-family: "Manrope", sans-serif;
+}
 .createprofile .cprofile {
   margin: 1rem;
   display: flex;
@@ -542,7 +977,7 @@ body {
 }
 .createprofile .cprofile h3 {
   color: rgba(80, 47, 138, 1);
-  margin: 0.2rem 0;
+  margin: 0.4rem 0 0.2rem;
 }
 .createprofile .cprofile .addpicture {
   display: block;
@@ -550,29 +985,57 @@ body {
 }
 .createprofile .cprofile p {
   font-size: 0.9rem;
-  margin: 0 0 2rem;
+  margin: 0 0 1.8rem;
 }
 .createprofile .cprofile .padd {
   font-size: 0.9rem;
-  margin: 0.6rem 0 1.7rem;
+  margin: 0.6rem 0 1rem;
   text-align: center;
 }
 .createprofile .cprofile input {
-  padding: 1rem;
+  padding: 1.1rem;
   color: rgba(80, 47, 138, 1);
   border: 1px solid rgba(80, 47, 138, 1);
   border-radius: 0.6rem;
+  margin: 1.1rem 0 0.4rem;
 }
-/* .createprofile .cprofile .imagep {
-  display: none;
+input[type="file"] {
+  opacity: 0;
+  /* z-index: -1; */
+}
+/* input[type="file"]:hover {
+  opacity: 1;
+  /* z-index: -1; 
 } */
+.createprofile .cprofile label {
+  color: rgba(80, 47, 138, 1);
+  padding: 0.7rem 6.2rem;
+  font-size: 0.8rem;
+  /* margin: 1rem 0; */
+  text-align: left;
+  /* height: 60px;
+  width: 250px; */
+  position: absolute;
+  top: 13.4rem;
+  border: 1px solid rgba(80, 47, 138, 1);
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
 .createprofile .cprofile button {
-  margin: 2rem 0 0.7rem;
+  margin: 2.3rem 0 0.7rem;
   padding: 1rem;
+  font-size: 1rem;
   background-color: rgba(80, 47, 138, 1);
   color: #fff;
   border: none;
   border-radius: 0.6rem;
+}
+.createprofile .cprofile button:hover {
+  background-color: rgb(43, 18, 85);
 }
 .createprofile .cprofile .cuser {
   text-align: center;
@@ -598,15 +1061,36 @@ body {
     font-size: 2rem;
   }
   .createprofile .cprofile input {
-    margin: 0.5rem 0;
-    padding: 1.2rem 12rem 1.2rem 1rem;
+    margin: 1rem 0;
+    padding: 1.3rem 12rem 1.3rem 1rem;
     color: rgba(80, 47, 138, 1);
     border: 1px solid rgba(80, 47, 138, 1);
     border-radius: 0.6rem;
   }
+  .createprofile .cprofile #imagep {
+    margin: 1rem 0;
+    padding: 1rem 7rem 1.3rem 1rem;
+    color: rgba(80, 47, 138, 1);
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 0.6rem;
+  }
+  .createprofile .cprofile label {
+    color: rgba(80, 47, 138, 1);
+    padding: 0.8rem 7.3rem;
+    font-size: 0.8rem;
+    text-align: left;
+    position: absolute;
+    top: 15rem;
+    border: 1px solid rgba(80, 47, 138, 1);
+    border-radius: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
   .createprofile .cprofile button {
-    margin: 2.5rem 0 0.7rem;
-    padding: 1rem 6rem;
+    margin: 3rem 0 0.7rem;
+    padding: 1.1rem 6rem;
     background-color: rgba(80, 47, 138, 1);
     color: #fff;
     border: none;
@@ -655,19 +1139,19 @@ body {
   margin: 10px;
   border-radius: 10px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 1.25px;
 }
 .interestPage .btn-continue {
   display: block;
-  padding: 1.25rem 10.75rem;
+  padding: 1.25rem 10rem;
   text-align: center;
   margin: 1.25rem auto;
   background: #c5bad8;
   border-radius: 0.625rem;
   border: none;
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 300;
   transform: 200ms ease-in;
 }
 .interestPage .btn-continue:hover {
@@ -680,23 +1164,33 @@ body {
 @media (max-width: 600px) {
   .interestPage .interest h1 {
     font-size: 24px;
+    font-weight: 500;
     text-align: left;
   }
   .interestPage .interest .app-experience {
     color: #121212;
-    width: 380px;
-    margin: 20px;
+    /* width: 380px; */
+    margin: 1rem;
+    font-size: 1rem;
     text-align: left;
   }
 
+  .interestPage .interest-opt {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5rem 0.9rem;
+  }
   .interestPage .interest-opt p {
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding: 0.9rem 1.5rem;
+    margin: 0.3rem;
   }
   .interestPage .btn-continue {
     display: block;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding: 1.2rem 7rem;
   }
 }
 
