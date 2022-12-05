@@ -18,3 +18,5 @@
 //     sidebar.classList.remove("side-show");
 //   });
 // });
+export default function Sidebar() {
+}

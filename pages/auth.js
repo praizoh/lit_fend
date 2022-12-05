@@ -38,4 +38,6 @@
 //     return fetchWrapper.get(baseUrl);
 // }
 
+export default function Auth() {
+}
 
