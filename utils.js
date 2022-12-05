@@ -1,4 +1,4 @@
-import { basicClient, STORAGE_KEY } from "./api";
+import { basicClient, STORAGE_KEY } from "./api_cql";
 import { refresh as refreshMutation } from "./api_cql/mutations";
 import { ethers, utils } from "ethers";
 import omitDeep from "omit-deep";
