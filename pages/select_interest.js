@@ -1,18 +1,8 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import {
-  useAccount,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-  useSigner,
-} from "wagmi";
-import { client, explorePublications } from "../api";
 import Router from "next/router";
 
 export default function SelectInterest() {
-  const { data: account } = useAccount();
   const [active, setActive] = useState([])
 
 
