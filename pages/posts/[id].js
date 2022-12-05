@@ -14,10 +14,11 @@ export default function Home() {
   }, []);
 
   async function fetchPost() {
+    console.log(id)
     try {
       const response = await client.query(getPublicationById, {id}).toPromise();
       console.log({ response });
-      setPost(response.data.publications.items);
+      setPost(response.data.publication);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +45,7 @@ export default function Home() {
         <div className="content">
           <div className="contenthead">
             <img src="images/web3logo.png" alt="" />
-            <p className="web3cont">Web3ladies.eth</p>
+            <p className="web3cont">{post.handle}</p>
           </div>
           <p>
             Web3Ladies partners with Polygon for cohort III Mentorship Program

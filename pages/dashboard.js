@@ -312,7 +312,7 @@ export default function Home() {
               />
             </div>
             {/* <!-- <div className="posts"> --> */}
-            <Link href={`/posts/${post.profile.id}-${post.id}`} key={index}>
+            <Link href={`/posts/${post.id}`} key={index}>
               <img
                 src="images/web3-polygon.png"
                 class="posts"
