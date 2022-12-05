@@ -5,12 +5,6 @@ import Router from "next/router";
 export default function SelectInterest() {
   const [active, setActive] = useState([])
 
-
-  useEffect(() => {
-    if (!account) {
-      Router.push("/");
-    }
-  }, [account]);
   const interestItems = [
     { id: 1, name: "Anime", isActive:false },
     { id: 2, name: "Art & Craft" },
