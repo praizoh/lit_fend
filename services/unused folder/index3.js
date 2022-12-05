@@ -11,7 +11,7 @@ import {
   useSignMessage,
   useProvider
 } from "wagmi";
-import { client, getChallenge, Authentication } from "../api";
+import { client, getChallenge, Authentication } from "../../api";
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 const userSubject = new BehaviorSubject(

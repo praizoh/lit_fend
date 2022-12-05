@@ -8,7 +8,7 @@ import {
   useEnsName,
   useSigner,
 } from "wagmi";
-import { client, explorePublications } from "../api";
+import { client, explorePublications } from "../../api";
 
 export default function Sidebar() {
   const [posts, setPosts] = useState([]);

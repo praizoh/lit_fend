@@ -9,16 +9,16 @@ import {
   useEnsName,
   useSignMessage,
 } from "wagmi";
-import { CreateProfileLens } from "../api";
-import { userService, profileService } from "../services/userService";
+import { CreateProfileLens } from "../../api";
+import { userService, profileService } from "../userService";
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 const profileSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("profile"))
 );
-import { client, GetDefaultProfile, HasTxHashBeenIndexed } from "../api";
+import { client, GetDefaultProfile, HasTxHashBeenIndexed } from "../../api";
 import { BigNumber, utils } from "ethers";
-import { createPost } from "../services/create_post";
+import { createPost } from "../create_post";
 
 export default function Home() {
   const [token, setToken] = useState("");

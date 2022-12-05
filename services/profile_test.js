@@ -10,7 +10,7 @@ import {
   useSignMessage,
 } from "wagmi";
 import { CreateProfileLens } from "../api";
-import { userService, profileService } from "../services/userService";
+import { userService, profileService } from "./userService";
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 const profileSubject = new BehaviorSubject(
