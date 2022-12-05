@@ -389,7 +389,7 @@ export const explorePublications = `
     explorePublications(request: {
       sortCriteria: TOP_COMMENTED,
       publicationTypes: [POST],
-      limit: 1
+      limit: 10
     }) {
       items {
         __typename 
