@@ -60,12 +60,17 @@ export default function CreatePost() {
       return;
     }
     getDefaultProfile();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [userAddress]);
 
   useEffect(() => {
     if(isPostCreated){
       Router.push("/my-activities");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [isPostCreated]);
 
   async function getDefaultProfile() {

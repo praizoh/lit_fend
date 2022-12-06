@@ -32,6 +32,8 @@ export default function Createprofile() {
     if (isProfileIndexed) {
       Router.push("/select-interest");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [userProfile, isProfileIndexed]);
 
   async function createProfile() {

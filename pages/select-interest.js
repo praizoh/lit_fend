@@ -51,9 +51,9 @@ export default function SelectInterest() {
       <main>
         <div>
           <Link href="/dashboard">
-            <a href="/dashboard" className="skip">
+            <span className="skip">
               skip
-            </a>
+            </span>
           </Link>
         </div>
         <div className="interest">

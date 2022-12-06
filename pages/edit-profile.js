@@ -84,12 +84,18 @@ export default function EditProfile() {
     // if(!userProfile){
     //   Router.push("/create-profile");
     // }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [userAddress]);
 
   useEffect(() => {
     if(isProfileUpdateDone){
       Router.push("/my-profile");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [isProfileUpdateDone]);
 
   async function getDefaultProfile() {

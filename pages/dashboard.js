@@ -32,6 +32,9 @@ export default function Home() {
     if (!userAddress) {
       return;
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [userAddress]);
 
   // Captures 0x + 4 characters, then the last 4 characters.

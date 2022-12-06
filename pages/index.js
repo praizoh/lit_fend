@@ -55,18 +55,27 @@ export default function Home() {
         return;
       }
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [address, signer]);
 
   useEffect(() => {
     if (challenge && signer) {
       signText();
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [challenge, signer]);
 
   useEffect(() => {
     if (challenge && signedMsg) {
       login();
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [challenge, signedMsg]);
 
   async function login() {

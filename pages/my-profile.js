@@ -38,6 +38,9 @@ export default function Layout() {
     // if(!userProfile){
     //   Router.push("/create-profile");
     // }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [userAddress]);
 
   // Captures 0x + 4 characters, then the last 4 characters.
