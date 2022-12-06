@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-page-custom-font */
 
 
 import Head from "next/head";
@@ -31,6 +32,9 @@ export default function Home() {
       console.log(err);
     }
   }
+  if(!post){
+    return
+  }
   return (
     <div className="view-comments">
       <Head>
@@ -53,7 +57,7 @@ export default function Home() {
         <div className="content">
           <div className="contenthead">
             <img src="../images/web3logo.png" alt="" />
-            <p className="web3cont">{post.profile.handle}</p>
+            <p className="web3cont">{post?.profile?.handle}</p>
           </div>
           <p>
             Web3Ladies partners with Polygon for cohort III Mentorship Program
