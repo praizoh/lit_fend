@@ -62,16 +62,17 @@ export default function CreatePost() {
     getDefaultProfile();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [userAddress]);
 
   useEffect(() => {
     if(isPostCreated){
       Router.push("/my-activities");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [isPostCreated]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPostCreated]); // eslint-disable-next-line react-hooks/exhaustive-deps
+
 
   async function getDefaultProfile() {
     try {
