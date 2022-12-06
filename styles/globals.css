@@ -1,3 +1,6 @@
+.hand{
+  cursor: pointer !important;
+}
 .login * {
   margin: 0;
   padding: 0;
@@ -11,9 +14,6 @@
 .login body {
   font-family: "Manrope", sans-serif;
   background-color: aliceblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .login .logo img {
@@ -22,7 +22,7 @@
 }
 
 .login .connect-msg {
-  padding: 25px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -117,7 +117,7 @@
 
   .login .logo img {
     margin: 80px auto;
-    width: 50px;
+    width: 100px;
   }
 
   .login .connect-msg {
@@ -129,15 +129,7 @@
     font-size: 24px;
     font-weight: 600;
   }
-  .login .btn-login {
-    display: block;
-    margin: 10px auto;
-    color: #fff;
-    background-color: #502f8a;
-    border: 0;
-    padding: 20px 30px;
-    border-radius: 10px;
-  }
+
   .login .connect-acct {
     font-size: 16px;
     font-weight: 400;
@@ -150,7 +142,7 @@
   }
 
   .login .btn-login {
-    padding: 20px 30px;
+    padding: 20px 190px;
     font-size: 16px;
     font-weight: 500;
     border: none;
@@ -182,7 +174,8 @@
   width: 32px;
   height: 32px;
 }
-/* .side-bar {
+.side-bar {
+  /* display: hidden; */
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
   width: 0%;
@@ -207,15 +200,15 @@
 .side-profile {
   display: flex;
   justify-content: space-between;
-} */
-/* .side-profile p {
+}
+.side-profile p {
   font-weight: 700;
   color: rgba(80, 47, 138, 1);
   font-size: 1.2rem;
   margin-right: 6rem;
   margin-top: 0.2rem;
-} */
-/* .followers {
+}
+.followers {
   display: flex;
   justify-content: center;
   padding-top: 0.5rem;
@@ -226,8 +219,8 @@
 }
 .followers span {
   color: rgba(159, 159, 159, 1);
-} */
-/* .items {
+}
+.items {
   padding: 0.8rem;
   font-size: 1.2rem;
 }
@@ -243,23 +236,23 @@
   padding: 1.6rem;
   list-style: none;
   /* margin: 0; */
-/* padding: 0;
-} */
-/* .items img {
+  /* padding: 0; */
+}
+.items img {
   position: absolute;
-  /* margin-top: 8px; 
+  /* margin-top: 8px; */
 }
 .side-logo {
   font: 1em sans-serif;
-} */
+}
 .fa-heart {
   font-size: 1.5rem;
   color: rgba(80, 47, 138, 1);
   margin-right: 0.3rem;
 }
-/* .fa-heart:hover {
+.fa-heart:hover {
   color: rgba(80, 47, 138, 4);
-} */
+}
 #story {
   display: flex;
   justify-content: space-between;
@@ -457,6 +450,13 @@
   margin: 0;
   padding: 0;
 }
+.createpost2 {
+  /* bottom: 200px; */
+  /* top: 1000px; */
+  /* transform: translate(-50%, -50%); */
+  width: 30px;
+  height: 30px;
+}
 @media screen and (min-width: 768px) {
   .nav {
     display: flex;
@@ -645,7 +645,7 @@
     font-size: 0.6rem;
     color: rgba(171, 129, 205, 1);
   }
-  .dasboard .createpost {
+  .createpost {
     position: relative;
     /* bottom: 200px; */
     /* top: 1000px; */
@@ -885,7 +885,6 @@ body {
   line-height: 1.3rem;
   display: flex;
   flex-direction: column;
-  margin: 0;
 }
 .view-comments .web3cont {
   font-size: 0.8rem;
@@ -965,70 +964,6 @@ body {
 }
 .view-comments .fa-paper-plane:hover {
   color: rgb(127, 66, 231);
-}
-
-@media screen and (min-width: 1024px) {
-  .view-comments .content {
-    padding: 1.5rem 2rem;
-    background-color: rgba(250, 244, 255, 1);
-    font-size: 0.7rem;
-    line-height: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-  .view-comments .all-comments {
-    margin: 1rem 2rem;
-    font-size: 0.8rem;
-  }
-  .view-comments .webcomment {
-    display: flex;
-  }
-  .view-comments .usercomment {
-    font-weight: 700;
-    margin-left: 0.9rem;
-  }
-  .view-comments .webcomment p {
-    margin: 0.6rem 0.8rem;
-    text-align: left;
-  }
-  .view-comments .reply {
-    display: flex;
-    font-size: 0.6rem;
-    justify-content: flex-start;
-    margin: 0.5rem 0 1.2rem;
-  }
-  .view-comments .reply p {
-    margin: 0 0.6rem;
-    color: rgba(80, 47, 138, 1);
-    font-weight: 700;
-  }
-  .view-comments .enter-comment {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: rgba(250, 244, 255, 1);
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  .view-comments .enter-comment textarea {
-    padding: 1rem 40rem 0 1rem;
-    margin: 0 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(80, 47, 138, 1);
-    text-align: left;
-    font-size: 0.8rem;
-  }
-  .view-comments .fa-paper-plane {
-    color: rgba(80, 47, 138, 1);
-    font-size: 1.4rem;
-    margin-top: 0.5rem;
-  }
-  .view-comments .fa-paper-plane:hover {
-    color: rgb(127, 66, 231);
-  }
 }
 
 /* create profile page styling starts here */
@@ -1314,9 +1249,10 @@ form :where(.theme-emoji, .options) {
   background: rgba(80, 47, 138, 1);
 }
 
+
 /* profile page styling starts here */
 .profile-page * {
-  margin: 0;
+  margin: 10px;
   padding: 0;
   box-sizing: border-box;
 }
@@ -1374,7 +1310,7 @@ form :where(.theme-emoji, .options) {
   .profile-page .addingpost {
     position: absolute;
     bottom: 0;
-    left: 3rem;
+    left: 5rem;
     top: 6rem;
   }
   .profile-page .addingpost p {
@@ -1390,6 +1326,7 @@ form :where(.theme-emoji, .options) {
     line-height: 1.3rem;
   }
 }
+
 
 /* interest styling start here */
 .interestPage * {
@@ -1493,7 +1430,7 @@ form :where(.theme-emoji, .options) {
   color: black;
 }
 
-[data-rk] .ju367v93 {
+[data-rk] .ju367v9c {
   background-color: transparent;
 }
 
@@ -1508,3 +1445,21 @@ form :where(.theme-emoji, .options) {
 [data-rk] .ju367v1c {
   font-weight: inherit;
 }
+
+[data-rk] .ju367vec {
+  box-shadow: none !important;
+}
+
+[data-rk] .ju367v9c {
+  background: transparent !important;
+}
+
+[data-rk] .ju367vex {
+  color: black !important;
+}
+
+[data-rk] .ju367v1c {
+  font-weight: inherit;
+}
+
+

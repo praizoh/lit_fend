@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Link from 'next/link'
+import Link from "next/link";
 import {
   useAccount,
   useDisconnect,
@@ -10,41 +10,29 @@ import {
   useSigner,
 } from "wagmi";
 import { client, explorePublications } from "../api";
-import { ethers, providers } from 'ethers'
-import { addressService,userService, profileService } from "../services/userService";
-const addressServiceData = addressService
-  const userAddress = addressServiceData.addressValue
-
+import { ethers, providers } from "ethers";
+import {
+  addressService,
+  userService,
+  profileService,
+} from "../services/userService";
+const addressServiceData = addressService;
+//   const userAddress = addressServiceData.addressValue
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const [ens, setENS] = useState("");
-  const [address, setAddress] = useState("");
+  const { address } = useAccount();
+  const { data: ensName } = useEnsName({ address });
+  const [userAddress, setUserAddress] = useState("");
 
   useEffect(() => {
+    setUserAddress(address);
     fetchPosts();
 
-    if(!userAddress){
-      return
+    if (!userAddress) {
+      return;
     }
-    setENSOrAddress()
   }, [userAddress]);
-
-  const setENSOrAddress = async () => {
-    console.log(userAddress)
-    const provider = new providers.Web3Provider(window.ethereum);
-
-    console.log("ens calling " + userAddress)
-    // Lookup the ENS related to the given address
-    var _ens = await provider.lookupAddress(userAddress);
-    console.log(_ens)
-    // If the address has an ENS set the ENS or else just set the address
-    if (_ens) {
-      setENS(_ens);
-    } else {
-      setAddress(userAddress);
-    }
-  };
 
   // Captures 0x + 4 characters, then the last 4 characters.
   const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
@@ -74,17 +62,19 @@ export default function Home() {
       <main>
         {/* nav bar */}
         <div className="nav">
-          <div>
-            <img
-              src="images/profile-picture.png"
-              alt="profile"
-              width="32px"
-              height="32px"
-              id="side-p"
-            />
-            {ens && <span>{ens}</span>}
-            {!ens && <span>{truncateEthAddress(address)}</span>}
-          </div>
+          <Link href={`/my-profile`}>
+            <div className={"hand"}>
+              <img
+                src="images/profile-picture.png"
+                alt="profile"
+                width="32px"
+                height="32px"
+                id="side-p"
+              />
+              {ensName && <span>{ensName}</span>}
+              {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
+            </div>
+          </Link>
           <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
         {/* <div className="side side-bar" id="side-bars">
@@ -286,7 +276,7 @@ export default function Home() {
         </div>
         {/* <!-- posts section --> */}
         {posts.map((post, index) => (
-          <div id="web3">
+          <div id="web3" key={index}>
             <div className="webl">
               <div>
                 {/* { post. */}
@@ -312,10 +302,10 @@ export default function Home() {
               />
             </div>
             {/* <!-- <div className="posts"> --> */}
-            <Link href={`/posts/${post.id}`} key={index}>
+            <Link href={`/posts/${post.id}`}>
               <img
                 src="images/web3-polygon.png"
-                class="posts"
+                className="posts"
                 alt=""
                 height="300px"
                 width="359px"
@@ -394,32 +384,40 @@ export default function Home() {
         <div className="taskbars">
           {/* post icon */}
 
-          <img
+          {/* <img
             src="images/create-post.png"
             alt="create post"
             className="createpost"
-          />
+          /> */}
           <div className="taskbar">
-            <div>
-              <img src="images/home.png" alt="home icon" />
-              <p>Home</p>
-            </div>
-            <div>
-              <img src="images/communities.png" alt="communities icon" />
-              <p>Communities</p>
-            </div>
-            <div>
-              <img src="images/activities.png" alt="activities icon" />
-              <p>Activities</p>
-            </div>
-            <div>
-              <img src="images/notifications.png" alt="notifications icon" />
-              <p>Notification</p>
-            </div>
-            <div>
-              <img src="images/chats.png" alt="chats icon" />
-              <p>Chats</p>
-            </div>
+            <Link href={"/dashboard"}>
+              <div className="hand">
+                <img src="images/home.png" alt="home icon" />
+                <p>Home</p>
+              </div>
+            </Link>
+            <Link href={"/explore-profiles"}>
+              <div className="hand">
+                <img src="images/communities.png" alt="communities icon" />
+                <p>Profiles</p>
+              </div>
+            </Link>
+            <Link href={"/my-activities"}>
+              <div className="hand">
+                <img src="images/activities.png" alt="activities icon" />
+                <p>My Activities</p>
+              </div>
+            </Link>
+            <Link href={"/create-post"}>
+              <div className="hand">
+                <img
+                  src="images/create-post.png"
+                  alt="create post"
+                  className="createpost2"
+                />
+                <p>Create Post</p>
+              </div>
+            </Link>
           </div>
         </div>
       </main>
