@@ -1,24 +1,192 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-page-custom-font */
 
-
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { client, getPublicationById } from "../../api";
+import { client, getPublicationById, GetDefaultProfile, getCommentsOfAPublication } from "../../api";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import {
+  useAccount,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useSigner,
+} from "wagmi";
+import { ethers, providers } from "ethers";
+import {
+  addressService,
+  userService,
+  profileService,
+} from "../../services/userService";
+const addressServiceData = addressService;
+import {
+  LENS_HUB_CONTRACT_ADDRESS,
+  signCreateCommentTypedData,
+} from "../../api_cql";
+import LENSHUB from "../../abi/lenshub";
+import { create } from "ipfs-http-client";
+import { v4 as uuid } from "uuid";
+import { refreshAuthToken, splitSignature } from "../../utils";
+import { BehaviorSubject } from "rxjs";
+const profileSubject = new BehaviorSubject(
+  process.browser && JSON.parse(localStorage.getItem("profile"))
+);
+import moment from 'moment'
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
+const auth =
+  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
+const clientQuery = create({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: auth,
+  },
+});
 
 export default function Home() {
   const router = useRouter();
   const [post, setPost] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = router.query;
+
+  const { address } = useAccount();
+  const { data: ensName } = useEnsName({ address });
+  const [userAddress, setUserAddress] = useState("");
+  const [profile, setUserProfile] = useState();
+  const [commentMessage, setCommentMessage] = useState("");
+  const [isCommentCreated, setIsCommentCreated] = useState(false);
+  const { data: signer } = useSigner({
+    onError(error) {
+      console.log("Error", error);
+    },
+  });
 
   useEffect(() => {
     fetchPost();
+    fetchPostComments()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setUserAddress(address);
+    if (!userAddress) {
+      return;
+    }
+    getDefaultProfile();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddress]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (isCommentCreated) {
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCommentCreated]); // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  async function getDefaultProfile() {
+    try {
+      console.log("calling default profile");
+      console.log(userAddress);
+      const response = await client
+        .query(GetDefaultProfile, { address: userAddress })
+        .toPromise();
+      console.log(response);
+      setUserProfile(response.data.defaultProfile);
+      profileSubject.next(response.data.defaultProfile);
+      localStorage.setItem(
+        "profile",
+        JSON.stringify(response.data.defaultProfile)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function uploadToIPFS() {
+    const metaData = {
+      version: "2.0.0",
+      metadata_id: uuid(),
+      content: commentMessage,
+      description: commentMessage,
+      name: `Comment by @${profile.handle}`,
+      external_url: `https://lenster.xyz/u/${profile.handle}`,
+      mainContentFocus: "TEXT_ONLY",
+      attributes: [],
+      locale: "en-US",
+      tags: ["lit_app"],
+      appId: "lit_app",
+    };
+
+    const added = await clientQuery.add(JSON.stringify(metaData));
+    const uri = `https://ipfs.infura.io/ipfs/${added.path}`;
+    return uri;
+  }
+
+  async function saveComment(e) {
+    e.preventDefault();
+    if (!profile) return;
+    if (!signer) {
+      console.log("signer is missing");
+      return;
+    }
+    const contentURI = await uploadToIPFS();
+    const { accessToken } = await refreshAuthToken();
+    const createCommentRequest = {
+      profileId: profile.id,
+      publicationId: id,
+      contentURI,
+      collectModule: {
+        revertCollectModule: true,
+      },
+      referenceModule: {
+        followerOnlyReferenceModule: false,
+      },
+    };
+
+    try {
+      const signedResult = await signCreateCommentTypedData(
+        createCommentRequest,
+        accessToken
+      );
+      const typedData = signedResult.result.typedData;
+      const { v, r, s } = splitSignature(signedResult.signature);
+
+      const contract = new ethers.Contract(
+        LENS_HUB_CONTRACT_ADDRESS,
+        LENSHUB,
+        signer
+      );
+
+      const tx = await contract.commentWithSig({
+        profileId: typedData.value.profileId,
+        contentURI: typedData.value.contentURI,
+        profileIdPointed: typedData.value.profileIdPointed,
+        pubIdPointed: typedData.value.pubIdPointed,
+        collectModule: typedData.value.collectModule,
+        collectModuleInitData: typedData.value.collectModuleInitData,
+        referenceModule: typedData.value.referenceModule,
+        referenceModuleInitData: typedData.value.referenceModuleInitData,
+        referenceModuleData: typedData.value.referenceModuleData,
+        sig: {
+          v,
+          r,
+          s,
+          deadline: typedData.value.deadline,
+        },
+      },{ gasLimit: 500000 });
+
+      await tx.wait();
+      console.log("successfully created comment: tx hash", tx.hash);
+      alert("hopefully your comment has been created 🙈");
+      setIsCommentCreated(true);
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  }
 
   async function fetchPost() {
     console.log(id);
@@ -32,13 +200,25 @@ export default function Home() {
       console.log(err);
     }
   }
-  if(!post){
-    return
+  async function fetchPostComments() {
+    console.log(id);
+    try {
+      const response = await client
+        .query(getCommentsOfAPublication, { id })
+        .toPromise();
+      console.log({ response });
+      setComments(response.data.publications.items);
+    } catch (err) {
+      console.log(err);
+    }
   }
+  if (!post) {
+    return;
+  }
+
   return (
     <div className="view-comments">
       <Head>
-        <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Comments</title>
@@ -57,12 +237,12 @@ export default function Home() {
         <div className="content">
           <div className="contenthead">
             <img src="../images/web3logo.png" alt="" />
-            <p className="web3cont">{post?.profile?.handle}</p>
+            <p className="web3cont">{post?.profile?.handle} || <small>{moment(post?.createdAt).fromNow()}</small></p>
           </div>
           <p>
-            Web3Ladies partners with Polygon for cohort III Mentorship Program
-            to empower women in tech. The followings tracks are available;
+            {post?.metadata?.content}
           </p>
+          <br/>
           <p>-Product Design</p>
           <p>-Web3 Development</p>
           <p>-Web2 Development</p>
@@ -73,64 +253,21 @@ export default function Home() {
           </p>
         </div>
         <hr />
-        <div className="all-comments">
+        {comments.map((comment, index) => (
+          <div className="all-comments" key={index}>
           <div className="read-comments">
             <div className="webcomment">
               <img src="../images/maureen.png" alt="" />
-              <p className="usercomment">Maureen</p>
+              <p className="usercomment">{comment?.profile?.name}||{comment?.profile.handle}</p>
               <p>
-                I can&apos;t wait to join the next cohort 😍😍, staying glued to this
-                page
+                {comment.metadata.description} 
               </p>
             </div>
-          </div>
-          <div className="reply">
-            <p>Reply</p>
-            <p>Send</p>
-          </div>
-          <div className="webcomment">
-            <img src="../images/girl1.png" alt="" />
-            <p className="usercomment">Cherish</p>
-            <p>Come check this out @Zainab.eth @kelly_xo @code.queen.git</p>
-          </div>
-          <div className="reply">
-            <p>Reply</p>
-            <p>Send</p>
-          </div>
-          <div className="webcomment">
-            <img src="../images/profile-picture.png" alt="" />
-            <p className="usercomment">Zainab.eth</p>
-            <p>
-              I&apos;m currently in the project phase of this program and i can&apos;t
-              wait to present it to polygon.💃💃💃
-            </p>
-          </div>
-          <div className="reply">
-            <p>Reply</p>
-            <p>Send</p>
-          </div>
-          <div className="webcomment">
-            <img src="../images/cordon.png" alt="" />
-            <p className="usercomment">Cordon</p>
-            <p>
-              Keep up the ggod work ladies, i can&apos;t wait to see what you are
-              building. rooting for you all
-            </p>
-          </div>
-          <div className="reply">
-            <p>Reply</p>
-            <p>Send</p>
-          </div>
-          <div className="webcomment">
-            <img src="../images/girl1.png" alt="" />
-            <p className="usercomment">Gifty.nft</p>
-            <p>Web3Ladies to the world ✌✌✌, best bootcamp ever.</p>
-          </div>
-          <div className="reply">
-            <p>Reply</p>
-            <p>Send</p>
+            <div>{moment(comment?.createdAt).fromNow()}</div>
           </div>
         </div>
+        ))}
+        
         <div className="enter-comment">
           <img
             src="../images/profile-picture.png"
@@ -142,8 +279,9 @@ export default function Home() {
             name="add-comment"
             id="type-comment"
             placeholder="Add a comment"
+            onChange={(e) => setCommentMessage(e.target.value)}
           ></textarea>
-          <i className="fa-solid fa-paper-plane"></i>
+          <i className="fa-solid fa-paper-plane hand" onClick={saveComment}></i>
         </div>
       </main>
     </div>
