@@ -34,8 +34,8 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [userAddress]);
 
   // Captures 0x + 4 characters, then the last 4 characters.
   const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="nav">
           <Link href={`/my-profile`}>
             <div className={"hand"}>
-              <img
+              <Image
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
@@ -78,19 +78,19 @@ export default function Home() {
               {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
             </div>
           </Link>
-          <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
+          <Image src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
         {/* <div className="side side-bar" id="side-bars">
           <div className="side-head">
             <div className="side-profile">
-              <img
+              <Image
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
                 height="32px"
               />
               <p>Zainab.eth</p>
-              <img
+              <Image
                 src="images/Logo.png"
                 alt="logo"
                 width="32px"
@@ -111,7 +111,7 @@ export default function Home() {
           <div className="items">
             <ul className="ul-items">
               <li className="side-lists">
-                <img
+                <Image
                   src="images/profile_icon.png"
                   alt=""
                   width="20px"
@@ -122,7 +122,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/wallet_icon.png"
                   alt=""
                   width="20px"
@@ -134,7 +134,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/collections.png"
                   alt=""
                   width="18px"
@@ -145,7 +145,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/settings_icon.png"
                   alt=""
                   width="22px"
@@ -156,7 +156,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/darkmode_icon.png"
                   alt=""
                   width="22px"
@@ -167,7 +167,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/language_icon.png"
                   alt=""
                   width="22px"
@@ -178,7 +178,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/help_icon.png"
                   alt=""
                   width="20px"
@@ -189,7 +189,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <img
+                <Image
                   src="images/logout_icon.png"
                   alt=""
                   width="18px"
@@ -207,7 +207,7 @@ export default function Home() {
         <div id="story">
           <div>
             <div>
-              <img
+              <Image
                 src="images/add-story.png"
                 alt=""
                 width="56px"
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <img
+              <Image
                 src="images/profile-picture.png"
                 className="status"
                 alt=""
@@ -230,7 +230,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <img
+              <Image
                 src="images/girl1.png"
                 className="status"
                 alt="cherish"
@@ -242,7 +242,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <img
+              <Image
                 src="images/skeleton.png"
                 className="status"
                 alt=""
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <img
+              <Image
                 src="images/mike.png"
                 className="status"
                 alt=""
@@ -266,7 +266,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <img
+              <Image
                 src="images/cordon.png"
                 className="status"
                 alt=""
@@ -284,7 +284,7 @@ export default function Home() {
               <div>
                 {/* { post. */}
 
-                <img
+                <Image
                   src="images/web3logo.png"
                   alt=""
                   className="status"
@@ -297,7 +297,7 @@ export default function Home() {
               <p>
                 <span>{post.profile.handle}</span>
               </p>
-              <img
+              <Image
                 src="images/more_icon.png"
                 alt="more"
                 width="4px"
@@ -306,7 +306,7 @@ export default function Home() {
             </div>
             {/* <!-- <div className="posts"> --> */}
             <Link href={`/posts/${post.id}`}>
-              <img
+              <Image
                 src="images/web3-polygon.png"
                 className="posts"
                 alt=""
@@ -321,19 +321,19 @@ export default function Home() {
             {/* <!-- </div> --> */}
             <div className="interact">
               <div className="like">
-                <img
+                <Image
                   src="images/like.png"
                   alt="like"
                   width="20.8px"
                   height="20px"
                 />
-                <img
+                <Image
                   src="images/comments.png"
                   alt="comment"
                   width="20px"
                   height="20px"
                 />
-                <img
+                <Image
                   src="images/share.png"
                   alt="share"
                   width="20px"
@@ -345,12 +345,12 @@ export default function Home() {
                 <div className="dot"></div>
               </div>
               <div>
-                <img src="images/save.png" alt="" width="15px" height="20px" />
+                <Image src="images/save.png" alt="" width="15px" height="20px" />
               </div>
             </div>
             <div className="liked">
               <div>
-                <img
+                <Image
                   src="images/liked-by.png"
                   alt=""
                   width="44px"
@@ -368,7 +368,7 @@ export default function Home() {
             </div>
             <div className="comments">
               <div className="comment">
-                <img
+                <Image
                   src="images/profile-picture.png"
                   alt="profile"
                   width="20px"
@@ -387,7 +387,7 @@ export default function Home() {
         <div className="taskbars">
           {/* post icon */}
 
-          {/* <img
+          {/* <Image
             src="images/create-post.png"
             alt="create post"
             className="createpost"
@@ -395,25 +395,25 @@ export default function Home() {
           <div className="taskbar">
             <Link href={"/dashboard"}>
               <div className="hand">
-                <img src="images/home.png" alt="home icon" />
+                <Image src="images/home.png" alt="home icon" />
                 <p>Home</p>
               </div>
             </Link>
             <Link href={"/explore-profiles"}>
               <div className="hand">
-                <img src="images/communities.png" alt="communities icon" />
+                <Image src="images/communities.png" alt="communities icon" />
                 <p>Profiles</p>
               </div>
             </Link>
             <Link href={"/my-activities"}>
               <div className="hand">
-                <img src="images/activities.png" alt="activities icon" />
+                <Image src="images/activities.png" alt="activities icon" />
                 <p>My Activities</p>
               </div>
             </Link>
             <Link href={"/create-post"}>
               <div className="hand">
-                <img
+                <Image
                   src="images/create-post.png"
                   alt="create post"
                   className="createpost2"

@@ -86,8 +86,8 @@ export default function EditProfile() {
     // }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [userAddress]);
 
   useEffect(() => {
     if(isProfileUpdateDone){
@@ -95,8 +95,8 @@ export default function EditProfile() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isProfileUpdateDone]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [isProfileUpdateDone]);
 
   async function getDefaultProfile() {
     try {
@@ -205,7 +205,7 @@ export default function EditProfile() {
             <div className="nav">
             <Link href={`/my-profile`} >
             <div className={"hand"}>
-              <img
+              <Image
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
@@ -216,7 +216,7 @@ export default function EditProfile() {
               {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
             </div>
           </Link>
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
+            <Image src="images/Logo.png" alt="logo" width="32px" height="32px" />
             </div>
         </div>
         <div></div>
@@ -225,7 +225,7 @@ export default function EditProfile() {
             <div className="taskbars">
             {/* post icon */}
 
-            {/* <img
+            {/* <Image
                 src="images/create-post.png"
                 alt="create post"
                 className="createpost"
@@ -233,25 +233,25 @@ export default function EditProfile() {
             <div className="taskbar">
             <Link href={'/dashboard'}>
               <div className="hand">
-                <img src="images/home.png" alt="home icon" />
+                <Image src="images/home.png" alt="home icon" />
                 <p>Home</p>
               </div>
             </Link>
             <Link href={"/explore-profiles"}>
               <div className="hand">
-                <img src="images/communities.png" alt="communities icon" />
+                <Image src="images/communities.png" alt="communities icon" />
                 <p>Profiles</p>
               </div>
             </Link>
             <Link href={"/my-activities"}>
               <div className="hand">
-                <img src="images/activities.png" alt="activities icon" />
+                <Image src="images/activities.png" alt="activities icon" />
                 <p>My Activities</p>
               </div>
             </Link>
             <Link href={"/create-post"}>
               <div className="hand">
-              <img
+              <Image
                 src="images/create-post.png"
                 alt="create post"
                 className="createpost2"

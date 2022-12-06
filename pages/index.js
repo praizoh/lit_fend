@@ -57,8 +57,8 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, signer]);    // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [address, signer]);
 
   useEffect(() => {
     if (challenge && signer) {
@@ -66,8 +66,8 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [challenge, signer]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [challenge, signer]);
 
   useEffect(() => {
     if (challenge && signedMsg) {
@@ -75,8 +75,8 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [challenge, signedMsg]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [challenge, signedMsg]);
 
   async function login() {
     try {
@@ -170,7 +170,7 @@ export default function Home() {
             </p>
           </div>
           <div className="connect-wallet">
-            <img src="./images/wallet.png" alt="" />
+            <Image src="./images/wallet.png" alt="" />
             <div>
               <ConnectButton
                 label="Connect to wallet"
@@ -192,7 +192,7 @@ export default function Home() {
               </p>
             </div>
             <div className="connect-wallet">
-              <img src="./images/wallet.png" alt="" />
+              <Image src="./images/wallet.png" alt="" />
               <div>
                 <ConnectButton
                   label="Connect to wallet"
@@ -212,7 +212,7 @@ export default function Home() {
               </p>
             </div>
             <div className="connect-wallet">
-              <img src="./images/wallet.png" alt="" />
+              <Image src="./images/wallet.png" alt="" />
               <div>
                 <ConnectButton
                   label="Connect to wallet"
@@ -235,7 +235,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="logo">
-          <img src="./images/Logo.png" alt="" />
+          <Image src="./images/Logo.png" alt="" />
         </div>
         {renderButton()}
       </main>

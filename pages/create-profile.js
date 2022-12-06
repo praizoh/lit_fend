@@ -33,8 +33,8 @@ export default function Createprofile() {
       Router.push("/select-interest");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userProfile, isProfileIndexed]);     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-  }, [userProfile, isProfileIndexed]);
 
   async function createProfile() {
     try {
@@ -175,7 +175,7 @@ export default function Createprofile() {
       </Head>
       <main>
         <div className="cprofile">
-          <img
+          <Image
             src="images/Logo.png"
             alt="logo"
             width="32px"
@@ -185,7 +185,7 @@ export default function Createprofile() {
           <h3>Welcome To Lit</h3>
           <p>Create your account to get started with Lit</p>
           <label htmlFor="file">
-            <img
+            <Image
               src="images/add-story.png"
               alt="add picture"
               width="30px"
