@@ -308,7 +308,7 @@ export default function Home() {
               />
             </div>
             {/* <!-- <div className="posts"> --> */}
-            <Link href={`/posts/${post.id}`}>
+            <Link href={`/posts/${post.id}`} className="hand">
               <img
                 src="images/web3-polygon.png"
                 className="posts"

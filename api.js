@@ -532,10 +532,9 @@ fragment ReferenceModuleFields on ReferenceModule {
 `
 
 export const getCommentsOfAPublication = `
-query Publications  ($id: PublicationId!) {
+query Publications  ($id: InternalPublicationId!) {
   publications(request: {
-    publicationTypes: [COMMENT],
-    "commentsOf": $id,
+    commentsOf: $id,
     limit: 10
   }) {
     items {
@@ -885,11 +884,14 @@ fragment ReferenceModuleFields on ReferenceModule {
   }
 }
 
+
 `
+//     commentsOf: $id,
+
 export const getPublicationById = `
 query Publication($id: InternalPublicationId!) {
   publication(request: {
-    publicationId: $id
+    publicationId: $id,
   }) {
    __typename 
     ... on Post {

@@ -13,6 +13,7 @@
     "@rainbow-me/rainbowkit": "^0.8.0",
     "ethers": "^5.7.2",
     "ipfs-http-client": "^59.0.0",
+    "moment": "^2.29.4",
     "next": "^12.1.6",
     "omit-deep": "^0.3.0",
     "react": "^18.1.0",

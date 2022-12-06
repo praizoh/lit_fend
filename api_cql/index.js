@@ -1,6 +1,6 @@
 import { createClient as createUrqlClient } from 'urql'
 import { getProfiles, getPublications } from './queries'
-import { createPostTypedData } from './mutations'
+import { createPostTypedData, createCommentTypedData } from './mutations'
 import { refreshAuthToken, generateRandomColor, signedTypeData } from '../utils'
 
 export const APIURL = "https://api-mumbai.lens.dev"
@@ -67,8 +67,32 @@ export async function createPostTypedDataMutation (request, token) {
   return result.data.createPostTypedData
 }
 
+export async function createCommentTypedDataMutation (request, token) {
+  const { accessToken } = await refreshAuthToken()
+  const urqlClient = new createUrqlClient({
+    url: APIURL,
+    fetchOptions: {
+      headers: {
+        'x-access-token': `Bearer ${accessToken}`
+      },
+    },
+  })
+  const result = await urqlClient.mutation(createCommentTypedData, {
+    request
+  }).toPromise()
+
+  return result.data.createCommentTypedData
+}
+
 export const signCreatePostTypedData = async (request, token) => {
   const result = await createPostTypedDataMutation(request, token)
+  const typedData = result.typedData
+  const signature = await signedTypeData(typedData.domain, typedData.types, typedData.value);
+  return { result, signature };
+}
+
+export const signCreateCommentTypedData = async (request, token) => {
+  const result = await createCommentTypedDataMutation(request, token)
   const typedData = result.typedData
   const signature = await signedTypeData(typedData.domain, typedData.types, typedData.value);
   return { result, signature };
