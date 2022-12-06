@@ -67,7 +67,7 @@ export default function Home() {
         <div className="nav">
           <Link href={`/my-profile`}>
             <div className={"hand"}>
-              <Image
+              <img
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
@@ -78,19 +78,19 @@ export default function Home() {
               {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
             </div>
           </Link>
-          <Image src="images/Logo.png" alt="logo" width="32px" height="32px" />
+          <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
         {/* <div className="side side-bar" id="side-bars">
           <div className="side-head">
             <div className="side-profile">
-              <Image
+              <img
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
                 height="32px"
               />
               <p>Zainab.eth</p>
-              <Image
+              <img
                 src="images/Logo.png"
                 alt="logo"
                 width="32px"
@@ -111,7 +111,7 @@ export default function Home() {
           <div className="items">
             <ul className="ul-items">
               <li className="side-lists">
-                <Image
+                <img
                   src="images/profile_icon.png"
                   alt=""
                   width="20px"
@@ -122,7 +122,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/wallet_icon.png"
                   alt=""
                   width="20px"
@@ -134,7 +134,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/collections.png"
                   alt=""
                   width="18px"
@@ -145,7 +145,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/settings_icon.png"
                   alt=""
                   width="22px"
@@ -156,7 +156,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/darkmode_icon.png"
                   alt=""
                   width="22px"
@@ -167,7 +167,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/language_icon.png"
                   alt=""
                   width="22px"
@@ -178,7 +178,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/help_icon.png"
                   alt=""
                   width="20px"
@@ -189,7 +189,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="side-lists">
-                <Image
+                <img
                   src="images/logout_icon.png"
                   alt=""
                   width="18px"
@@ -207,7 +207,7 @@ export default function Home() {
         <div id="story">
           <div>
             <div>
-              <Image
+              <img
                 src="images/add-story.png"
                 alt=""
                 width="56px"
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <Image
+              <img
                 src="images/profile-picture.png"
                 className="status"
                 alt=""
@@ -230,7 +230,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <Image
+              <img
                 src="images/girl1.png"
                 className="status"
                 alt="cherish"
@@ -242,7 +242,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <Image
+              <img
                 src="images/skeleton.png"
                 className="status"
                 alt=""
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <Image
+              <img
                 src="images/mike.png"
                 className="status"
                 alt=""
@@ -266,7 +266,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <Image
+              <img
                 src="images/cordon.png"
                 className="status"
                 alt=""
@@ -284,7 +284,7 @@ export default function Home() {
               <div>
                 {/* { post. */}
 
-                <Image
+                <img
                   src="images/web3logo.png"
                   alt=""
                   className="status"
@@ -297,7 +297,7 @@ export default function Home() {
               <p>
                 <span>{post.profile.handle}</span>
               </p>
-              <Image
+              <img
                 src="images/more_icon.png"
                 alt="more"
                 width="4px"
@@ -306,7 +306,7 @@ export default function Home() {
             </div>
             {/* <!-- <div className="posts"> --> */}
             <Link href={`/posts/${post.id}`}>
-              <Image
+              <img
                 src="images/web3-polygon.png"
                 className="posts"
                 alt=""
@@ -321,19 +321,19 @@ export default function Home() {
             {/* <!-- </div> --> */}
             <div className="interact">
               <div className="like">
-                <Image
+                <img
                   src="images/like.png"
                   alt="like"
                   width="20.8px"
                   height="20px"
                 />
-                <Image
+                <img
                   src="images/comments.png"
                   alt="comment"
                   width="20px"
                   height="20px"
                 />
-                <Image
+                <img
                   src="images/share.png"
                   alt="share"
                   width="20px"
@@ -345,12 +345,12 @@ export default function Home() {
                 <div className="dot"></div>
               </div>
               <div>
-                <Image src="images/save.png" alt="" width="15px" height="20px" />
+                <img src="images/save.png" alt="" width="15px" height="20px" />
               </div>
             </div>
             <div className="liked">
               <div>
-                <Image
+                <img
                   src="images/liked-by.png"
                   alt=""
                   width="44px"
@@ -368,7 +368,7 @@ export default function Home() {
             </div>
             <div className="comments">
               <div className="comment">
-                <Image
+                <img
                   src="images/profile-picture.png"
                   alt="profile"
                   width="20px"
@@ -387,7 +387,7 @@ export default function Home() {
         <div className="taskbars">
           {/* post icon */}
 
-          {/* <Image
+          {/* <img
             src="images/create-post.png"
             alt="create post"
             className="createpost"
@@ -395,25 +395,25 @@ export default function Home() {
           <div className="taskbar">
             <Link href={"/dashboard"}>
               <div className="hand">
-                <Image src="images/home.png" alt="home icon" />
+                <img src="images/home.png" alt="home icon" />
                 <p>Home</p>
               </div>
             </Link>
             <Link href={"/explore-profiles"}>
               <div className="hand">
-                <Image src="images/communities.png" alt="communities icon" />
+                <img src="images/communities.png" alt="communities icon" />
                 <p>Profiles</p>
               </div>
             </Link>
             <Link href={"/my-activities"}>
               <div className="hand">
-                <Image src="images/activities.png" alt="activities icon" />
+                <img src="images/activities.png" alt="activities icon" />
                 <p>My Activities</p>
               </div>
             </Link>
             <Link href={"/create-post"}>
               <div className="hand">
-                <Image
+                <img
                   src="images/create-post.png"
                   alt="create post"
                   className="createpost2"

@@ -175,7 +175,7 @@ export default function Createprofile() {
       </Head>
       <main>
         <div className="cprofile">
-          <Image
+          <img
             src="images/Logo.png"
             alt="logo"
             width="32px"
@@ -185,7 +185,7 @@ export default function Createprofile() {
           <h3>Welcome To Lit</h3>
           <p>Create your account to get started with Lit</p>
           <label htmlFor="file">
-            <Image
+            <img
               src="images/add-story.png"
               alt="add picture"
               width="30px"
@@ -196,7 +196,7 @@ export default function Createprofile() {
           </label>
           <input
             type="file"
-            accept="image/*"
+            accept="img/*"
             placeholder="add profile picture"
             id="imagep"
           ></input>

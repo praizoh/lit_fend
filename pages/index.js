@@ -170,8 +170,8 @@ export default function Home() {
             </p>
           </div>
           <div className="connect-wallet">
-            <Image src="./images/wallet.png" alt="" />
-            <div>
+            <img src="./images/wallet.png" alt="" />
+            <div> 
               <ConnectButton
                 label="Connect to wallet"
                 style="background-color: transparent; color: black;"
@@ -192,7 +192,7 @@ export default function Home() {
               </p>
             </div>
             <div className="connect-wallet">
-              <Image src="./images/wallet.png" alt="" />
+              <img src="./images/wallet.png" alt="" />
               <div>
                 <ConnectButton
                   label="Connect to wallet"
@@ -212,7 +212,7 @@ export default function Home() {
               </p>
             </div>
             <div className="connect-wallet">
-              <Image src="./images/wallet.png" alt="" />
+              <img src="./images/wallet.png" alt="" />
               <div>
                 <ConnectButton
                   label="Connect to wallet"
@@ -235,7 +235,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="logo">
-          <Image src="./images/Logo.png" alt="" />
+          <img src="./images/Logo.png" alt="" />
         </div>
         {renderButton()}
       </main>

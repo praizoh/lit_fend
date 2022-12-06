@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { client, getPublicationById } from "../../api";
 import { useRouter } from "next/router";
 
+
 export default function Home() {
   const router = useRouter();
   const [post, setPost] = useState([]);
@@ -48,7 +49,7 @@ export default function Home() {
       <main>
         <div className="content">
           <div className="contenthead">
-            <Image src="../images/web3logo.png" alt="" />
+            <img src="../images/web3logo.png" alt="" />
             <p className="web3cont">{post.profile.handle}</p>
           </div>
           <p>
@@ -68,7 +69,7 @@ export default function Home() {
         <div className="all-comments">
           <div className="read-comments">
             <div className="webcomment">
-              <Image src="../images/maureen.png" alt="" />
+              <img src="../images/maureen.png" alt="" />
               <p className="usercomment">Maureen</p>
               <p>
                 I can&apos;t wait to join the next cohort 😍😍, staying glued to this
@@ -81,7 +82,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <Image src="../images/girl1.png" alt="" />
+            <img src="../images/girl1.png" alt="" />
             <p className="usercomment">Cherish</p>
             <p>Come check this out @Zainab.eth @kelly_xo @code.queen.git</p>
           </div>
@@ -90,7 +91,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <Image src="../images/profile-picture.png" alt="" />
+            <img src="../images/profile-picture.png" alt="" />
             <p className="usercomment">Zainab.eth</p>
             <p>
               I&apos;m currently in the project phase of this program and i can&apos;t
@@ -102,7 +103,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <Image src="../images/cordon.png" alt="" />
+            <img src="../images/cordon.png" alt="" />
             <p className="usercomment">Cordon</p>
             <p>
               Keep up the ggod work ladies, i can&apos;t wait to see what you are
@@ -114,7 +115,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <Image src="../images/girl1.png" alt="" />
+            <img src="../images/girl1.png" alt="" />
             <p className="usercomment">Gifty.nft</p>
             <p>Web3Ladies to the world ✌✌✌, best bootcamp ever.</p>
           </div>
@@ -124,7 +125,7 @@ export default function Home() {
           </div>
         </div>
         <div className="enter-comment">
-          <Image
+          <img
             src="../images/profile-picture.png"
             alt=""
             width="35px"

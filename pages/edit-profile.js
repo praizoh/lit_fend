@@ -205,7 +205,7 @@ export default function EditProfile() {
             <div className="nav">
             <Link href={`/my-profile`} >
             <div className={"hand"}>
-              <Image
+              <img
                 src="images/profile-picture.png"
                 alt="profile"
                 width="32px"
@@ -216,7 +216,7 @@ export default function EditProfile() {
               {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
             </div>
           </Link>
-            <Image src="images/Logo.png" alt="logo" width="32px" height="32px" />
+            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
             </div>
         </div>
         <div></div>
@@ -225,7 +225,7 @@ export default function EditProfile() {
             <div className="taskbars">
             {/* post icon */}
 
-            {/* <Image
+            {/* <img
                 src="images/create-post.png"
                 alt="create post"
                 className="createpost"
@@ -233,25 +233,25 @@ export default function EditProfile() {
             <div className="taskbar">
             <Link href={'/dashboard'}>
               <div className="hand">
-                <Image src="images/home.png" alt="home icon" />
+                <img src="images/home.png" alt="home icon" />
                 <p>Home</p>
               </div>
             </Link>
             <Link href={"/explore-profiles"}>
               <div className="hand">
-                <Image src="images/communities.png" alt="communities icon" />
+                <img src="images/communities.png" alt="communities icon" />
                 <p>Profiles</p>
               </div>
             </Link>
             <Link href={"/my-activities"}>
               <div className="hand">
-                <Image src="images/activities.png" alt="activities icon" />
+                <img src="images/activities.png" alt="activities icon" />
                 <p>My Activities</p>
               </div>
             </Link>
             <Link href={"/create-post"}>
               <div className="hand">
-              <Image
+              <img
                 src="images/create-post.png"
                 alt="create post"
                 className="createpost2"

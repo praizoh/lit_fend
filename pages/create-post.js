@@ -193,7 +193,7 @@ export default function CreatePost() {
           <div className="nav">
             <Link href={`/my-profile`}>
               <div className={"hand"}>
-                <Image
+                <img
                   src="images/profile-picture.png"
                   alt="profile"
                   width="32px"
@@ -204,7 +204,7 @@ export default function CreatePost() {
                 {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
               </div>
             </Link>
-            <Image src="images/Logo.png" alt="logo" width="32px" height="32px" />
+            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
           </div>
         </div>
         <div></div>
@@ -213,7 +213,7 @@ export default function CreatePost() {
           <div className="taskbars">
             {/* post icon */}
 
-            {/* <Image
+            {/* <img
                 src="images/create-post.png"
                 alt="create post"
                 className="createpost"
@@ -221,25 +221,25 @@ export default function CreatePost() {
             <div className="taskbar">
               <Link href={"/dashboard"}>
                 <div className="hand">
-                  <Image src="images/home.png" alt="home icon" />
+                  <img src="images/home.png" alt="home icon" />
                   <p>Home</p>
                 </div>
               </Link>
               <Link href={"/explore-profiles"}>
                 <div className="hand">
-                  <Image src="images/communities.png" alt="communities icon" />
+                  <img src="images/communities.png" alt="communities icon" />
                   <p>Profiles</p>
                 </div>
               </Link>
               <Link href={"/my-activities"}>
                 <div className="hand">
-                  <Image src="images/activities.png" alt="activities icon" />
+                  <img src="images/activities.png" alt="activities icon" />
                   <p>My Activities</p>
                 </div>
               </Link>
               <Link href={"/create-post"}>
                 <div className="hand">
-                  <Image
+                  <img
                     src="images/create-post.png"
                     alt="create post"
                     className="createpost2"
@@ -261,7 +261,7 @@ export default function CreatePost() {
             <main>
               <div className="container">
                 <div className="headerlogo">
-                  <Image
+                  <img
                     src="images/Logo.png"
                     alt="logo"
                     className="postpagelogo"
@@ -272,7 +272,7 @@ export default function CreatePost() {
                   <div className="post">
                     <form action="#">
                       <div className="content">
-                        <Image src="images/profile-picture.png" alt="" />
+                        <img src="images/profile-picture.png" alt="" />
                         <p>{profile.handle}</p>
                       </div>
                       <textarea
@@ -284,7 +284,7 @@ export default function CreatePost() {
                         onChange={(e) => setContentMessage(e.target.value)}
                       ></textarea>
                       <button>
-                        <Image
+                        <img
                           src="images/add-story.png"
                           alt="add picture"
                           width="30px"
@@ -295,7 +295,7 @@ export default function CreatePost() {
                       </button>
                       <input
                         type="file"
-                        accept="image/*"
+                        accept="img/*"
                         placeholder="add profile picture"
                         id="postp"
                       ></input>
