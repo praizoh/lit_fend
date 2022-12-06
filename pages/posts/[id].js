@@ -1,27 +1,39 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-page-custom-font */
+
+
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { client, getPublicationById } from "../../api";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
   const [post, setPost] = useState([]);
-  const { id } = router.query
-
+  const { id } = router.query;
 
   useEffect(() => {
     fetchPost();
-  }, []);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);     // eslint-disable-next-line react-hooks/exhaustive-deps
+
 
   async function fetchPost() {
-    console.log(id)
+    console.log(id);
     try {
-      const response = await client.query(getPublicationById, {id}).toPromise();
+      const response = await client
+        .query(getPublicationById, { id })
+        .toPromise();
       console.log({ response });
       setPost(response.data.publication);
     } catch (err) {
       console.log(err);
     }
+  }
+  if(!post){
+    return
   }
   return (
     <div className="view-comments">
@@ -44,8 +56,8 @@ export default function Home() {
       <main>
         <div className="content">
           <div className="contenthead">
-            <img src="images/web3logo.png" alt="" />
-            <p className="web3cont">{post.handle}</p>
+            <img src="../images/web3logo.png" alt="" />
+            <p className="web3cont">{post?.profile?.handle}</p>
           </div>
           <p>
             Web3Ladies partners with Polygon for cohort III Mentorship Program
@@ -64,10 +76,10 @@ export default function Home() {
         <div className="all-comments">
           <div className="read-comments">
             <div className="webcomment">
-              <img src="images/maureen.png" alt="" />
+              <img src="../images/maureen.png" alt="" />
               <p className="usercomment">Maureen</p>
               <p>
-                I can't wait to join the next cohort 😍😍, staying glued to this
+                I can&apos;t wait to join the next cohort 😍😍, staying glued to this
                 page
               </p>
             </div>
@@ -77,7 +89,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <img src="images/girl1.png" alt="" />
+            <img src="../images/girl1.png" alt="" />
             <p className="usercomment">Cherish</p>
             <p>Come check this out @Zainab.eth @kelly_xo @code.queen.git</p>
           </div>
@@ -86,10 +98,10 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <img src="images/profile-picture.png" alt="" />
+            <img src="../images/profile-picture.png" alt="" />
             <p className="usercomment">Zainab.eth</p>
             <p>
-              I'm currently in the project phase of this program and i can't
+              I&apos;m currently in the project phase of this program and i can&apos;t
               wait to present it to polygon.💃💃💃
             </p>
           </div>
@@ -98,10 +110,10 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <img src="images/cordon.png" alt="" />
+            <img src="../images/cordon.png" alt="" />
             <p className="usercomment">Cordon</p>
             <p>
-              Keep up the ggod work ladies, i can't wait to see what you are
+              Keep up the ggod work ladies, i can&apos;t wait to see what you are
               building. rooting for you all
             </p>
           </div>
@@ -110,7 +122,7 @@ export default function Home() {
             <p>Send</p>
           </div>
           <div className="webcomment">
-            <img src="images/girl1.png" alt="" />
+            <img src="../images/girl1.png" alt="" />
             <p className="usercomment">Gifty.nft</p>
             <p>Web3Ladies to the world ✌✌✌, best bootcamp ever.</p>
           </div>
@@ -121,7 +133,7 @@ export default function Home() {
         </div>
         <div className="enter-comment">
           <img
-            src="images/profile-picture.png"
+            src="../images/profile-picture.png"
             alt=""
             width="35px"
             height="35px"

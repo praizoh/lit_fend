@@ -1,5 +1,5 @@
 import { css } from '@emotion/css'
-const PINK = "249, 92, 255"
+import { PINK } from '../theme'
 
 export function Button({
   buttonText,

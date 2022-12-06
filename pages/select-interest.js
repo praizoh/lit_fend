@@ -1,12 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
+
+
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Router from "next/router";
+import Link from "next/link";
 
 export default function SelectInterest() {
-  const [active, setActive] = useState([])
+  const [active, setActive] = useState([]);
 
   const interestItems = [
-    { id: 1, name: "Anime", isActive:false },
+    { id: 1, name: "Anime", isActive: false },
     { id: 2, name: "Art & Craft" },
     { id: 3, name: "Automative" },
     { id: 4, name: "Blockchain" },
@@ -49,9 +53,11 @@ export default function SelectInterest() {
       </Head>
       <main>
         <div>
-          <a href="#" className="skip">
-            skip
-          </a>
+          <Link href="/dashboard">
+            <span className="skip">
+              skip
+            </span>
+          </Link>
         </div>
         <div className="interest">
           <h1>Choose Your Interest</h1>
@@ -94,15 +100,18 @@ export default function SelectInterest() {
           </div> */}
           <div className="interest-opt">
             {interestItems.map((item, id) => {
-                const isActive = active.includes(item.id)
+              const isActive = active.includes(item.id);
 
               return (
                 <p
                   key={item.id}
-                  onClick={() => setActive(isActive
-                    ? active.filter(current => current !== item.id)
-                    : [...active, item.id]
-                  )}
+                  onClick={() =>
+                    setActive(
+                      isActive
+                        ? active.filter((current) => current !== item.id)
+                        : [...active, item.id]
+                    )
+                  }
                   style={{
                     backgroundColor: isActive ? "#502F8A" : "",
                     color: isActive ? "#fff" : "",

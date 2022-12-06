@@ -1,3 +1,6 @@
+.hand{
+  cursor: pointer !important;
+}
 .login * {
   margin: 0;
   padding: 0;
@@ -446,6 +449,13 @@
   height: 50px;
   margin: 0;
   padding: 0;
+}
+.createpost2 {
+  /* bottom: 200px; */
+  /* top: 1000px; */
+  /* transform: translate(-50%, -50%); */
+  width: 30px;
+  height: 30px;
 }
 @media screen and (min-width: 768px) {
   .nav {
@@ -1098,6 +1108,226 @@ input[type="file"] {
   }
 }
 
+/* create post styling starts here */
+.postpage * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.postpage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(250, 244, 255, 1);
+}
+::selection {
+  color: #fff;
+  background: rgba(80, 47, 138, 1);
+}
+.postpage .container {
+  width: 750px;
+  height: 550px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  transition: height 0.2s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+.postpage .container .content p {
+  font-weight: 700;
+  font-size: 1rem;
+  color: rgba(80, 47, 138, 1);
+  margin-left: 1rem;
+}
+.postpage .container.active {
+  height: 590px;
+}
+.postpage .container .wrapper {
+  /* width: 1000px; */
+  /* display: flex; */
+
+  background: #fff;
+}
+.postpage .container img {
+  cursor: pointer;
+}
+.postpage .container .post {
+  transition: margin-left 0.18s ease;
+}
+.postpage .container.active .post {
+  margin-left: -500px;
+}
+.postpage .headerlogo {
+  display: block;
+  margin: 0 auto;
+  background-color: #fff;
+  border: none;
+  /* text-align: center; */
+}
+.postpage input [type="file"] {
+  display: none;
+}
+.postpage #postp {
+  padding: 1rem 10rem;
+  border: none;
+  right: 200px;
+  position: absolute;
+}
+.postpage .postpicture {
+  /* text-align: center;
+  border: 1px solid #502f8a;
+  padding: 1rem 15rem;
+  border-radius: 10px; */
+  margin-top: 0.1rem;
+}
+.postpage .postpagelogo {
+  display: block;
+  margin: 1.3rem auto;
+}
+.postpage .post form {
+  margin: 20px 25px;
+}
+.postpage .post form .content {
+  display: flex;
+  align-items: center;
+}
+.postpage .post form .content img {
+  cursor: default;
+  max-width: 52px;
+}
+.postpage .post form .content .details {
+  margin: -3px 0 0 12px;
+}
+.postpage form .content .details p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+form :where(textarea, button) {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+.postpage form textarea {
+  resize: none;
+  font-size: 18px;
+  margin-top: 30px;
+  /* min-height: 100px; */
+}
+form textarea::placeholder {
+  color: #858585;
+}
+form textarea:focus::placeholder {
+  color: #b3b3b3;
+}
+form :where(.theme-emoji, .options) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.postpage form button {
+  height: 54px;
+  /* padding: 0 7rem; */
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #bcc0c4;
+  cursor: no-drop;
+  border-radius: 7px;
+  background: #e2e5e9;
+  transition: all 0.3s ease;
+  margin: 0.5rem 0;
+}
+.postpage form textarea:valid ~ button {
+  color: #fff;
+  cursor: pointer;
+  background: rgba(80, 47, 138, 1);
+}
+.postpage form textarea:valid ~ button:hover {
+  background: rgba(80, 47, 138, 1);
+}
+
+
+/* profile page styling starts here */
+.profile-page * {
+  margin: 10px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile-page .profilep {
+  background-color: rgba(250, 244, 255, 1);
+  padding: 2rem 2rem 1.3rem;
+  text-align: center;
+  border: none;
+  border-radius: 0 0 15px 15px;
+}
+.profile-page .profilep .userprofile {
+  color: rgba(80, 47, 138, 1);
+  margin: 0.8rem 0;
+  font-size: 1.2rem;
+}
+.profile-page .profilep .followers {
+  display: flex;
+  justify-content: center;
+  /* padding-top: 0.5rem; */
+}
+.profile-page .profilep .aboutuser {
+  font-size: 0.85rem;
+  color: rgb(70, 69, 69);
+  line-height: 1.3rem;
+}
+.profile-page .profilep .followers p {
+  font-weight: bold;
+  color: #502f8a;
+  margin: 0.4rem 0.7rem 0;
+  font-size: 0.9rem;
+}
+.profile-page .followers span {
+  color: rgb(110, 109, 109);
+  font-weight: 500;
+}
+.profile-page .profilep .followers {
+  margin: 1rem 0 0.6rem;
+}
+.profile-page .addingpost .addpost {
+  height: 35px;
+  width: 35px;
+}
+.profile-page .addingpost {
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 500;
+  color: #502f8a;
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile-page .addingpost {
+    position: absolute;
+    bottom: 0;
+    left: 5rem;
+    top: 6rem;
+  }
+  .profile-page .addingpost p {
+    font-weight: 500;
+    color: #502f8a;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 0.4rem 0;
+  }
+  .profile-page .profilep .aboutuser {
+    font-size: 1rem;
+    color: rgb(70, 69, 69);
+    line-height: 1.3rem;
+  }
+}
+
+
 /* interest styling start here */
 .interestPage * {
   margin: 0;
@@ -1200,7 +1430,7 @@ input[type="file"] {
   color: black;
 }
 
-[data-rk] .ju367v93 {
+[data-rk] .ju367v9c {
   background-color: transparent;
 }
 
@@ -1215,3 +1445,21 @@ input[type="file"] {
 [data-rk] .ju367v1c {
   font-weight: inherit;
 }
+
+[data-rk] .ju367vec {
+  box-shadow: none !important;
+}
+
+[data-rk] .ju367v9c {
+  background: transparent !important;
+}
+
+[data-rk] .ju367vex {
+  color: black !important;
+}
+
+[data-rk] .ju367v1c {
+  font-weight: inherit;
+}
+
+

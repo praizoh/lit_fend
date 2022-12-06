@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
+
+
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
-import { AppContext } from "../context";
 import { CreateProfileLens } from "../api";
-import { client, GetDefaultProfile, HasTxHashBeenIndexed } from "../api";
+import { client, GetDefaultProfile, HasTxHashBeenIndexed, Ge } from "../api";
 import {
   addressService,
   userService,
@@ -15,9 +17,8 @@ const profileSubject = new BehaviorSubject(
 );
 export default function Createprofile() {
   const [username, setUsername] = useState("");
-  const context = useContext(AppContext);
-  console.log(context);
   const [userProfile, setUserProfile] = useState();
+  const [isProfileIndexed, setProfileIndexed] = useState(false);
 
   const userServiceData = userService;
   const profileServiceData = profileService;
@@ -28,7 +29,15 @@ export default function Createprofile() {
       Router.push("/");
     }
     getDefaultProfile();
-  }, [userProfile]);
+    if (userProfile) {
+      Router.push("/select-interest");
+    }
+    if (isProfileIndexed) {
+      Router.push("/select-interest");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userProfile, isProfileIndexed]);     // eslint-disable-next-line react-hooks/exhaustive-deps
+
 
   async function createProfile() {
     try {
@@ -40,16 +49,24 @@ export default function Createprofile() {
         .toPromise();
       console.log(profile);
       if (profile.data.createProfile.__typename === "RelayError") {
+        alert(profile.data.createProfile.reason);
         console.error(
           "create profile: failed " + profile.data.createProfile.reason
         );
         return;
       }
       console.log("create profile: poll until indexed");
+      alert(
+        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+      );
+      setProfileIndexed(true);
+
       const result = await pollUntilIndexed(profile.data.createProfile.txHash);
 
       console.log("create profile: profile has been indexed", result);
-
+      alert(
+        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+      );
       const logs = result.txReceipt.logs;
 
       console.log("create profile: logs", logs);
@@ -74,6 +91,9 @@ export default function Createprofile() {
 
       return profile;
     } catch (err) {
+      alert(
+        "An error occured. Ensure you used small letters, min of 5 letters or numbers and only used _ or -"
+      );
       console.log(err);
     }
   }
@@ -91,6 +111,7 @@ export default function Createprofile() {
   };
 
   async function pollUntilIndexed(input) {
+    console.log(input);
     while (true) {
       const response = await hasTxBeenIndexed(input);
       console.log("pool until indexed: result", response);
@@ -166,7 +187,7 @@ export default function Createprofile() {
           />
           <h3>Welcome To Lit</h3>
           <p>Create your account to get started with Lit</p>
-          <label for="file">
+          <label htmlFor="file">
             <img
               src="images/add-story.png"
               alt="add picture"
@@ -178,7 +199,7 @@ export default function Createprofile() {
           </label>
           <input
             type="file"
-            accept="image/*"
+            accept="img/*"
             placeholder="add profile picture"
             id="imagep"
           ></input>
@@ -187,10 +208,13 @@ export default function Createprofile() {
             placeholder="User name"
             onChange={(e) => setUsername(e.target.value)}
             required
-            minLength={5}
-            maxLength={30}
+            minLength="5"
+            maxLength="30"
           ></input>
-          <button onClick={createProfile}>Create Profile</button>
+          <small>length should be greater than 5</small>
+          <button type="submit" onClick={createProfile}>
+            Create Profile
+          </button>
           <p className="cuser">
             Already have an account? <a href="index.js">Log in</a>
           </p>
