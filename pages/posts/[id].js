@@ -303,7 +303,7 @@ export default function Home() {
               <Link href={"/create-post"}>
                 <div className="hand">
                   <img
-                    src="images/create-post.png"
+                    src="../images/create-post.png"
                     alt="create post"
                     className="createpost2"
                   />
