@@ -17,9 +17,9 @@ const buttonStyle = css`
 border: none;
 outline: none;
 margin-left: 15px;
-color: #340036;
+color: #fff;
 padding: 17px;
-border-radius: 25px;
+border-radius: 5rem;
 cursor: pointer;
 font-size: 14px;
 font-weight: 500;

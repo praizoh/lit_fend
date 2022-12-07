@@ -3,7 +3,12 @@
 
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { client, getPublicationById, GetDefaultProfile, getCommentsOfAPublication } from "../../api";
+import {
+  client,
+  getPublicationById,
+  GetDefaultProfile,
+  getCommentsOfAPublication,
+} from "../../api";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import {
@@ -32,7 +37,7 @@ import { BehaviorSubject } from "rxjs";
 const profileSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("profile"))
 );
-import moment from 'moment'
+import moment from "moment";
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
 const auth =
@@ -65,9 +70,18 @@ export default function Home() {
     },
   });
 
+  // Captures 0x + 4 characters, then the last 4 characters.
+  const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
+
+  const truncateEthAddress = (address) => {
+    const match = address.match(truncateRegex);
+    if (!match) return address;
+    return `${match[1]}…${match[2]}`;
+  };
+
   useEffect(() => {
     fetchPost();
-    fetchPostComments()
+    fetchPostComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
@@ -161,23 +175,26 @@ export default function Home() {
         signer
       );
 
-      const tx = await contract.commentWithSig({
-        profileId: typedData.value.profileId,
-        contentURI: typedData.value.contentURI,
-        profileIdPointed: typedData.value.profileIdPointed,
-        pubIdPointed: typedData.value.pubIdPointed,
-        collectModule: typedData.value.collectModule,
-        collectModuleInitData: typedData.value.collectModuleInitData,
-        referenceModule: typedData.value.referenceModule,
-        referenceModuleInitData: typedData.value.referenceModuleInitData,
-        referenceModuleData: typedData.value.referenceModuleData,
-        sig: {
-          v,
-          r,
-          s,
-          deadline: typedData.value.deadline,
+      const tx = await contract.commentWithSig(
+        {
+          profileId: typedData.value.profileId,
+          contentURI: typedData.value.contentURI,
+          profileIdPointed: typedData.value.profileIdPointed,
+          pubIdPointed: typedData.value.pubIdPointed,
+          collectModule: typedData.value.collectModule,
+          collectModuleInitData: typedData.value.collectModuleInitData,
+          referenceModule: typedData.value.referenceModule,
+          referenceModuleInitData: typedData.value.referenceModuleInitData,
+          referenceModuleData: typedData.value.referenceModuleData,
+          sig: {
+            v,
+            r,
+            s,
+            deadline: typedData.value.deadline,
+          },
         },
-      },{ gasLimit: 500000 });
+        { gasLimit: 500000 }
+      );
 
       await tx.wait();
       console.log("successfully created comment: tx hash", tx.hash);
@@ -234,15 +251,78 @@ export default function Home() {
         />
       </Head>
       <main>
+        {/* nav bar */}
+        <div className="dasboard">
+          <div className="nav">
+            <Link href={`/my-profile`}>
+              <div className={"hand"}>
+                <img
+                  src="../images/profile-picture.png"
+                  alt="profile"
+                  width="32px"
+                  height="32px"
+                  id="side-p"
+                />
+                {ensName && <span>{ensName}</span>}
+                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
+              </div>
+            </Link>
+            <img src="../images/Logo.png" alt="logo" width="32px" height="32px" />
+          </div>
+        </div>
+        <div></div>
+        <div className="dasboard">
+          {/* task bar */}
+          <div className="taskbars">
+            {/* post icon */}
+
+            {/* <img
+                src="images/create-post.png"
+                alt="create post"
+                className="createpost"
+            /> */}
+            <div className="taskbar">
+              <Link href={"/dashboard"}>
+                <div className="hand">
+                  <img src="../images/home.png" alt="home icon" />
+                  <p>Home</p>
+                </div>
+              </Link>
+              <Link href={"/explore-profiles"}>
+                <div className="hand">
+                  <img src="../images/communities.png" alt="communities icon" />
+                  <p>Profiles</p>
+                </div>
+              </Link>
+              <Link href={"/my-activities"}>
+                <div className="hand">
+                  <img src="../images/activities.png" alt="activities icon" />
+                  <p>My Activities</p>
+                </div>
+              </Link>
+              <Link href={"/create-post"}>
+                <div className="hand">
+                  <img
+                    src="../images/create-post.png"
+                    alt="create post"
+                    className="createpost2"
+                  />
+                  <p>Create Post</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
         <div className="content">
           <div className="contenthead">
             <img src="../images/web3logo.png" alt="" />
-            <p className="web3cont">{post?.profile?.handle} || <small>{moment(post?.createdAt).fromNow()}</small></p>
+            <p className="web3cont">
+              {post?.profile?.handle} ||{" "}
+              <small>{moment(post?.createdAt).fromNow()}</small>
+            </p>
           </div>
-          <p>
-            {post?.metadata?.content}
-          </p>
-          <br/>
+          <p>{post?.metadata?.content}</p>
+          <br />
           <p>-Product Design</p>
           <p>-Web3 Development</p>
           <p>-Web2 Development</p>
@@ -255,19 +335,19 @@ export default function Home() {
         <hr />
         {comments.map((comment, index) => (
           <div className="all-comments" key={index}>
-          <div className="read-comments">
-            <div className="webcomment">
-              <img src="../images/maureen.png" alt="" />
-              <p className="usercomment">{comment?.profile?.name}||{comment?.profile.handle}</p>
-              <p>
-                {comment.metadata.description} 
-              </p>
+            <div className="read-comments">
+              <div className="webcomment">
+                <img src="../images/maureen.png" alt="" />
+                <p className="usercomment">
+                  {comment?.profile?.name}||{comment?.profile.handle}
+                </p>
+                <p>{comment.metadata.description}</p>
+              </div>
+              <div>{moment(comment?.createdAt).fromNow()}</div>
             </div>
-            <div>{moment(comment?.createdAt).fromNow()}</div>
           </div>
-        </div>
         ))}
-        
+
         <div className="enter-comment">
           <img
             src="../images/profile-picture.png"
