@@ -6,6 +6,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import Router from "next/router";
 import { client, GetDefaultProfile } from "../api";
+import { Button } from '../components'
+import { css } from '@emotion/css'
 import {
   useAccount,
   useDisconnect,
@@ -183,9 +185,13 @@ export default function Layout() {
                     {userProfile.stats.totalComments} <span>Comments</span>
                   </p>
                 </div>
-                <button onClick={routeEditProfile} className="editprofilebtn">
+                {/* <button onClick={routeEditProfile} className="editprofilebtn">
                   Edit Profile
-                </button>
+                </button> */}
+                <Button
+                  onClick={routeEditProfile}
+                  buttonText="Edit Profile"
+                />
               </div>
               {/* <div className="addingpost">
               <img
@@ -202,3 +208,9 @@ export default function Layout() {
     </div>
   );
 }
+
+const cont = css`
+  display: block;
+  margin: 0 auto;
+  width: 80%
+`

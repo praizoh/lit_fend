@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-page-custom-font */
+import Head from "next/head";
 import { useState, useEffect } from 'react'
 import { createClient, searchProfiles, recommendProfiles, getPublications } from '../api_cql'
 import { css } from '@emotion/css'
@@ -5,11 +8,31 @@ import { trimString, generateRandomColor } from '../utils'
 import { Button, SearchInput, Placeholders } from '../components'
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+  useAccount,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useSigner,
+} from "wagmi";
+import { ethers, providers } from "ethers";
 
 export default function Home() {
   const [profiles, setProfiles] = useState([])
   const [loadingState, setLoadingState] = useState('loading')
   const [searchString, setSearchString] = useState('')
+  const { address } = useAccount();
+  const { data: ensName } = useEnsName({ address });
+  const [userAddress, setUserAddress] = useState("");
+
+  // Captures 0x + 4 characters, then the last 4 characters.
+  const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
+
+  const truncateEthAddress = (address) => {
+    const match = address.match(truncateRegex);
+    if (!match) return address;
+    return `${match[1]}…${match[2]}`;
+  };
 
   useEffect(() => {
     getRecommendedProfiles() 
@@ -60,64 +83,146 @@ export default function Home() {
   }
   
   return (
-    <div>
-      <div className={searchContainerStyle}>
-        <SearchInput
-          placeholder='Search'
-          onChange={e => setSearchString(e.target.value)}
-          value={searchString}
-          onKeyDown={handleKeyDown}      
+    <div className="view-comments">
+      <Head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Comments</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
+          rel="stylesheet"
         />
-        <Button
-          onClick={searchForProfile}
-          buttonText="SEARCH PROFILES"
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         />
-      </div>
-      <div className={listItemContainerStyle}>
-        {
-           loadingState === 'loading' && <Placeholders number={6} />
-        }
-        {
-          profiles.map((profile, index) => (
-            <Link href={`/profile/${profile.id}`} key={index}>
-              <a>
-                <div className={listItemStyle}>
-                  <div className={profileContainerStyle} >
-                    {
-                      profile.picture && profile.picture.original ? (
-                      <Image
-                        src={profile.picture.original.url}
-                        className={profileImageStyle}
-                        width="42px"
-                        height="42px"
-                      />
-                      ) : (
-                        <div
-                          className={
-                            css`
-                            ${placeholderStyle};
-                            background-color: ${profile.backgroundColor};
-                            `
-                          }
-                        />
-                      )
-                    }
-                    
-                    <div className={profileInfoStyle}>
-                      <h3 className={nameStyle}>{profile.name}</h3>
-                      <p className={handleStyle}>{profile.handle}</p>
+      </Head>
+      <main>
+        {/* nav bar */}
+        <div className="dasboard">
+          <div className="nav">
+            <Link href={`/my-profile`}>
+              <div className={"hand"}>
+                <img
+                  src="../images/profile-picture.png"
+                  alt="profile"
+                  width="32px"
+                  height="32px"
+                  id="side-p"
+                />
+                {ensName && <span>{ensName}</span>}
+                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
+              </div>
+            </Link>
+            <img src="../images/Logo.png" alt="logo" width="32px" height="32px" />
+          </div>
+        </div>
+        <div></div>
+        <div className="dasboard">
+          {/* task bar */}
+          <div className="taskbars">
+            {/* post icon */}
+
+            {/* <img
+                src="images/create-post.png"
+                alt="create post"
+                className="createpost"
+            /> */}
+            <div className="taskbar">
+              <Link href={"/dashboard"}>
+                <div className="hand">
+                  <img src="../images/home.png" alt="home icon" />
+                  <p>Home</p>
+                </div>
+              </Link>
+              <Link href={"/explore-profiles"}>
+                <div className="hand">
+                  <img src="../images/communities.png" alt="communities icon" />
+                  <p>Profiles</p>
+                </div>
+              </Link>
+              <Link href={"/my-activities"}>
+                <div className="hand">
+                  <img src="../images/activities.png" alt="activities icon" />
+                  <p>My Activities</p>
+                </div>
+              </Link>
+              <Link href={"/create-post"}>
+                <div className="hand">
+                  <img
+                    src="../images/create-post.png"
+                    alt="create post"
+                    className="createpost2"
+                  />
+                  <p>Create Post</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={cont}>
+          <div className={searchContainerStyle}>
+            <SearchInput
+              placeholder='Search'
+              onChange={e => setSearchString(e.target.value)}
+              value={searchString}
+              onKeyDown={handleKeyDown}      
+            />
+            <Button
+              onClick={searchForProfile}
+              buttonText="SEARCH PROFILES"
+            />
+          </div>
+          <div className={listItemContainerStyle}>
+            {
+              loadingState === 'loading' && <Placeholders number={6} />
+            }
+            {
+              profiles.map((profile, index) => (
+                <Link href={`/profile/${profile.id}`} key={index}>
+                  <div className="hand">
+                    <div className={listItemStyle}>
+                      <div className={profileContainerStyle} >
+                        {
+                          profile.picture && profile.picture.original ? (
+                          <Image
+                            src={profile.picture.original.url}
+                            className={profileImageStyle}
+                            width="42px"
+                            height="42px"
+                          />
+                          ) : (
+                            <div
+                              className={
+                                css`
+                                ${placeholderStyle};
+                                background-color: ${profile.backgroundColor};
+                                `
+                              }
+                            />
+                          )
+                        }
+                        
+                        <div className={profileInfoStyle}>
+                          <h3 className={nameStyle}>{profile.name}</h3>
+                          <p className={handleStyle}>{profile.handle}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className={latestPostStyle}>{trimString(profile.publication?.metadata.content, 200)}</p>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <p className={latestPostStyle}>{trimString(profile.publication?.metadata.content, 200)}</p>
-                  </div>
-                </div>
-              </a>
-            </Link>
-          ))
-        }
-      </div>
+                </Link>
+              ))
+            }
+          </div>
+        </div>
+      </main>
     </div>
+    
   )
 }
 
@@ -149,6 +254,12 @@ const placeholderStyle = css`
 const listItemContainerStyle = css`
   display: flex;
   flex-direction: column;
+`
+
+const cont = css`
+  display: block;
+  margin: 0 auto;
+  width: 80%
 `
 
 const listItemStyle = css`

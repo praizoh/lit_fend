@@ -1045,7 +1045,7 @@ input[type="file"] {
   border-radius: 0.6rem;
 }
 .editprofilebtn {
-  padding: 0.8rem;
+  padding: 6px;
   font-size: 1rem;
   background-color: rgba(80, 47, 138, 1);
   color: #fff;

@@ -323,6 +323,9 @@ export default function EditProfile() {
 
 const containerStyle = css`
   padding-top: 25px;
+  display: block;
+  margin: 0 auto;
+  width: 80%
 `;
 
 const inputStyle = css`
@@ -361,4 +364,10 @@ const labelStyle = css`
 
 const formContainer = css`
   margin-top: 40px;
+`;
+
+const cont = css`
+  display: block;
+  margin: 0 auto;
+  width: 80%
 `;
