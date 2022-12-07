@@ -1,55 +1,55 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import Head from "next/head";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { ethers } from 'ethers'
-import { css } from '@emotion/css'
-import { PINK } from '../theme'
-import { Button } from '../components'
-import { v4 as uuid } from 'uuid'
-import { create } from 'ipfs-http-client'
-import PERIPHERY from '../abi/lensperiphery.json'
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { css } from "@emotion/css";
+import { PINK } from "../theme";
+import { Button } from "../components";
+import { v4 as uuid } from "uuid";
+import { create } from "ipfs-http-client";
+import PERIPHERY from "../abi/lensperiphery.json";
 import {
   createProfileMetadataTypedData,
   createClient,
-  PERIPHERY_CONTRACT_ADDRESS
-} from '../api_cql'
+  PERIPHERY_CONTRACT_ADDRESS,
+} from "../api_cql";
 import Router from "next/router";
-import { signedTypeData, splitSignature } from '../utils'
-import { client, GetDefaultProfile} from "../api";
+import { signedTypeData, splitSignature } from "../utils";
+import { client, GetDefaultProfile } from "../api";
 import {
-    useAccount,
-    useDisconnect,
-    useEnsAvatar,
-    useEnsName,
-    useSigner,
+  useAccount,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useSigner,
 } from "wagmi";
 
 import {
-    addressService,
-    userService,
-    profileService,
-  } from "../services/userService";
-  import { BehaviorSubject } from "rxjs";
-  const profileSubject = new BehaviorSubject(
-    process.browser && JSON.parse(localStorage.getItem("profile"))
-  );
+  addressService,
+  userService,
+  profileService,
+} from "../services/userService";
+import { BehaviorSubject } from "rxjs";
+const profileSubject = new BehaviorSubject(
+  process.browser && JSON.parse(localStorage.getItem("profile"))
+);
 
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
-const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
+const auth =
+  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
 const clientQuery = create({
-  host: 'ipfs.infura.io',
+  host: "ipfs.infura.io",
   port: 5001,
-  protocol: 'https',
+  protocol: "https",
   headers: {
-      authorization: auth,
+    authorization: auth,
   },
-})
+});
 
 export default function EditProfile() {
   const { address } = useAccount();
@@ -68,38 +68,33 @@ export default function EditProfile() {
     return `${match[1]}…${match[2]}`;
   };
 
-  
-
-  const [updatedProfile, setUpdatedProfile] = useState()
+  const [updatedProfile, setUpdatedProfile] = useState();
   const [userAddress, setUserAddress] = useState("");
   const [profile, setUserProfile] = useState();
   const [isProfileUpdateDone, setIsProfileUpdateDone] = useState(false);
 
-
   useEffect(() => {
-    console.log(address)
+    console.log(address);
     setUserAddress(address);
     if (!userAddress) {
       return;
     }
-    
+
     getDefaultProfile();
     // if(!userProfile){
     //   Router.push("/create-profile");
     // }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [userAddress]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(isProfileUpdateDone){
+    if (isProfileUpdateDone) {
       Router.push("/my-profile");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isProfileUpdateDone]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [isProfileUpdateDone]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   async function getDefaultProfile() {
     try {
@@ -121,14 +116,14 @@ export default function EditProfile() {
   }
 
   async function updateProfile() {
-    if (!updatedProfile) return
+    if (!updatedProfile) return;
     if (!signer) {
-        console.log("signer is missing")
-        return;
+      console.log("signer is missing");
+      return;
     }
     if (updatedProfile.twitter) {
-      const index = profile.attributes.findIndex(v => v.key === 'twitter')
-      profile.attributes[index].value = updatedProfile.twitter
+      const index = profile.attributes.findIndex((v) => v.key === "twitter");
+      profile.attributes[index].value = updatedProfile.twitter;
     }
 
     const newMeta = {
@@ -141,36 +136,43 @@ export default function EditProfile() {
       createdOn: new Date().toISOString(),
       appId: "LitLenApp",
       ...updatedProfile,
-    }
+    };
 
     if (profile.coverPicture) {
-      newMeta.cover_picture = profile.coverPicture.original.url
+      newMeta.cover_picture = profile.coverPicture.original.url;
     } else {
-      newMeta.cover_picture = null
+      newMeta.cover_picture = null;
     }
-    console.log(newMeta)
-    const added = await clientQuery.add(JSON.stringify(newMeta))
-    console.log(added)
-    const newMetadataURI = `https://ipfs.infura.io/ipfs/${added.path}`
+    console.log(newMeta);
+    const added = await clientQuery.add(JSON.stringify(newMeta));
+    console.log(added);
+    const newMetadataURI = `https://ipfs.infura.io/ipfs/${added.path}`;
 
     // using the GraphQL API may be unnecessary
     // if you are not using gasless transactions
-    const urqlClient = await createClient()
-    const data = await urqlClient.mutation(createProfileMetadataTypedData, {
-      profileId: profile.id, metadata: newMetadataURI
-    }).toPromise()
-    console.log(data)
+    const urqlClient = await createClient();
+    const data = await urqlClient
+      .mutation(createProfileMetadataTypedData, {
+        profileId: profile.id,
+        metadata: newMetadataURI,
+      })
+      .toPromise();
+    console.log(data);
     const typedData = data.data.createSetProfileMetadataTypedData.typedData;
-    
-    const signature = await signedTypeData(typedData.domain, typedData.types, typedData.value)
+
+    const signature = await signedTypeData(
+      typedData.domain,
+      typedData.types,
+      typedData.value
+    );
     const { v, r, s } = splitSignature(signature);
 
     const contract = new ethers.Contract(
       PERIPHERY_CONTRACT_ADDRESS,
       PERIPHERY,
       signer
-    )
-    console.log(profile.id)
+    );
+    console.log(profile.id);
     const tx = await contract.setProfileMetadataURIWithSig({
       profileId: profile.id,
       metadata: newMetadataURI,
@@ -181,19 +183,19 @@ export default function EditProfile() {
         deadline: typedData.value.deadline,
       },
     });
-    console.log('tx: ', tx)
-    alert("hopefully your profile has been updated 🙈")
-    setIsProfileUpdateDone(true)
+    console.log("tx: ", tx);
+    alert("hopefully your profile has been updated 🙈");
+    setIsProfileUpdateDone(true);
   }
- 
+
   if (!profile) {
-    return null
+    return null;
   }
 
   const meta = profile.attributes.reduce((acc, next) => {
-    acc[next.key] = next.value
-    return acc
-  }, {})
+    acc[next.key] = next.value;
+    return acc;
+  }, {});
 
   return (
     <div>
@@ -205,27 +207,27 @@ export default function EditProfile() {
       <main>
         {/* nav bar */}
         <div className="dasboard">
-            <div className="nav">
-            <Link href={`/my-profile`} >
-            <div className={"hand"}>
-              <img
-                src="images/profile-picture.png"
-                alt="profile"
-                width="32px"
-                height="32px"
-                id="side-p"
-              />
-              {ensName && <span>{ensName}</span>}
-              {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-            </div>
-          </Link>
+          <div className="nav">
+            <Link href={`/my-profile`}>
+              <div className={"hand"}>
+                <img
+                  src="images/profile-picture.png"
+                  alt="profile"
+                  width="32px"
+                  height="32px"
+                  id="side-p"
+                />
+                {ensName && <span>{ensName}</span>}
+                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
+              </div>
+            </Link>
             <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
-            </div>
+          </div>
         </div>
         <div></div>
         <div className="dasboard">
-            {/* task bar */}
-            <div className="taskbars">
+          {/* task bar */}
+          <div className="taskbars">
             {/* post icon */}
 
             {/* <img
@@ -234,70 +236,86 @@ export default function EditProfile() {
                 className="createpost"
             /> */}
             <div className="taskbar">
-            <Link href={'/dashboard'}>
-              <div className="hand">
-                <img src="images/home.png" alt="home icon" />
-                <p>Home</p>
-              </div>
-            </Link>
-            <Link href={"/explore-profiles"}>
-              <div className="hand">
-                <img src="images/communities.png" alt="communities icon" />
-                <p>Profiles</p>
-              </div>
-            </Link>
-            <Link href={"/my-activities"}>
-              <div className="hand">
-                <img src="images/activities.png" alt="activities icon" />
-                <p>My Activities</p>
-              </div>
-            </Link>
-            <Link href={"/create-post"}>
-              <div className="hand">
-              <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost2"
-              />
-                <p>Create Post</p>
-              </div>
-            </Link>
-          </div>
+              <Link href={"/dashboard"}>
+                <div className="hand">
+                  <img src="images/home.png" alt="home icon" />
+                  <p>Home</p>
+                </div>
+              </Link>
+              <Link href={"/explore-profiles"}>
+                <div className="hand">
+                  <img src="images/communities.png" alt="communities icon" />
+                  <p>Profiles</p>
+                </div>
+              </Link>
+              <Link href={"/my-activities"}>
+                <div className="hand">
+                  <img src="images/activities.png" alt="activities icon" />
+                  <p>My Activities</p>
+                </div>
+              </Link>
+              <Link href={"/create-post"}>
+                <div className="hand">
+                  <img
+                    src="images/create-post.png"
+                    alt="create post"
+                    className="createpost2"
+                  />
+                  <p>Create Post</p>
+                </div>
+              </Link>
             </div>
+          </div>
         </div>
         <div className={containerStyle}>
-      <h2>Edit Profile</h2>
-      <div className={formContainer}>
-        <label className={labelStyle}>Name</label>
-        <input
-          value={updatedProfile && updatedProfile.name ? updatedProfile.name : profile.name}
-          className={inputStyle}
-          onChange={e => setUpdatedProfile({ ...updatedProfile, name: e.target.value })}
-        />
-        <label className={labelStyle}>Bio</label>
-        <textarea
-          value={updatedProfile && updatedProfile.bio ? updatedProfile.bio : profile.bio}
-          className={textAreaStyle}
-          onChange={e => setUpdatedProfile({ ...updatedProfile, bio: e.target.value })}
-        />
-        {
-          meta && meta.twitter && (
-            <>
-              <label className={labelStyle}>Twitter</label>
-              <input
-                value={updatedProfile && updatedProfile.twitter ? updatedProfile.twitter : meta.twitter}
-                className={inputStyle}
-                onChange={e => setUpdatedProfile({ ...updatedProfile, twitter: e.target.value })}
-              />
-            </>
-          )
-        }
-        <Button
-          buttonText="Save Profile"
-          onClick={updateProfile}
-        />
-      </div>
-    </div>
+          <h2>Edit Profile</h2>
+          <div className={formContainer}>
+            <label className={labelStyle}>Name</label>
+            <input
+              value={
+                updatedProfile && updatedProfile.name
+                  ? updatedProfile.name
+                  : profile.name
+              }
+              className={inputStyle}
+              onChange={(e) =>
+                setUpdatedProfile({ ...updatedProfile, name: e.target.value })
+              }
+            />
+            <label className={labelStyle}>Bio</label>
+            <textarea
+              value={
+                updatedProfile && updatedProfile.bio
+                  ? updatedProfile.bio
+                  : profile.bio
+              }
+              className={textAreaStyle}
+              onChange={(e) =>
+                setUpdatedProfile({ ...updatedProfile, bio: e.target.value })
+              }
+            />
+            {meta && meta.twitter && (
+              <>
+                <label className={labelStyle}>Twitter</label>
+                <input
+                  value={
+                    updatedProfile && updatedProfile.twitter
+                      ? updatedProfile.twitter
+                      : meta.twitter
+                  }
+                  className={inputStyle}
+                  onChange={(e) =>
+                    setUpdatedProfile({
+                      ...updatedProfile,
+                      twitter: e.target.value,
+                    })
+                  }
+                />
+              </>
+            )}
+            <Button buttonText="Save Profile" onClick={updateProfile} />
+          </div>
+        </div>
       </main>
     </div>
   );
@@ -305,13 +323,13 @@ export default function EditProfile() {
 
 const containerStyle = css`
   padding-top: 25px;
-`
+`;
 
 const inputStyle = css`
   width: 100%;
   border-radius: 12px;
   outline: none;
-  border: 2px solid rgba(0, 0, 0, .05);
+  border: 2px solid rgba(0, 0, 0, 0.05);
   padding: 12px 18px;
   font-size: 14px;
   border-color: transpaent;
@@ -320,17 +338,27 @@ const inputStyle = css`
   &:focus {
     border-color: rgb(${PINK});
   }
-`
-
+`;
+const h2Style = css`
+  color: rgba(80, 47, 138, 1);
+`;
 const textAreaStyle = css`
   ${inputStyle};
   height: 100px;
-`
-
+`;
+const buttonStyle = css`
+  margin: 2.3rem 0 0.7rem;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: rgba(80, 47, 138, 1);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+`;
 const labelStyle = css`
   font-weight: 600;
-`
+`;
 
 const formContainer = css`
   margin-top: 40px;
-`
+`;
