@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -43,8 +42,7 @@ export default function Layout() {
     // }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [userAddress]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // Captures 0x + 4 characters, then the last 4 characters.
   const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
@@ -76,7 +74,7 @@ export default function Layout() {
     Router.push("/edit-profile");
   }
   return (
-    <div>
+    <div className="myprofile">
       <Head>
         <title>Lit dashboard</title>
         <meta name="description" content="Lit-Dapp" />
@@ -185,7 +183,9 @@ export default function Layout() {
                     {userProfile.stats.totalComments} <span>Comments</span>
                   </p>
                 </div>
-                <button onClick={routeEditProfile}>Edit Profile</button>
+                <button onClick={routeEditProfile} className="editprofilebtn">
+                  Edit Profile
+                </button>
               </div>
               {/* <div className="addingpost">
               <img
