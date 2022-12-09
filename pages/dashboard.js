@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -37,8 +36,7 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [userAddress]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // Captures 0x + 4 characters, then the last 4 characters.
   const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
@@ -83,7 +81,7 @@ export default function Home() {
           </Link>
           <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
         </div>
-        {/* <div className="side side-bar" id="side-bars">
+        <div className="side side-bar" id="side-bars">
           <div className="side-head">
             <div className="side-profile">
               <img
@@ -204,7 +202,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
 
         {/* <!-- story section --> */}
         <div id="story">
