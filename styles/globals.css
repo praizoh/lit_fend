@@ -169,20 +169,21 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem 1rem 0;
+  flex-direction: row-reverse;
 }
 .nav #side-p {
   width: 32px;
   height: 32px;
 }
 .side-bar {
-  /* display: hidden; */
+  display: hidden;
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
   width: 0%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  /* position: fixed; */
+  /* z-index: 1; */
+  /* top: 0; */
+  /* left: 0; */
   overflow-x: hidden;
   transition: all 200ms ease-in-out;
   margin-top: 1.5rem;
@@ -221,27 +222,34 @@
   color: rgba(159, 159, 159, 1);
 }
 .items {
-  padding: 0.8rem;
+  /* padding: 0.8rem; */
   font-size: 1.2rem;
 }
-.items a {
+/* .items a {
   color: white;
   text-decoration: none;
   padding: 1rem 2.5rem;
-}
+} */
 .items a:hover {
   color: rgb(216, 168, 255);
 }
 .items li {
   padding: 1.6rem;
   list-style: none;
+  text-align: left;
   /* margin: 0; */
   /* padding: 0; */
 }
-.items img {
-  position: absolute;
-  /* margin-top: 8px; */
+.items li img {
+  margin-right: 1.4rem;
 }
+.items li .side-lists {
+  padding: 1rem 0;
+}
+/* .items img {
+  position: absolute;
+  /* margin-top: 8px; 
+} */
 .side-logo {
   font: 1em sans-serif;
 }
@@ -275,12 +283,16 @@
   width: 48px;
 }
 #web3 {
-  background-color: rgba(250, 244, 255, 1);
   /* margin: unset; */
   margin: 1rem 0;
   height: 500px;
-  border-radius: 10px;
   /* width: 428px; */
+}
+#web3:hover,
+#web3:focus,
+#web3:active {
+  background-color: rgba(250, 244, 255, 1);
+  border-radius: 10px;
 }
 .webl {
   display: flex;
@@ -407,7 +419,7 @@
   margin-right: 15rem;
   padding-top: 0.5rem;
 }
-.taskbar {
+.taskbars .mobile {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -416,7 +428,7 @@
   padding: 1rem 0;
   border: none;
   border-radius: 10px 10px 0 0;
-  /* position: sticky; */
+  position: sticky;
 
   bottom: 0;
   left: 0;
@@ -431,12 +443,8 @@
   font-size: 0.5rem;
   color: rgba(171, 129, 205, 1);
 }
-.taskbars {
-  position: sticky;
-  border: none;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.items .taskbar {
+  display: none;
 }
 .createpost {
   position: relative;
@@ -472,7 +480,7 @@
     background-color: rgba(80, 47, 138, 1);
     height: 100%;
     width: 0%;
-    position: fixed;
+    /* position: fixed; */
     z-index: 1;
     top: 0;
     left: 0;
@@ -505,12 +513,16 @@
     padding: 1px;
   }
   #web3 {
-    background-color: rgba(250, 244, 255, 1);
     /* margin: unset; */
     margin: 1.2rem 0;
     height: 710px;
-    border-radius: 10px;
     /* width: 428px; */
+  }
+  #web3:hover,
+  #web3:focus,
+  #web3:active {
+    background-color: rgba(250, 244, 255, 1);
+    border-radius: 10px;
   }
   .webl {
     display: flex;
@@ -660,25 +672,54 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .navbars {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* margin: 1.5rem 1rem 0; */
+    margin: 0;
+    padding: 2rem;
+    /* position: static;
+    /* background-color: #f2f0f5; */
+    box-shadow: 5px 5px 15px rgb(236, 236, 236);
+    height: 100vh;
+    width: 23%;
+    background-color: rgb(254, 253, 255);
+    border: none;
+    border-radius: 0 10px 10px 0;
+  }
+  .maincontent {
+    display: flex;
+    flex-direction: column;
+  }
+  .web3post {
+    display: block;
+  }
   .nav {
     display: flex;
     justify-content: space-between;
-    margin: 2.5rem 3rem 0;
+    margin: 0 auto;
+    flex-direction: column;
   }
   .nav #side-p {
     width: 50px;
     height: 50px;
   }
+  .dashnav {
+    display: flex;
+    margin: 0 auto;
+    justify-content: flex-start;
+  }
   .side-bar {
     /* display: hidden; */
-    background-color: rgba(80, 47, 138, 1);
+
     height: 100%;
-    width: 0%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
+    width: 100%;
+    /* position: fixed; */
+    /* z-index: 1; */
+    /* top: 0; */
+    /* left: 0; */
+    /* overflow-x: hidden; */
     transition: all 80ms ease-in-out;
     margin-top: 1.5rem;
     box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
@@ -700,17 +741,18 @@
     font-weight: 500;
     margin-top: 0.5rem;
   }
-  #story .status {
-    border: 1px solid rgba(80, 47, 138, 1);
-    border-radius: 50%;
-    padding: 1px;
-  }
+
   #web3 {
-    background-color: rgba(250, 244, 255, 1);
     margin: 1.2rem 0;
     height: 850px;
-    border-radius: 10px;
+
     /* width: 428px; */
+  }
+  #web3:hover,
+  #web3:focus,
+  #web3:active {
+    background-color: rgba(250, 244, 255, 1);
+    border-radius: 10px;
   }
   .webl {
     display: flex;
@@ -824,7 +866,7 @@
   }
   .nfn {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin: 1.5rem 2rem 0;
     padding-top: 0.8rem;
   }
@@ -833,6 +875,17 @@
     font-weight: 600;
     margin-right: 34rem;
     padding-top: 0.5rem;
+  }
+  .dasboard .items .taskbar {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding: 1rem 0;
+  }
+  .dasboard .taskbars .mobile {
+    display: none;
   }
 
   .dasboard .taskbar p {
@@ -852,6 +905,51 @@
     margin: 0;
     padding: 0;
   }
+  .dashlogo {
+    display: block;
+    margin: 1.5rem auto 2rem;
+    width: 40px;
+    height: 40px;
+  }
+  .items {
+    /* padding: 0.8rem; */
+    font-size: 1rem;
+  }
+  /* .items a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+} */
+  .items li:hover,
+  .items li:focus,
+  .items li:active .active {
+    color: rgba(80, 47, 138, 1);
+    font-weight: 600;
+    width: 100%;
+    background-color: rgba(250, 242, 248, 0.493);
+    box-shadow: 3px 5px 15px rgb(241, 241, 241);
+    border: none;
+    border-radius: 13px;
+  }
+  .items li {
+    padding: 1.3rem 0.9rem;
+    list-style: none;
+    text-align: left;
+    color: rgb(179, 143, 209);
+
+    /* margin: 0; */
+    /* padding: 0; */
+  }
+  .items li img {
+    margin-right: 1.4rem;
+  }
+  .items li .side-lists {
+    padding: 1rem 0;
+  }
+  /* .items img {
+  position: absolute;
+  /* margin-top: 8px; 
+} */
 }
 @media screen and (min-width: 1440px) {
   .dasboard .createpost {
