@@ -419,6 +419,12 @@
   margin-right: 15rem;
   padding-top: 0.5rem;
 }
+.search-profiles .dasboard.explore .taskbars.mobile {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .taskbars .mobile {
   display: flex;
   justify-content: space-around;
@@ -429,7 +435,6 @@
   border: none;
   border-radius: 10px 10px 0 0;
   position: sticky;
-
   bottom: 0;
   left: 0;
   right: 0;
@@ -687,6 +692,11 @@
     background-color: rgb(254, 253, 255);
     border: none;
     border-radius: 0 10px 10px 0;
+    position: sticky;
+    /* z-index: -1; */
+    left: 0;
+    bottom: 0;
+    top: 0;
   }
   .maincontent {
     display: flex;
@@ -884,6 +894,14 @@
     position: relative;
     padding: 1rem 0;
   }
+  .search-profiles .explore {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+  }
+  .search-profiles .navbars {
+    position: sticky;
+  }
   .dasboard .taskbars .mobile {
     display: none;
   }
@@ -911,34 +929,33 @@
     width: 40px;
     height: 40px;
   }
-  .items {
-    /* padding: 0.8rem; */
-    font-size: 1rem;
-  }
-  /* .items a {
-  color: white;
-  text-decoration: none;
-  padding: 1rem 2.5rem;
-} */
-  .items li:hover,
-  .items li:focus,
-  .items li:active .active {
-    color: rgba(80, 47, 138, 1);
-    font-weight: 600;
-    width: 100%;
-    background-color: rgba(250, 242, 248, 0.493);
-    box-shadow: 3px 5px 15px rgb(241, 241, 241);
-    border: none;
-    border-radius: 13px;
-  }
   .items li {
     padding: 1.3rem 0.9rem;
     list-style: none;
     text-align: left;
     color: rgb(179, 143, 209);
-
-    /* margin: 0; */
-    /* padding: 0; */
+    font-size: 1rem;
+  }
+  .items li:hover {
+    color: rgba(80, 47, 138, 1);
+    font-weight: 600;
+    /* width: 150px; */
+    /* padding: 1rem 0; */
+    /* background-color: rgba(252, 252, 253); */
+    /* box-shadow: 3px 5px 15px rgba(182, 182, 182, 0.76); */
+    /* border-bottom: 1px solid rgba(80, 47, 138, 1); */
+    /* border-radius: px; */
+  }
+  .items li.active {
+    color: rgb(252, 252, 253);
+    /* font-weight: 600; */
+    margin-top: 0.5rem;
+    width: 278px;
+    /* padding: 1rem 0; */
+    background-color: rgba(80, 47, 138, 1);
+    box-shadow: 3px 4px 13px rgba(182, 182, 182, 0.644);
+    border: none;
+    border-radius: 8px 0 0 8px;
   }
   .items li img {
     margin-right: 1.4rem;

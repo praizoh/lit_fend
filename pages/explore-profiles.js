@@ -13,6 +13,8 @@ import { trimString, generateRandomColor } from "../utils";
 import { Button, SearchInput, Placeholders } from "../components";
 import Image from "next/image";
 import Link from "next/link";
+import Sidebar from "../components/sidebar";
+import { useRouter } from "next/router";
 import {
   useAccount,
   useDisconnect,
@@ -99,161 +101,132 @@ export default function Home() {
   }
 
   return (
-    <div className="view-comments">
+    <div className="search-profiles">
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Comments</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        />
+        <title>Profiles</title>
       </Head>
       <main>
         {/* nav bar */}
-        <div className="dasboard">
-          <div className="nav">
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-
-            {/* <div className="side side-bar" id="side-bars"> */}
-            {/* <div className="side-head">
-                <div className="side-profile">
+        <div className="dasboard explore">
+          <div className="navbars">
+            <div className="nav">
+              <img
+                src="images/Logo.png"
+                alt="logo"
+                width="32px"
+                height="32px"
+                className="dashlogo"
+              />
+              <Link href={`/my-profile`}>
+                <div className={"hand"}>
                   <img
                     src="images/profile-picture.png"
                     alt="profile"
                     width="32px"
                     height="32px"
+                    id="side-p"
                   />
-                  <p>Zainab.eth</p>
-                  <img
-                    src="images/Logo.png"
-                    alt="logo"
-                    width="32px"
-                    height="32px"
-                    className="side-logo"
-                    id="side-btn"
-                  />
-                </div>
-                <div className="followers">
-                  <p>
-                    324 <span>Following</span>
-                  </p>
-                  <p>
-                    1246 <span>Followers</span>
-                  </p>
-                </div>
-              </div> */}
-            <div className="items">
-              <div className="taskbar">
-                <Link href={"/dashboard"}>
-                  <div className="hand">
-                    <li>
-                      <img src="images/home.png" alt="home icon" />
-                      Home
-                    </li>
-                  </div>
-                </Link>
-                <Link href={"/explore-profiles"}>
-                  <div className="hand">
-                    <li className="side-lists">
-                      <img
-                        src="images/communities.png"
-                        alt="communities icon"
-                      />
-                      Profiles
-                    </li>
-                  </div>
-                </Link>
-                <Link href={"/my-activities"}>
-                  <div className="hand">
-                    <li className="side-lists">
-                      <img src="images/activities.png" alt="activities icon" />
-                      My Activities
-                    </li>
-                  </div>
-                </Link>
-                <Link href={"/create-post"}>
-                  <div className="hand">
-                    <li className="side-lists">
-                      <img
-                        src="images/create-post.png"
-                        alt="create post"
-                        className="createpost2"
-                      />
-                      Create post
-                    </li>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={cont}>
-          <div className={searchContainerStyle}>
-            <SearchInput
-              placeholder="Search"
-              onChange={(e) => setSearchString(e.target.value)}
-              value={searchString}
-              onKeyDown={handleKeyDown}
-            />
-            <Button onClick={searchForProfile} buttonText="SEARCH PROFILES" />
-          </div>
-          <div className={listItemContainerStyle}>
-            {loadingState === "loading" && <Placeholders number={6} />}
-            {profiles.map((profile, index) => (
-              <Link href={`/profile/${profile.id}`} key={index}>
-                <div className="hand">
-                  <div className={listItemStyle}>
-                    <div className={profileContainerStyle}>
-                      {profile.picture && profile.picture.original ? (
-                        <Image
-                          src={profile.picture.original.url}
-                          className={profileImageStyle}
-                          width="42px"
-                          height="42px"
-                        />
-                      ) : (
-                        <div
-                          className={css`
-                            ${placeholderStyle};
-                            background-color: ${profile.backgroundColor};
-                          `}
-                        />
-                      )}
-
-                      <div className={profileInfoStyle}>
-                        <h3 className={nameStyle}>{profile.name}</h3>
-                        <p className={handleStyle}>{profile.handle}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={latestPostStyle}>
-                        {trimString(profile.publication?.metadata.content, 200)}
-                      </p>
-                    </div>
-                  </div>
+                  {ensName && <span>{ensName}</span>}
+                  {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
                 </div>
               </Link>
-            ))}
+            </div>
+            <Sidebar />
+          </div>
+          {/* search starts */}
+          <div className={cont}>
+            <div className={searchContainerStyle}>
+              <SearchInput
+                placeholder="Search"
+                onChange={(e) => setSearchString(e.target.value)}
+                value={searchString}
+                onKeyDown={handleKeyDown}
+              />
+              <Button onClick={searchForProfile} buttonText="Search Profiles" />
+            </div>
+            <div className={listItemContainerStyle}>
+              {loadingState === "loading" && <Placeholders number={6} />}
+              {profiles.map((profile, index) => (
+                <Link href={`/profile/${profile.id}`} key={index}>
+                  <div className="hand">
+                    <div className={listItemStyle}>
+                      <div className={profileContainerStyle}>
+                        {profile.picture && profile.picture.original ? (
+                          <Image
+                            src={profile.picture.original.url}
+                            className={profileImageStyle}
+                            width="42px"
+                            height="42px"
+                          />
+                        ) : (
+                          <div
+                            className={css`
+                              ${placeholderStyle};
+                              background-color: ${profile.backgroundColor};
+                            `}
+                          />
+                        )}
+
+                        <div className={profileInfoStyle}>
+                          <h3 className={nameStyle}>{profile.name}</h3>
+                          <p className={handleStyle}>{profile.handle}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className={latestPostStyle}>
+                          {trimString(
+                            profile.publication?.metadata.content,
+                            200
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          {/* task bar */}
+          <div className="taskbars mobile">
+            {/* post icon */}
+
+            {/* <img
+            src="images/create-post.png"
+            alt="create post"
+            className="createpost"
+          /> */}
+            <div className="taskbar mobile">
+              <Link href={"/dashboard"}>
+                <div className="hand">
+                  <img src="images/home.png" alt="home icon" />
+                  <p>Home</p>
+                </div>
+              </Link>
+              <Link href={"/explore-profiles"}>
+                <div className="hand">
+                  <img src="images/communities.png" alt="communities icon" />
+                  <p>Profiles</p>
+                </div>
+              </Link>
+              <Link href={"/my-activities"}>
+                <div className="hand">
+                  <img src="images/activities.png" alt="activities icon" />
+                  <p>My Activities</p>
+                </div>
+              </Link>
+              <Link href={"/create-post"}>
+                <div className="hand">
+                  <img
+                    src="images/create-post.png"
+                    alt="create post"
+                    className="createpost2"
+                  />
+                  <p>Create Post</p>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </main>
@@ -263,6 +236,9 @@ export default function Home() {
 
 const searchContainerStyle = css`
   padding: 40px 0px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const latestPostStyle = css`
@@ -292,9 +268,9 @@ const listItemContainerStyle = css`
 `;
 
 const cont = css`
-  display: block;
+  // display: block;
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
 `;
 
 const listItemStyle = css`
@@ -323,7 +299,7 @@ const inputStyle = css`
   border: none;
   padding: 15px 20px;
   font-size: 16px;
-  border-radius: 25px;
+  border-radius: 14px;
   border: 2px solid rgba(0, 0, 0, 0.04);
   transition: all 0.4s;
   width: 300px;

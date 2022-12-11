@@ -1,7 +1,10 @@
-import { css } from '@emotion/css'
+import { css } from "@emotion/css";
 
 export function SearchInput({
-  placeholder, onChange, value, onKeyDown = null
+  placeholder,
+  onChange,
+  value,
+  onKeyDown = null,
 }) {
   return (
     <input
@@ -11,21 +14,21 @@ export function SearchInput({
       className={inputStyle}
       onKeyDown={onKeyDown}
     />
-  )
+  );
 }
 
 const inputStyle = css`
   outline: none;
   border: none;
-  padding: 15px 20px;
+  padding: 18px 20px;
   font-size: 16px;
-  border-radius: 25px;
-  border: 2px solid rgba(0, 0, 0, .04);
-  transition: all .4s;
-  width: 300px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.4s;
+  width: 680px;
   background-color: #fafafa;
   &:focus {
     background-color: white;
-    border: 2px solid rgba(0, 0, 0, .1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
   }
-`
+`;
