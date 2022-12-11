@@ -184,15 +184,15 @@ export default function CreatePost() {
   };
 
   return (
-    <div>
+    <div className="create-post">
       <Head>
-        <title>Lit dashboard</title>
+        <title>Post</title>
         <meta name="description" content="Lit-Dapp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         {/* nav bar */}
-        <div className="dasboard">
+        <div className="dasboard post">
           <div className="navbars">
             <div className="nav">
               <img
@@ -218,107 +218,107 @@ export default function CreatePost() {
             </div>
             <Sidebar />
           </div>
-        </div>
-        {/* pcreate post section */}
-        <div>
-          <div className="postpage">
-            <Head>
-              <title> Post Page</title>
-              <meta name="description" content="Lit-Dapp" />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
 
-            <main>
-              <div className="container">
-                <div className="headerlogo">
-                  <img
-                    src="images/Logo.png"
-                    alt="logo"
-                    className="postpagelogo"
-                  />
-                </div>
-                <hr></hr>
-                <div className="wrapper">
-                  <div className="post">
-                    <form action="#">
-                      <div className="content">
-                        <img src="images/profile-picture.png" alt="" />
-                        <p>{profile.handle}</p>
-                      </div>
-                      <textarea
-                        placeholder="What's on your mind?"
-                        spellCheck="false"
-                        cols="20"
-                        rows="7"
-                        required
-                        onChange={(e) => setContentMessage(e.target.value)}
-                      ></textarea>
-                      <button>
-                        <img
-                          src="images/add-story.png"
-                          alt="add picture"
-                          width="30px"
-                          height="30px"
-                          className="postpicture"
-                        />
-                        &nbsp; Add a Picture
-                      </button>
-                      <input
-                        type="file"
-                        accept="img/*"
-                        placeholder="add profile picture"
-                        id="postp"
-                      ></input>
+          {/* pcreate post section */}
+          <div>
+            <div className="postpage">
+              <Head>
+                <title> Post Page</title>
+                <meta name="description" content="Lit-Dapp" />
+                <link rel="icon" href="/favicon.ico" />
+              </Head>
 
-                      <button onClick={savePost}>Post</button>
-                    </form>
+              <main>
+                <div className="container">
+                  <div className="headerlogo">
+                    <img
+                      src="images/Logo.png"
+                      alt="logo"
+                      className="postpagelogo"
+                    />
+                  </div>
+                  <hr></hr>
+                  <div className="wrapper">
+                    <div className="post">
+                      <form action="#">
+                        <div className="content">
+                          <img src="images/profile-picture.png" alt="" />
+                          <p>{profile.handle}</p>
+                        </div>
+                        <textarea
+                          placeholder="What's on your mind?"
+                          spellCheck="false"
+                          cols="20"
+                          rows="7"
+                          required
+                          onChange={(e) => setContentMessage(e.target.value)}
+                        ></textarea>
+                        <button>
+                          <img
+                            src="images/add-story.png"
+                            alt="add picture"
+                            width="30px"
+                            height="30px"
+                            className="postpicture"
+                          />
+                          &nbsp; Add a Picture
+                        </button>
+                        <input
+                          type="file"
+                          accept="img/*"
+                          placeholder="add profile picture"
+                          id="postp"
+                        ></input>
+
+                        <button onClick={savePost}>Post</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </main>
+              </main>
+            </div>
           </div>
-        </div>
-        {/* <div className="dasboard"> */}
-        {/* task bar */}
-        <div className="taskbars mobile">
-          {/* post icon */}
+          
+          {/* task bar */}
+          <div className="taskbars mobile">
+            {/* post icon */}
 
-          {/* <img
+            {/* <img
             src="images/create-post.png"
             alt="create post"
             className="createpost"
           /> */}
-          <div className="taskbar mobile">
-            <Link href={"/dashboard"}>
-              <div className="hand">
-                <img src="images/home.png" alt="home icon" />
-                <p>Home</p>
-              </div>
-            </Link>
-            <Link href={"/explore-profiles"}>
-              <div className="hand">
-                <img src="images/communities.png" alt="communities icon" />
-                <p>Profiles</p>
-              </div>
-            </Link>
-            <Link href={"/my-activities"}>
-              <div className="hand">
-                <img src="images/activities.png" alt="activities icon" />
-                <p>My Activities</p>
-              </div>
-            </Link>
-            <Link href={"/create-post"}>
-              <div className="hand">
-                <img
-                  src="images/create-post.png"
-                  alt="create post"
-                  className="createpost2"
-                />
-                <p>Create Post</p>
-              </div>
-            </Link>
+            <div className="taskbar mobile">
+              <Link href={"/dashboard"}>
+                <div className="hand">
+                  <img src="images/home.png" alt="home icon" />
+                  <p>Home</p>
+                </div>
+              </Link>
+              <Link href={"/explore-profiles"}>
+                <div className="hand">
+                  <img src="images/communities.png" alt="communities icon" />
+                  <p>Profiles</p>
+                </div>
+              </Link>
+              <Link href={"/my-activities"}>
+                <div className="hand">
+                  <img src="images/activities.png" alt="activities icon" />
+                  <p>My Activities</p>
+                </div>
+              </Link>
+              <Link href={"/create-post"}>
+                <div className="hand">
+                  <img
+                    src="images/create-post.png"
+                    alt="create post"
+                    className="createpost2"
+                  />
+                  <p>Create Post</p>
+                </div>
+              </Link>
+            </div>
           </div>
-          {/* </div> */}
         </div>
       </main>
     </div>

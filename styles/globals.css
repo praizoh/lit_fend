@@ -905,6 +905,12 @@
   .dasboard .taskbars .mobile {
     display: none;
   }
+  .dasboard.post .taskbars.mobile {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 
   .dasboard .taskbar p {
     text-align: center;
@@ -1236,26 +1242,21 @@ input[type="file"] {
 }
 
 /* create post styling starts here */
+
 .postpage * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-.postpage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: rgba(250, 244, 255, 1);
 }
 ::selection {
   color: #fff;
   background: rgba(80, 47, 138, 1);
 }
 .postpage .container {
-  width: 750px;
-  height: 550px;
-  overflow: hidden;
+  margin: 2rem auto;
+  width: 90%;
+  height: 60%;
+  padding: 0.6rem;
   background: #fff;
   border-radius: 10px;
   transition: height 0.2s ease;
@@ -1268,12 +1269,9 @@ input[type="file"] {
   margin-left: 1rem;
 }
 .postpage .container.active {
-  height: 590px;
+  height: 350px;
 }
 .postpage .container .wrapper {
-  /* width: 1000px; */
-  /* display: flex; */
-
   background: #fff;
 }
 .postpage .container img {
@@ -1286,11 +1284,14 @@ input[type="file"] {
   margin-left: -500px;
 }
 .postpage .headerlogo {
-  display: block;
+  display: none;
   margin: 0 auto;
   background-color: #fff;
   border: none;
   /* text-align: center; */
+}
+hr {
+  display: none;
 }
 .postpage input [type="file"] {
   display: none;
@@ -1302,10 +1303,6 @@ input[type="file"] {
   position: absolute;
 }
 .postpage .postpicture {
-  /* text-align: center;
-  border: 1px solid #502f8a;
-  padding: 1rem 15rem;
-  border-radius: 10px; */
   margin-top: 0.1rem;
 }
 .postpage .postpagelogo {
@@ -1313,7 +1310,7 @@ input[type="file"] {
   margin: 1.3rem auto;
 }
 .postpage .post form {
-  margin: 20px 25px;
+  margin: 15px 25px;
 }
 .postpage .post form .content {
   display: flex;
@@ -1330,7 +1327,6 @@ input[type="file"] {
   font-size: 17px;
   font-weight: 500;
 }
-
 form :where(textarea, button) {
   width: 100%;
   outline: none;
@@ -1347,11 +1343,6 @@ form textarea::placeholder {
 }
 form textarea:focus::placeholder {
   color: #b3b3b3;
-}
-form :where(.theme-emoji, .options) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .postpage form button {
   height: 54px;
@@ -1374,6 +1365,155 @@ form :where(.theme-emoji, .options) {
 }
 .postpage form textarea:valid ~ button:hover {
   background: rgba(80, 47, 138, 1);
+}
+@media screen and (min-width: 1024px) {
+  .postpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    /* min-height: 100vh; */
+  }
+  ::selection {
+    color: #fff;
+    background: rgba(80, 47, 138, 1);
+  }
+  .create-post .dasboard.post {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(250, 244, 255, 1);
+  }
+  .create-post .dasboard.post .taskbar {
+    position: sticky;
+  }
+  .postpage .container {
+    width: 750px;
+    height: 550px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: height 0.2s ease;
+    box-shadow: 0 8px 20px rgba(104, 103, 103, 0.12);
+  }
+  .postpage .container .content p {
+    font-weight: 700;
+    font-size: 1rem;
+    color: rgba(80, 47, 138, 1);
+    margin-left: 1rem;
+  }
+  .postpage .container.active {
+    height: 590px;
+  }
+  hr {
+    display: block;
+  }
+  .postpage .container .wrapper {
+    /* width: 1000px; */
+    /* display: flex; */
+
+    background: #fff;
+  }
+  .postpage .container img {
+    cursor: pointer;
+  }
+  .postpage .container .post {
+    transition: margin-left 0.18s ease;
+  }
+  .postpage .container.active .post {
+    margin-left: -500px;
+  }
+  .postpage .headerlogo {
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+    border: none;
+    /* text-align: center; */
+  }
+  .postpage input [type="file"] {
+    display: none;
+  }
+  .postpage #postp {
+    padding: 1rem 10rem;
+    border: none;
+    right: 200px;
+    position: absolute;
+  }
+  .postpage .postpicture {
+    /* text-align: center;
+  border: 1px solid #502f8a;
+  padding: 1rem 15rem;
+  border-radius: 10px; */
+    width: 20px;
+    height: 20px;
+    margin-top: 0.1rem;
+  }
+  .postpage .postpagelogo {
+    display: block;
+    margin: 1.3rem auto;
+  }
+  .postpage .post form {
+    margin: 20px 25px;
+  }
+  .postpage .post form .content {
+    display: flex;
+    align-items: center;
+  }
+  .postpage .post form .content img {
+    cursor: default;
+    max-width: 52px;
+  }
+  .postpage .post form .content .details {
+    margin: -3px 0 0 12px;
+  }
+  .postpage form .content .details p {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  form :where(textarea, button) {
+    width: 100%;
+    outline: none;
+    border: none;
+  }
+  .postpage form textarea {
+    resize: none;
+    font-size: 18px;
+    margin-top: 30px;
+    /* min-height: 100px; */
+  }
+  form textarea::placeholder {
+    color: #858585;
+  }
+  form textarea:focus::placeholder {
+    color: #b3b3b3;
+  }
+  form :where(.theme-emoji, .options) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .postpage form button {
+    height: 54px;
+    /* padding: 0 7rem; */
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #bcc0c4;
+    cursor: no-drop;
+    border-radius: 7px;
+    background: #e2e5e9;
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+  }
+  .postpage form textarea:valid ~ button {
+    color: #fff;
+    cursor: pointer;
+    background: rgba(80, 47, 138, 1);
+  }
+  .postpage form textarea:valid ~ button:hover {
+    background: rgba(80, 47, 138, 1);
+  }
 }
 
 /* profile page styling starts here */
