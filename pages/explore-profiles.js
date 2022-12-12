@@ -149,7 +149,7 @@ export default function Home() {
             <div className={listItemContainerStyle}>
               {loadingState === "loading" && <Placeholders number={6} />}
               {profiles.map((profile, index) => (
-                <Link href={`/profile/${profile.id}`} key={index}>
+                <Link href={`/explore-profiles/${profile.id}`} key={index}>
                   <div className="hand">
                     <div className={listItemStyle}>
                       <div className={profileContainerStyle}>
