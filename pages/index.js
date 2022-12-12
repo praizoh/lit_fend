@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Head from "next/head";
 import {
@@ -60,8 +59,7 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address, signer]);    // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [address, signer]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (challenge && signer) {
@@ -69,8 +67,7 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [challenge, signer]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [challenge, signer]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (challenge && signedMsg) {
@@ -78,8 +75,7 @@ export default function Home() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [challenge, signedMsg]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [challenge, signedMsg]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   async function login() {
     try {
@@ -167,14 +163,14 @@ export default function Home() {
       return (
         <div>
           <div className="connect-msg">
-            <p className="welcome"> Welcome Back To Lit</p>
+            <p className="welcome"> Welcome To Lit</p>
             <p className="connect-acct">
               Connect your account to get started with Lit
             </p>
           </div>
           <div className="connect-wallet">
             <img src="./images/wallet.png" alt="" />
-            <div> 
+            <div>
               <ConnectButton
                 label="Connect to wallet"
                 style="background-color: transparent; color: black;"

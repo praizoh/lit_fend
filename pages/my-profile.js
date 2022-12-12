@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import Router from "next/router";
+import Sidebar from "../components/sidebar";
 import { client, GetDefaultProfile } from "../api";
-import { Button } from '../components'
-import { css } from '@emotion/css'
+import { Button } from "../components";
+import { css } from "@emotion/css";
 import {
   useAccount,
   useDisconnect,
@@ -85,63 +86,30 @@ export default function Layout() {
       <main>
         {/* nav bar */}
         <div className="dasboard">
-          <div className="nav">
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
-          </div>
-        </div>
-        <div className="dasboard">
-          {/* task bar */}
-          <div className="taskbars">
-            {/* post icon */}
-
-            {/* <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost"
-            /> */}
-            <div className="taskbar">
-              <Link href={"/dashboard"}>
-                <div className="hand">
-                  <img src="images/home.png" alt="home icon" />
-                  <p>Home</p>
-                </div>
-              </Link>
-              <Link href={"/explore-profiles"}>
-                <div className="hand">
-                  <img src="images/communities.png" alt="communities icon" />
-                  <p>Profiles</p>
-                </div>
-              </Link>
-              <Link href={"/my-activities"}>
-                <div className="hand">
-                  <img src="images/activities.png" alt="activities icon" />
-                  <p>My Activities</p>
-                </div>
-              </Link>
-              <Link href={"/create-post"}>
-                <div className="hand">
+          <div className="navbars">
+            <div className="nav">
+              <img
+                src="images/Logo.png"
+                alt="logo"
+                width="32px"
+                height="32px"
+                className="dashlogo"
+              />
+              <Link href={`/my-profile`}>
+                <div className={"hand"}>
                   <img
-                    src="images/create-post.png"
-                    alt="create post"
-                    className="createpost2"
+                    src="images/profile-picture.png"
+                    alt="profile"
+                    width="32px"
+                    height="32px"
+                    id="side-p"
                   />
-                  <p>Create Post</p>
+                  {ensName && <span>{ensName}</span>}
+                  {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
                 </div>
               </Link>
             </div>
+            <Sidebar />
           </div>
         </div>
         {userProfile && (
@@ -188,10 +156,7 @@ export default function Layout() {
                 {/* <button onClick={routeEditProfile} className="editprofilebtn">
                   Edit Profile
                 </button> */}
-                <Button
-                  onClick={routeEditProfile}
-                  buttonText="Edit Profile"
-                />
+                <Button onClick={routeEditProfile} buttonText="Edit Profile" />
               </div>
               {/* <div className="addingpost">
               <img
@@ -201,6 +166,48 @@ export default function Layout() {
               />
               <p>Add Post</p>
             </div> */}
+              <div className="taskbars mobile">
+                {/* post icon */}
+
+                {/* <img
+            src="images/create-post.png"
+            alt="create post"
+            className="createpost"
+          /> */}
+                <div className="taskbar mobile">
+                  <Link href={"/dashboard"}>
+                    <div className="hand">
+                      <img src="images/home.png" alt="home icon" />
+                      <p>Home</p>
+                    </div>
+                  </Link>
+                  <Link href={"/explore-profiles"}>
+                    <div className="hand">
+                      <img
+                        src="images/communities.png"
+                        alt="communities icon"
+                      />
+                      <p>Profiles</p>
+                    </div>
+                  </Link>
+                  <Link href={"/my-activities"}>
+                    <div className="hand">
+                      <img src="images/activities.png" alt="activities icon" />
+                      <p>My Activities</p>
+                    </div>
+                  </Link>
+                  <Link href={"/create-post"}>
+                    <div className="hand">
+                      <img
+                        src="images/create-post.png"
+                        alt="create post"
+                        className="createpost2"
+                      />
+                      <p>Create Post</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
             </main>
           </div>
         )}
@@ -212,5 +219,5 @@ export default function Layout() {
 const cont = css`
   display: block;
   margin: 0 auto;
-  width: 80%
-`
+  width: 80%;
+`;

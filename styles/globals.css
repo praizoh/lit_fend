@@ -169,20 +169,21 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem 1rem 0;
+  flex-direction: row-reverse;
 }
 .nav #side-p {
   width: 32px;
   height: 32px;
 }
 .side-bar {
-  /* display: hidden; */
+  display: hidden;
   background-color: rgba(80, 47, 138, 1);
   height: 100%;
   width: 0%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  /* position: fixed; */
+  /* z-index: 1; */
+  /* top: 0; */
+  /* left: 0; */
   overflow-x: hidden;
   transition: all 200ms ease-in-out;
   margin-top: 1.5rem;
@@ -221,27 +222,34 @@
   color: rgba(159, 159, 159, 1);
 }
 .items {
-  padding: 0.8rem;
+  /* padding: 0.8rem; */
   font-size: 1.2rem;
 }
-.items a {
+/* .items a {
   color: white;
   text-decoration: none;
   padding: 1rem 2.5rem;
-}
+} */
 .items a:hover {
   color: rgb(216, 168, 255);
 }
 .items li {
   padding: 1.6rem;
   list-style: none;
+  text-align: left;
   /* margin: 0; */
   /* padding: 0; */
 }
-.items img {
-  position: absolute;
-  /* margin-top: 8px; */
+.items li img {
+  margin-right: 1.4rem;
 }
+.items li .side-lists {
+  padding: 1rem 0;
+}
+/* .items img {
+  position: absolute;
+  /* margin-top: 8px; 
+} */
 .side-logo {
   font: 1em sans-serif;
 }
@@ -275,12 +283,16 @@
   width: 48px;
 }
 #web3 {
-  background-color: rgba(250, 244, 255, 1);
   /* margin: unset; */
   margin: 1rem 0;
   height: 500px;
-  border-radius: 10px;
   /* width: 428px; */
+}
+#web3:hover,
+#web3:focus,
+#web3:active {
+  background-color: rgba(250, 244, 255, 1);
+  border-radius: 10px;
 }
 .webl {
   display: flex;
@@ -407,7 +419,13 @@
   margin-right: 15rem;
   padding-top: 0.5rem;
 }
-.taskbar {
+.search-profiles .dasboard.explore .taskbars.mobile {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.taskbars .mobile {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -416,8 +434,7 @@
   padding: 1rem 0;
   border: none;
   border-radius: 10px 10px 0 0;
-  /* position: sticky; */
-
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
@@ -431,12 +448,8 @@
   font-size: 0.5rem;
   color: rgba(171, 129, 205, 1);
 }
-.taskbars {
-  position: sticky;
-  border: none;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.items .taskbar {
+  display: none;
 }
 .createpost {
   position: relative;
@@ -472,7 +485,7 @@
     background-color: rgba(80, 47, 138, 1);
     height: 100%;
     width: 0%;
-    position: fixed;
+    /* position: fixed; */
     z-index: 1;
     top: 0;
     left: 0;
@@ -505,12 +518,16 @@
     padding: 1px;
   }
   #web3 {
-    background-color: rgba(250, 244, 255, 1);
     /* margin: unset; */
     margin: 1.2rem 0;
     height: 710px;
-    border-radius: 10px;
     /* width: 428px; */
+  }
+  #web3:hover,
+  #web3:focus,
+  #web3:active {
+    background-color: rgba(250, 244, 255, 1);
+    border-radius: 10px;
   }
   .webl {
     display: flex;
@@ -660,25 +677,59 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .navbars {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* margin: 1.5rem 1rem 0; */
+    margin: 0;
+    padding: 2rem;
+    /* position: static;
+    /* background-color: #f2f0f5; */
+    box-shadow: 5px 5px 15px rgb(236, 236, 236);
+    height: 100vh;
+    width: 23%;
+    background-color: rgb(254, 253, 255);
+    border: none;
+    border-radius: 0 10px 10px 0;
+    position: sticky;
+    /* z-index: -1; */
+    left: 0;
+    bottom: 0;
+    top: 0;
+  }
+  .maincontent {
+    display: flex;
+    flex-direction: column;
+  }
+  .web3post {
+    display: block;
+  }
   .nav {
     display: flex;
     justify-content: space-between;
-    margin: 2.5rem 3rem 0;
+    margin: 0 auto;
+    flex-direction: column;
   }
   .nav #side-p {
     width: 50px;
     height: 50px;
   }
+  .dashnav {
+    display: flex;
+    margin: 0 auto;
+    justify-content: flex-start;
+  }
   .side-bar {
     /* display: hidden; */
-    background-color: rgba(80, 47, 138, 1);
+
     height: 100%;
-    width: 0%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
+    width: 100%;
+    /* position: fixed; */
+    /* z-index: 1; */
+    /* top: 0; */
+    /* left: 0; */
+    /* overflow-x: hidden; */
     transition: all 80ms ease-in-out;
     margin-top: 1.5rem;
     box-shadow: 0 2px 1px 0 rgba(36, 35, 35, 0.623),
@@ -700,17 +751,18 @@
     font-weight: 500;
     margin-top: 0.5rem;
   }
-  #story .status {
-    border: 1px solid rgba(80, 47, 138, 1);
-    border-radius: 50%;
-    padding: 1px;
-  }
+
   #web3 {
-    background-color: rgba(250, 244, 255, 1);
     margin: 1.2rem 0;
     height: 850px;
-    border-radius: 10px;
+
     /* width: 428px; */
+  }
+  #web3:hover,
+  #web3:focus,
+  #web3:active {
+    background-color: rgba(250, 244, 255, 1);
+    border-radius: 10px;
   }
   .webl {
     display: flex;
@@ -824,7 +876,7 @@
   }
   .nfn {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin: 1.5rem 2rem 0;
     padding-top: 0.8rem;
   }
@@ -833,6 +885,31 @@
     font-weight: 600;
     margin-right: 34rem;
     padding-top: 0.5rem;
+  }
+  .dasboard .items .taskbar {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding: 1rem 0;
+  }
+  .search-profiles .explore {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+  }
+  .search-profiles .navbars {
+    position: sticky;
+  }
+  .dasboard .taskbars .mobile {
+    display: none;
+  }
+  .dasboard.post .taskbars.mobile {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .dasboard .taskbar p {
@@ -852,6 +929,50 @@
     margin: 0;
     padding: 0;
   }
+  .dashlogo {
+    display: block;
+    margin: 1.5rem auto 2rem;
+    width: 40px;
+    height: 40px;
+  }
+  .items li {
+    padding: 1.3rem 0.9rem;
+    list-style: none;
+    text-align: left;
+    color: rgb(179, 143, 209);
+    font-size: 1rem;
+  }
+  .items li:hover {
+    color: rgba(80, 47, 138, 1);
+    font-weight: 600;
+    /* width: 150px; */
+    /* padding: 1rem 0; */
+    /* background-color: rgba(252, 252, 253); */
+    /* box-shadow: 3px 5px 15px rgba(182, 182, 182, 0.76); */
+    /* border-bottom: 1px solid rgba(80, 47, 138, 1); */
+    /* border-radius: px; */
+  }
+  .items li.active {
+    color: rgb(252, 252, 253);
+    /* font-weight: 600; */
+    margin-top: 0.5rem;
+    width: 278px;
+    /* padding: 1rem 0; */
+    background-color: rgba(80, 47, 138, 1);
+    box-shadow: 3px 4px 13px rgba(182, 182, 182, 0.644);
+    border: none;
+    border-radius: 8px 0 0 8px;
+  }
+  .items li img {
+    margin-right: 1.4rem;
+  }
+  .items li .side-lists {
+    padding: 1rem 0;
+  }
+  /* .items img {
+  position: absolute;
+  /* margin-top: 8px; 
+} */
 }
 @media screen and (min-width: 1440px) {
   .dasboard .createpost {
@@ -1121,26 +1242,21 @@ input[type="file"] {
 }
 
 /* create post styling starts here */
+
 .postpage * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-.postpage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: rgba(250, 244, 255, 1);
 }
 ::selection {
   color: #fff;
   background: rgba(80, 47, 138, 1);
 }
 .postpage .container {
-  width: 750px;
-  height: 550px;
-  overflow: hidden;
+  margin: 2rem auto;
+  width: 90%;
+  height: 60%;
+  padding: 0.6rem;
   background: #fff;
   border-radius: 10px;
   transition: height 0.2s ease;
@@ -1153,12 +1269,9 @@ input[type="file"] {
   margin-left: 1rem;
 }
 .postpage .container.active {
-  height: 590px;
+  height: 350px;
 }
 .postpage .container .wrapper {
-  /* width: 1000px; */
-  /* display: flex; */
-
   background: #fff;
 }
 .postpage .container img {
@@ -1171,11 +1284,14 @@ input[type="file"] {
   margin-left: -500px;
 }
 .postpage .headerlogo {
-  display: block;
+  display: none;
   margin: 0 auto;
   background-color: #fff;
   border: none;
   /* text-align: center; */
+}
+hr {
+  display: none;
 }
 .postpage input [type="file"] {
   display: none;
@@ -1187,10 +1303,6 @@ input[type="file"] {
   position: absolute;
 }
 .postpage .postpicture {
-  /* text-align: center;
-  border: 1px solid #502f8a;
-  padding: 1rem 15rem;
-  border-radius: 10px; */
   margin-top: 0.1rem;
 }
 .postpage .postpagelogo {
@@ -1198,7 +1310,7 @@ input[type="file"] {
   margin: 1.3rem auto;
 }
 .postpage .post form {
-  margin: 20px 25px;
+  margin: 15px 25px;
 }
 .postpage .post form .content {
   display: flex;
@@ -1215,7 +1327,6 @@ input[type="file"] {
   font-size: 17px;
   font-weight: 500;
 }
-
 form :where(textarea, button) {
   width: 100%;
   outline: none;
@@ -1232,11 +1343,6 @@ form textarea::placeholder {
 }
 form textarea:focus::placeholder {
   color: #b3b3b3;
-}
-form :where(.theme-emoji, .options) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .postpage form button {
   height: 54px;
@@ -1259,6 +1365,155 @@ form :where(.theme-emoji, .options) {
 }
 .postpage form textarea:valid ~ button:hover {
   background: rgba(80, 47, 138, 1);
+}
+@media screen and (min-width: 1024px) {
+  .postpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    /* min-height: 100vh; */
+  }
+  ::selection {
+    color: #fff;
+    background: rgba(80, 47, 138, 1);
+  }
+  .create-post .dasboard.post {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(250, 244, 255, 1);
+  }
+  .create-post .dasboard.post .taskbar {
+    position: sticky;
+  }
+  .postpage .container {
+    width: 750px;
+    height: 550px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: height 0.2s ease;
+    box-shadow: 0 8px 20px rgba(104, 103, 103, 0.12);
+  }
+  .postpage .container .content p {
+    font-weight: 700;
+    font-size: 1rem;
+    color: rgba(80, 47, 138, 1);
+    margin-left: 1rem;
+  }
+  .postpage .container.active {
+    height: 590px;
+  }
+  hr {
+    display: block;
+  }
+  .postpage .container .wrapper {
+    /* width: 1000px; */
+    /* display: flex; */
+
+    background: #fff;
+  }
+  .postpage .container img {
+    cursor: pointer;
+  }
+  .postpage .container .post {
+    transition: margin-left 0.18s ease;
+  }
+  .postpage .container.active .post {
+    margin-left: -500px;
+  }
+  .postpage .headerlogo {
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+    border: none;
+    /* text-align: center; */
+  }
+  .postpage input [type="file"] {
+    display: none;
+  }
+  .postpage #postp {
+    padding: 1rem 10rem;
+    border: none;
+    right: 200px;
+    position: absolute;
+  }
+  .postpage .postpicture {
+    /* text-align: center;
+  border: 1px solid #502f8a;
+  padding: 1rem 15rem;
+  border-radius: 10px; */
+    width: 20px;
+    height: 20px;
+    margin-top: 0.1rem;
+  }
+  .postpage .postpagelogo {
+    display: block;
+    margin: 1.3rem auto;
+  }
+  .postpage .post form {
+    margin: 20px 25px;
+  }
+  .postpage .post form .content {
+    display: flex;
+    align-items: center;
+  }
+  .postpage .post form .content img {
+    cursor: default;
+    max-width: 52px;
+  }
+  .postpage .post form .content .details {
+    margin: -3px 0 0 12px;
+  }
+  .postpage form .content .details p {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  form :where(textarea, button) {
+    width: 100%;
+    outline: none;
+    border: none;
+  }
+  .postpage form textarea {
+    resize: none;
+    font-size: 18px;
+    margin-top: 30px;
+    /* min-height: 100px; */
+  }
+  form textarea::placeholder {
+    color: #858585;
+  }
+  form textarea:focus::placeholder {
+    color: #b3b3b3;
+  }
+  form :where(.theme-emoji, .options) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .postpage form button {
+    height: 54px;
+    /* padding: 0 7rem; */
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #bcc0c4;
+    cursor: no-drop;
+    border-radius: 7px;
+    background: #e2e5e9;
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+  }
+  .postpage form textarea:valid ~ button {
+    color: #fff;
+    cursor: pointer;
+    background: rgba(80, 47, 138, 1);
+  }
+  .postpage form textarea:valid ~ button:hover {
+    background: rgba(80, 47, 138, 1);
+  }
 }
 
 /* profile page styling starts here */
