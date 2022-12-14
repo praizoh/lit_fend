@@ -159,7 +159,7 @@ export default function EditProfile() {
       },
     });
     console.log('tx: ', tx)
-    alert("hopefully your profile has been updated 🙈")
+    alert("your profile has been updated 🙈")
     setIsProfileUpdateDone(true)
   }
  

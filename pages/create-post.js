@@ -70,7 +70,7 @@ export default function CreatePost() {
 
   useEffect(() => {
     if (isPostCreated) {
-      Router.push("/my-activities");
+      Router.push(`/explore-profiles/${profile.id}`);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -164,7 +164,7 @@ export default function CreatePost() {
 
       await tx.wait();
       console.log("successfully created post: tx hash", tx.hash);
-      alert("hopefully your post has been created 🙈");
+      alert("your post has been created 🙈");
       setIsPostCreated(true);
     } catch (err) {
       console.log("error: ", err);

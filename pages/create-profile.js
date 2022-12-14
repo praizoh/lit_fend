@@ -25,7 +25,7 @@ export default function Createprofile() {
   const userAddress = addressServiceData.addressValue;
   useEffect(() => {
     if (!userAddress) {
-      Router.push("/");
+      Router.push("/connect-wallet");
     }
     getDefaultProfile();
     if (userProfile) {
@@ -55,7 +55,7 @@ export default function Createprofile() {
       }
       console.log("create profile: poll until indexed");
       alert(
-        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+        "your profile has been indexed. you will be routed to view posts now. Your profile has been created oo 🙈"
       );
       setProfileIndexed(true);
 
@@ -63,7 +63,7 @@ export default function Createprofile() {
 
       console.log("create profile: profile has been indexed", result);
       alert(
-        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+        "your profile has been indexed. you will be routed to view posts now. your profile has been created oo 🙈"
       );
       const logs = result.txReceipt.logs;
 

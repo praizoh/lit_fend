@@ -1603,8 +1603,8 @@ form textarea:focus::placeholder {
 
 /* profile page styling starts here */
 .profile-page * {
-  margin: 10px;
-  padding: 0;
+  /* margin: 10px;
+  padding: 0; */
   box-sizing: border-box;
 }
 .profile-page .profilep {
@@ -1810,4 +1810,11 @@ form textarea:focus::placeholder {
 
 [data-rk] .ju367v1c {
   font-weight: inherit;
+}
+
+.grow{
+  flex-grow: 1;
+}
+.removeMargin{
+  margin: 0px !important;
 }

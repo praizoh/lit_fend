@@ -34,7 +34,7 @@ const Sidebar = () => {
               </li>
             </div>
           </Link>
-          <Link href={"/my-activities"}>
+          {/* <Link href={"/my-activities"}>
             <div className="hand">
               <li className={pathname === "/my-activities" ? "active" : ""}>
                 <img
@@ -45,7 +45,7 @@ const Sidebar = () => {
                 My Activities
               </li>
             </div>
-          </Link>
+          </Link> */}
           <Link href={"/create-post"}>
             <div className="hand">
               <li className={pathname === "/create-post" ? "active" : ""}>
