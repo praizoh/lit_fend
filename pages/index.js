@@ -161,20 +161,25 @@ export default function Home() {
     // If wallet is not connected, return a button which allows them to connect their wllet
     if (!userAddress) {
       return (
-        <div>
-          <div className="connect-msg">
-            <p className="welcome"> Welcome To Lit</p>
-            <p className="connect-acct">
-              Connect your account to get started with Lit
-            </p>
+        <div className="connect-onboard">
+          <div className="onboard">
+            <img src="images/onboarding2.svg" />
           </div>
-          <div className="connect-wallet">
-            <img src="./images/wallet.png" alt="" />
-            <div>
-              <ConnectButton
-                label="Connect to wallet"
-                style="background-color: transparent; color: black;"
-              />
+          <div className="connect-o">
+            <div className="connect-msg">
+              <p className="welcome"> Welcome To Lit</p>
+              <p className="connect-acct">
+                Connect your account to get started with Lit
+              </p>
+            </div>
+            <div className="connect-wallet">
+              <img src="./images/wallet.png" alt="" />
+              <div>
+                <ConnectButton
+                  label="Connect to wallet"
+                  style="background-color: transparent; color: black;"
+                />
+              </div>
             </div>
           </div>
         </div>

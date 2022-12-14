@@ -13,7 +13,11 @@ const Sidebar = () => {
           <Link href={"/dashboard"}>
             <div className="hand">
               <li className={pathname === "/dashboard" ? "active" : ""}>
-                <img src="images/home.png" alt="home icon" />
+                <img
+                  src="images/home.png"
+                  alt="home icon"
+                  className={pathname === "/dashboard" ? "active" : ""}
+                />
                 Home
               </li>
             </div>
@@ -21,7 +25,11 @@ const Sidebar = () => {
           <Link href={"/explore-profiles"}>
             <div className="hand">
               <li className={pathname === "/explore-profiles" ? "active" : ""}>
-                <img src="images/communities.png" alt="communities icon" />
+                <img
+                  src="images/communities.png"
+                  alt="communities icon"
+                  className={pathname === "/dashboard" ? "active" : ""}
+                />
                 Profiles
               </li>
             </div>
@@ -29,7 +37,11 @@ const Sidebar = () => {
           <Link href={"/my-activities"}>
             <div className="hand">
               <li className={pathname === "/my-activities" ? "active" : ""}>
-                <img src="images/activities.png" alt="activities icon" />
+                <img
+                  src="images/activities.png"
+                  alt="activities icon"
+                  className="sidebarimg"
+                />
                 My Activities
               </li>
             </div>
