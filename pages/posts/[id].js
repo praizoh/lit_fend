@@ -54,6 +54,7 @@ const clientQuery = create({
 
 export default function Home() {
   const router = useRouter();
+  const pathname = router.pathname;
   const [post, setPost] = useState([]);
   const [comments, setComments] = useState([]);
   const { id } = router.query;
@@ -198,7 +199,7 @@ export default function Home() {
 
       await tx.wait();
       console.log("successfully created comment: tx hash", tx.hash);
-      alert("hopefully your comment has been created 🙈");
+      alert("your comment has been created 🙈");
       setIsCommentCreated(true);
     } catch (err) {
       console.log("error: ", err);
@@ -251,117 +252,159 @@ export default function Home() {
         />
       </Head>
       <main>
-        {/* nav bar */}
-        <div className="dasboard">
-          <div className="nav">
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="../images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-            <img src="../images/Logo.png" alt="logo" width="32px" height="32px" />
-          </div>
-        </div>
-        <div></div>
-        <div className="dasboard">
-          {/* task bar */}
-          <div className="taskbars">
-            {/* post icon */}
-
-            {/* <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost"
-            /> */}
-            <div className="taskbar">
-              <Link href={"/dashboard"}>
-                <div className="hand">
-                  <img src="../images/home.png" alt="home icon" />
-                  <p>Home</p>
-                </div>
-              </Link>
-              <Link href={"/explore-profiles"}>
-                <div className="hand">
-                  <img src="../images/communities.png" alt="communities icon" />
-                  <p>Profiles</p>
-                </div>
-              </Link>
-              <Link href={"/my-activities"}>
-                <div className="hand">
-                  <img src="../images/activities.png" alt="activities icon" />
-                  <p>My Activities</p>
-                </div>
-              </Link>
-              <Link href={"/create-post"}>
-                <div className="hand">
+        <div className="dasboard dashnav">
+          {/* nav bar */}
+          <div className="navbars">
+            <div className="nav">
+              <img
+                src="../images/Logo.png"
+                alt="logo"
+                width="32px"
+                height="32px"
+                className="dashlogo"
+              />
+              <Link href={`/my-profile`}>
+                <div className={"hand"}>
                   <img
-                    src="../images/create-post.png"
-                    alt="create post"
-                    className="createpost2"
+                    src="../images/profile-picture.png"
+                    alt="profile"
+                    width="32px"
+                    height="32px"
+                    id="side-p"
                   />
-                  <p>Create Post</p>
+                  {/* {ensName && <span>{ensName}</span>}
+                {!ensName && <span>{truncateEthAddress(userAddress)}</span>} */}
                 </div>
               </Link>
             </div>
-          </div>
-        </div>
-        <div className="content">
-          <div className="contenthead">
-            <img src="../images/web3logo.png" alt="" />
-            <p className="web3cont">
-              {post?.profile?.handle} ||{" "}
-              <small>{moment(post?.createdAt).fromNow()}</small>
-            </p>
-          </div>
-          <p>{post?.metadata?.content}</p>
-          <br />
-          <p>-Product Design</p>
-          <p>-Web3 Development</p>
-          <p>-Web2 Development</p>
-          <p>-Project Management</p>
-
-          <p className="hashtags">
-            #web3 #blockchain #polygon #meta #web2 #web3ladies #womenintech
-          </p>
-        </div>
-        <hr />
-        {comments.map((comment, index) => (
-          <div className="all-comments" key={index}>
-            <div className="read-comments">
-              <div className="webcomment">
-                <img src="../images/maureen.png" alt="" />
-                <p className="usercomment">
-                  {comment?.profile?.name}||{comment?.profile.handle}
-                </p>
-                <p>{comment.metadata.description}</p>
+            <header>
+              <div className="items">
+                <div className="taskbar">
+                  <Link href={"/dashboard"}>
+                    <div className="hand">
+                      <li
+                        className={pathname === "/dashboard" ? "active" : ""}
+                      >
+                        <img
+                          src="../images/home.png"
+                          alt="home icon"
+                          className={
+                            pathname === "/dashboard" ? "active" : ""
+                          }
+                        />
+                        Home
+                      </li>
+                    </div>
+                  </Link>
+                  <Link href={"/explore-profiles"}>
+                    <div className="hand">
+                      <li
+                        className={
+                          pathname === "/explore-profiles" ? "active" : ""
+                        }
+                      >
+                        <img
+                          src="../images/communities.png"
+                          alt="communities icon"
+                          className={
+                            pathname === "/dashboard" ? "active" : ""
+                          }
+                        />
+                        Profiles
+                      </li>
+                    </div>
+                  </Link>
+                  {/* <Link href={"/my-activities"}>
+                    <div className="hand">
+                      <li
+                        className={
+                          pathname === "/my-activities" ? "active" : ""
+                        }
+                      >
+                        <img
+                          src="../images/activities.png"
+                          alt="activities icon"
+                          className="sidebarimg"
+                        />
+                        My Activities
+                      </li>
+                    </div>
+                  </Link> */}
+                  <Link href={"/create-post"}>
+                    <div className="hand">
+                      <li
+                        className={
+                          pathname === "/create-post" ? "active" : ""
+                        }
+                      >
+                        <img
+                          src="../images/create-post.png"
+                          alt="create post"
+                          className="createpost2"
+                        />
+                        Create post
+                      </li>
+                    </div>
+                  </Link>
+                </div>
               </div>
-              <div>{moment(comment?.createdAt).fromNow()}</div>
+            </header>
+          </div>
+          <div className="maincontent grow">
+            <div className="content removeMargin">
+              <div className="contenthead">
+                <img src="../images/web3logo.png" alt="" />
+                <p className="web3cont">
+                  {post?.profile?.handle} ||{" "}
+                  <small>{moment(post?.createdAt).fromNow()}</small>
+                </p>
+              </div>
+              <p>{post?.metadata?.content}</p>
+              <br />
+              <p>-Product Design</p>
+              <p>-Web3 Development</p>
+              <p>-Web2 Development</p>
+              <p>-Project Management</p>
+
+              <p className="hashtags">
+                #web3 #blockchain #polygon #meta #web2 #web3ladies #womenintech
+              </p>
+            </div>
+            <hr />
+            {comments.map((comment, index) => (
+              <div className="all-comments" key={index}>
+                <div className="read-comments">
+                  <div className="webcomment">
+                    <img src="../images/maureen.png" alt="" />
+                    <p className="usercomment">
+                      {comment?.profile?.name}||{comment?.profile.handle}
+                    </p>
+                    <p>{comment.metadata.description}</p>
+                  </div>
+                  <div>{moment(comment?.createdAt).fromNow()}</div>
+                </div>
+              </div>
+            ))}
+
+            <div className="enter-comment">
+              <img
+                src="../images/profile-picture.png"
+                alt=""
+                width="35px"
+                height="35px"
+              />
+              <textarea
+                name="add-comment"
+                id="type-comment"
+                placeholder="Add a comment"
+                onChange={(e) => setCommentMessage(e.target.value)}
+              ></textarea>
+              <i
+                className="fa-solid fa-paper-plane hand"
+                onClick={saveComment}
+              ></i>
             </div>
           </div>
-        ))}
-
-        <div className="enter-comment">
-          <img
-            src="../images/profile-picture.png"
-            alt=""
-            width="35px"
-            height="35px"
-          />
-          <textarea
-            name="add-comment"
-            id="type-comment"
-            placeholder="Add a comment"
-            onChange={(e) => setCommentMessage(e.target.value)}
-          ></textarea>
-          <i className="fa-solid fa-paper-plane hand" onClick={saveComment}></i>
         </div>
       </main>
     </div>

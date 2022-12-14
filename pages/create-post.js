@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
+import Sidebar from "../components/sidebar";
 import {
   useAccount,
   useDisconnect,
@@ -19,30 +19,31 @@ import {
   profileService,
 } from "../services/userService";
 const addressServiceData = addressService;
-import { LENS_HUB_CONTRACT_ADDRESS, signCreatePostTypedData } from '../api_cql'
-import LENSHUB from '../abi/lenshub'
-import { create } from 'ipfs-http-client'
-import { v4 as uuid } from 'uuid'
-import { refreshAuthToken, splitSignature } from '../utils'
-import { client, GetDefaultProfile} from "../api";
+import { LENS_HUB_CONTRACT_ADDRESS, signCreatePostTypedData } from "../api_cql";
+import LENSHUB from "../abi/lenshub";
+import { create } from "ipfs-http-client";
+import { v4 as uuid } from "uuid";
+import { refreshAuthToken, splitSignature } from "../utils";
+import { client, GetDefaultProfile } from "../api";
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 const profileSubject = new BehaviorSubject(
   process.browser && JSON.parse(localStorage.getItem("profile"))
 );
 
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
-const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const projectSecret = process.env.NEXT_PUBLIC_PROJECT_SECRET;
+const auth =
+  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
 const clientQuery = create({
-  host: 'ipfs.infura.io',
+  host: "ipfs.infura.io",
   port: 5001,
-  protocol: 'https',
+  protocol: "https",
   headers: {
-      authorization: auth,
+    authorization: auth,
   },
-})
+});
 
 export default function CreatePost() {
   const { address } = useAccount();
@@ -65,17 +66,15 @@ export default function CreatePost() {
     getDefaultProfile();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAddress]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [userAddress]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if(isPostCreated){
-      Router.push("/my-activities");
+    if (isPostCreated) {
+      Router.push(`/explore-profiles/${profile.id}`);
     }
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPostCreated]); // eslint-disable-next-line react-hooks/exhaustive-deps
-
 
   async function getDefaultProfile() {
     try {
@@ -98,52 +97,55 @@ export default function CreatePost() {
 
   async function uploadToIPFS() {
     const metaData = {
-      version: '2.0.0',
+      version: "2.0.0",
       content: contentMessage,
       description: contentMessage,
       name: `Post by @${profile.handle}`,
       external_url: `https://lenster.xyz/u/${profile.handle}`,
       metadata_id: uuid(),
-      mainContentFocus: 'TEXT_ONLY',
+      mainContentFocus: "TEXT_ONLY",
       attributes: [],
-      locale: 'en-US',
-    }
+      locale: "en-US",
+    };
 
-    const added = await clientQuery.add(JSON.stringify(metaData))
-    const uri = `https://ipfs.infura.io/ipfs/${added.path}`
-    return uri
+    const added = await clientQuery.add(JSON.stringify(metaData));
+    const uri = `https://ipfs.infura.io/ipfs/${added.path}`;
+    return uri;
   }
 
   async function savePost(e) {
     e.preventDefault();
-    if (!profile) return
+    if (!profile) return;
     if (!signer) {
-        console.log("signer is missing")
-        return;
+      console.log("signer is missing");
+      return;
     }
-    const contentURI = await uploadToIPFS()
-    const { accessToken } = await refreshAuthToken()
+    const contentURI = await uploadToIPFS();
+    const { accessToken } = await refreshAuthToken();
     const createPostRequest = {
       profileId: profile.id,
       contentURI,
       collectModule: {
-        freeCollectModule: { followerOnly: true }
+        freeCollectModule: { followerOnly: true },
       },
       referenceModule: {
-        followerOnlyReferenceModule: false
+        followerOnlyReferenceModule: false,
       },
-    }
+    };
 
     try {
-      const signedResult = await signCreatePostTypedData(createPostRequest, accessToken)
-      const typedData = signedResult.result.typedData
-      const { v, r, s } = splitSignature(signedResult.signature)
+      const signedResult = await signCreatePostTypedData(
+        createPostRequest,
+        accessToken
+      );
+      const typedData = signedResult.result.typedData;
+      const { v, r, s } = splitSignature(signedResult.signature);
 
       const contract = new ethers.Contract(
         LENS_HUB_CONTRACT_ADDRESS,
         LENSHUB,
         signer
-      )
+      );
 
       const tx = await contract.postWithSig({
         profileId: typedData.value.profileId,
@@ -158,21 +160,19 @@ export default function CreatePost() {
           s,
           deadline: typedData.value.deadline,
         },
-      })
+      });
 
-      await tx.wait()
-      console.log('successfully created post: tx hash', tx.hash)
-      alert("hopefully your post has been created 🙈")
-      setIsPostCreated(true)
-
-      
+      await tx.wait();
+      console.log("successfully created post: tx hash", tx.hash);
+      alert("your post has been created 🙈");
+      setIsPostCreated(true);
     } catch (err) {
-      console.log('error: ', err)
+      console.log("error: ", err);
     }
   }
 
   if (!profile) {
-    return null
+    return null;
   }
   // Captures 0x + 4 characters, then the last 4 characters.
   const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
@@ -184,44 +184,111 @@ export default function CreatePost() {
   };
 
   return (
-    <div>
+    <div className="create-post">
       <Head>
-        <title>Lit dashboard</title>
+        <title>Post</title>
         <meta name="description" content="Lit-Dapp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         {/* nav bar */}
-        <div className="dasboard">
-          <div className="nav">
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
+        <div className="dasboard post">
+          <div className="navbars">
+            <div className="nav">
+              <img
+                src="images/Logo.png"
+                alt="logo"
+                width="32px"
+                height="32px"
+                className="dashlogo"
+              />
+              <Link href={`/my-profile`}>
+                <div className={"hand"}>
+                  <img
+                    src="images/profile-picture.png"
+                    alt="profile"
+                    width="32px"
+                    height="32px"
+                    id="side-p"
+                  />
+                  {ensName && <span>{ensName}</span>}
+                  {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
+                </div>
+              </Link>
+            </div>
+            <Sidebar />
           </div>
-        </div>
-        <div></div>
-        <div className="dasboard">
+
+          {/* pcreate post section */}
+          <div>
+            <div className="postpage">
+              <Head>
+                <title> Post Page</title>
+                <meta name="description" content="Lit-Dapp" />
+                <link rel="icon" href="/favicon.ico" />
+              </Head>
+
+              <main>
+                <div className="container">
+                  <div className="headerlogo">
+                    <img
+                      src="images/Logo.png"
+                      alt="logo"
+                      className="postpagelogo"
+                    />
+                  </div>
+                  <hr></hr>
+                  <div className="wrapper">
+                    <div className="post">
+                      <form action="#">
+                        <div className="content">
+                          <img src="images/profile-picture.png" alt="" />
+                          <p>{profile.handle}</p>
+                        </div>
+                        <textarea
+                          placeholder="What's on your mind?"
+                          spellCheck="false"
+                          cols="20"
+                          rows="7"
+                          required
+                          onChange={(e) => setContentMessage(e.target.value)}
+                        ></textarea>
+                        <button>
+                          <img
+                            src="images/add-story.png"
+                            alt="add picture"
+                            width="30px"
+                            height="30px"
+                            className="postpicture"
+                          />
+                          &nbsp; Add a Picture
+                        </button>
+                        <input
+                          type="file"
+                          accept="img/*"
+                          placeholder="add profile picture"
+                          id="postp"
+                        ></input>
+
+                        <button onClick={savePost}>Post</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+          
           {/* task bar */}
-          <div className="taskbars">
+          <div className="taskbars mobile">
             {/* post icon */}
 
             {/* <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost"
-            /> */}
-            <div className="taskbar">
+            src="images/create-post.png"
+            alt="create post"
+            className="createpost"
+          /> */}
+            <div className="taskbar mobile">
               <Link href={"/dashboard"}>
                 <div className="hand">
                   <img src="images/home.png" alt="home icon" />
@@ -251,64 +318,6 @@ export default function CreatePost() {
                 </div>
               </Link>
             </div>
-          </div>
-        </div>
-        <div>
-          <div className="postpage">
-            <Head>
-              <title> Post Page</title>
-              <meta name="description" content="Lit-Dapp" />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-
-            <main>
-              <div className="container">
-                <div className="headerlogo">
-                  <img
-                    src="images/Logo.png"
-                    alt="logo"
-                    className="postpagelogo"
-                  />
-                </div>
-                <hr></hr>
-                <div className="wrapper">
-                  <div className="post">
-                    <form action="#">
-                      <div className="content">
-                        <img src="images/profile-picture.png" alt="" />
-                        <p>{profile.handle}</p>
-                      </div>
-                      <textarea
-                        placeholder="What's on your mind?"
-                        spellCheck="false"
-                        cols="20"
-                        rows="7"
-                        required
-                        onChange={(e) => setContentMessage(e.target.value)}
-                      ></textarea>
-                      <button>
-                        <img
-                          src="images/add-story.png"
-                          alt="add picture"
-                          width="30px"
-                          height="30px"
-                          className="postpicture"
-                        />
-                        &nbsp; Add a Picture
-                      </button>
-                      <input
-                        type="file"
-                        accept="img/*"
-                        placeholder="add profile picture"
-                        id="postp"
-                      ></input>
-
-                      <button onClick={savePost}>Post</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </main>
           </div>
         </div>
       </main>

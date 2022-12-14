@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
 import { CreateProfileLens } from "../api";
@@ -26,7 +25,7 @@ export default function Createprofile() {
   const userAddress = addressServiceData.addressValue;
   useEffect(() => {
     if (!userAddress) {
-      Router.push("/");
+      Router.push("/connect-wallet");
     }
     getDefaultProfile();
     if (userProfile) {
@@ -36,8 +35,7 @@ export default function Createprofile() {
       Router.push("/select-interest");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile, isProfileIndexed]);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
+  }, [userProfile, isProfileIndexed]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   async function createProfile() {
     try {
@@ -57,7 +55,7 @@ export default function Createprofile() {
       }
       console.log("create profile: poll until indexed");
       alert(
-        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+        "your profile has been indexed. you will be routed to view posts now. Your profile has been created oo 🙈"
       );
       setProfileIndexed(true);
 
@@ -65,7 +63,7 @@ export default function Createprofile() {
 
       console.log("create profile: profile has been indexed", result);
       alert(
-        "your profile has been indexed. you will be routed to view posts now. Hopefully your profile has been created oo 🙈"
+        "your profile has been indexed. you will be routed to view posts now. your profile has been created oo 🙈"
       );
       const logs = result.txReceipt.logs;
 
@@ -177,47 +175,52 @@ export default function Createprofile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="cprofile">
-          <img
-            src="images/Logo.png"
-            alt="logo"
-            width="32px"
-            height="32px"
-            className="clogo"
-          />
-          <h3>Welcome To Lit</h3>
-          <p>Create your account to get started with Lit</p>
-          <label htmlFor="file">
+        <div className="createuserprof">
+          <div className="onboard">
+            <img src="images/onboarding2.svg" />
+          </div>
+          <div className="cprofile">
             <img
-              src="images/add-story.png"
-              alt="add picture"
-              width="30px"
-              height="30px"
-              className="addpicture"
+              src="images/Logo.png"
+              alt="logo"
+              width="32px"
+              height="32px"
+              className="clogo"
             />
-            &nbsp; Add Profile Picture
-          </label>
-          <input
-            type="file"
-            accept="img/*"
-            placeholder="add profile picture"
-            id="imagep"
-          ></input>
-          <input
-            type="text"
-            placeholder="User name"
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            minLength="5"
-            maxLength="30"
-          ></input>
-          <small>length should be greater than 5</small>
-          <button type="submit" onClick={createProfile}>
-            Create Profile
-          </button>
-          <p className="cuser">
-            Already have an account? <a href="index.js">Log in</a>
-          </p>
+            <h3>Welcome To Lit</h3>
+            <p>Create your account to get started with Lit</p>
+            <label htmlFor="file">
+              <img
+                src="images/add-story.png"
+                alt="add picture"
+                width="30px"
+                height="30px"
+                className="addpicture"
+              />
+              &nbsp; Add Profile Picture
+            </label>
+            <input
+              type="file"
+              accept="img/*"
+              placeholder="add profile picture"
+              id="imagep"
+            ></input>
+            <input
+              type="text"
+              placeholder="User name"
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength="5"
+              maxLength="30"
+            ></input>
+            <small>length should be greater than 5</small>
+            <button type="submit" onClick={createProfile}>
+              Create Profile
+            </button>
+            <p className="cuser">
+              Already have an account? <a href="index.js">Log in</a>
+            </p>
+          </div>
         </div>
       </main>
     </div>

@@ -11,6 +11,8 @@ import { Button } from "../components";
 import { v4 as uuid } from "uuid";
 import { create } from "ipfs-http-client";
 import PERIPHERY from "../abi/lensperiphery.json";
+import Sidebar from "../components/sidebar";
+
 import {
   createProfileMetadataTypedData,
   createClient,
@@ -184,7 +186,7 @@ export default function EditProfile() {
       },
     });
     console.log("tx: ", tx);
-    alert("hopefully your profile has been updated 🙈");
+    alert(" your profile has been updated 🙈");
     setIsProfileUpdateDone(true);
   }
 
@@ -206,115 +208,86 @@ export default function EditProfile() {
       </Head>
       <main>
         {/* nav bar */}
-        <div className="dasboard">
-          <div className="nav">
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
-          </div>
-        </div>
-        <div></div>
-        <div className="dasboard">
-          {/* task bar */}
-          <div className="taskbars">
-            {/* post icon */}
-
-            {/* <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost"
-            /> */}
-            <div className="taskbar">
-              <Link href={"/dashboard"}>
-                <div className="hand">
-                  <img src="images/home.png" alt="home icon" />
-                  <p>Home</p>
-                </div>
-              </Link>
-              <Link href={"/explore-profiles"}>
-                <div className="hand">
-                  <img src="images/communities.png" alt="communities icon" />
-                  <p>Profiles</p>
-                </div>
-              </Link>
-              <Link href={"/my-activities"}>
-                <div className="hand">
-                  <img src="images/activities.png" alt="activities icon" />
-                  <p>My Activities</p>
-                </div>
-              </Link>
-              <Link href={"/create-post"}>
-                <div className="hand">
+        <div className="dasboard dashnav">
+          <div className="navbars">
+            <div className="nav">
+              <img
+                src="images/Logo.png"
+                alt="logo"
+                width="32px"
+                height="32px"
+                className="dashlogo"
+              />
+              <Link href={`/my-profile`}>
+                <div className={"hand"}>
                   <img
-                    src="images/create-post.png"
-                    alt="create post"
-                    className="createpost2"
+                    src="images/profile-picture.png"
+                    alt="profile"
+                    width="32px"
+                    height="32px"
+                    id="side-p"
                   />
-                  <p>Create Post</p>
+                  {/* {ensName && <span>{ensName}</span>}
+                  {!ensName && <span>{truncateEthAddress(userAddress)}</span>} */}
                 </div>
               </Link>
             </div>
+            <Sidebar />
           </div>
-        </div>
-        <div className={containerStyle}>
-          <h2>Edit Profile</h2>
-          <div className={formContainer}>
-            <label className={labelStyle}>Name</label>
-            <input
-              value={
-                updatedProfile && updatedProfile.name
-                  ? updatedProfile.name
-                  : profile.name
-              }
-              className={inputStyle}
-              onChange={(e) =>
-                setUpdatedProfile({ ...updatedProfile, name: e.target.value })
-              }
-            />
-            <label className={labelStyle}>Bio</label>
-            <textarea
-              value={
-                updatedProfile && updatedProfile.bio
-                  ? updatedProfile.bio
-                  : profile.bio
-              }
-              className={textAreaStyle}
-              onChange={(e) =>
-                setUpdatedProfile({ ...updatedProfile, bio: e.target.value })
-              }
-            />
-            {meta && meta.twitter && (
-              <>
-                <label className={labelStyle}>Twitter</label>
-                <input
-                  value={
-                    updatedProfile && updatedProfile.twitter
-                      ? updatedProfile.twitter
-                      : meta.twitter
-                  }
-                  className={inputStyle}
-                  onChange={(e) =>
-                    setUpdatedProfile({
-                      ...updatedProfile,
-                      twitter: e.target.value,
-                    })
-                  }
-                />
-              </>
-            )}
-            <Button buttonText="Save Profile" onClick={updateProfile} />
+          <div className="maincontent grow">
+            <div className="content removeMargin">
+            <div className={containerStyle}>
+            <h2>Edit Profile</h2>
+            <div className={formContainer}>
+              <label className={labelStyle}>Name</label>
+              <input
+                value={
+                  updatedProfile && updatedProfile.name
+                    ? updatedProfile.name
+                    : profile.name
+                }
+                className={inputStyle}
+                onChange={(e) =>
+                  setUpdatedProfile({ ...updatedProfile, name: e.target.value })
+                }
+              />
+              <label className={labelStyle}>Bio</label>
+              <textarea
+                value={
+                  updatedProfile && updatedProfile.bio
+                    ? updatedProfile.bio
+                    : profile.bio
+                }
+                className={textAreaStyle}
+                onChange={(e) =>
+                  setUpdatedProfile({ ...updatedProfile, bio: e.target.value })
+                }
+              />
+              {meta && meta.twitter && (
+                <>
+                  <label className={labelStyle}>Twitter</label>
+                  <input
+                    value={
+                      updatedProfile && updatedProfile.twitter
+                        ? updatedProfile.twitter
+                        : meta.twitter
+                    }
+                    className={inputStyle}
+                    onChange={(e) =>
+                      setUpdatedProfile({
+                        ...updatedProfile,
+                        twitter: e.target.value,
+                      })
+                    }
+                  />
+                </>
+              )}
+              <Button buttonText="Save Profile" onClick={updateProfile} />
+            </div>
           </div>
+            </div>
+          </div>
+          
         </div>
       </main>
     </div>
@@ -325,7 +298,7 @@ const containerStyle = css`
   padding-top: 25px;
   display: block;
   margin: 0 auto;
-  width: 80%
+  width: 80%;
 `;
 
 const inputStyle = css`
@@ -369,5 +342,5 @@ const formContainer = css`
 const cont = css`
   display: block;
   margin: 0 auto;
-  width: 80%
+  width: 80%;
 `;

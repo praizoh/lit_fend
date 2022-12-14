@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import Router from "next/router";
+import Sidebar from "../components/sidebar";
 import { client, GetDefaultProfile } from "../api";
-import { Button } from '../components'
-import { css } from '@emotion/css'
+import { Button } from "../components";
+import { css } from "@emotion/css";
 import {
   useAccount,
   useDisconnect,
@@ -76,135 +77,90 @@ export default function Layout() {
     Router.push("/edit-profile");
   }
   return (
-    <div className="myprofile">
-      <Head>
-        <title>Lit dashboard</title>
-        <meta name="description" content="Lit-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        {/* nav bar */}
-        <div className="dasboard">
-          <div className="nav">
-            <Link href={`/my-profile`}>
-              <div className={"hand"}>
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="32px"
-                  height="32px"
-                  id="side-p"
-                />
-                {ensName && <span>{ensName}</span>}
-                {!ensName && <span>{truncateEthAddress(userAddress)}</span>}
-              </div>
-            </Link>
-            <img src="images/Logo.png" alt="logo" width="32px" height="32px" />
-          </div>
-        </div>
-        <div className="dasboard">
-          {/* task bar */}
-          <div className="taskbars">
-            {/* post icon */}
-
-            {/* <img
-                src="images/create-post.png"
-                alt="create post"
-                className="createpost"
-            /> */}
-            <div className="taskbar">
-              <Link href={"/dashboard"}>
-                <div className="hand">
-                  <img src="images/home.png" alt="home icon" />
-                  <p>Home</p>
-                </div>
-              </Link>
-              <Link href={"/explore-profiles"}>
-                <div className="hand">
-                  <img src="images/communities.png" alt="communities icon" />
-                  <p>Profiles</p>
-                </div>
-              </Link>
-              <Link href={"/my-activities"}>
-                <div className="hand">
-                  <img src="images/activities.png" alt="activities icon" />
-                  <p>My Activities</p>
-                </div>
-              </Link>
-              <Link href={"/create-post"}>
-                <div className="hand">
+    <div className="">
+      {userProfile && (
+        <div className="profile-page">
+          <Head>
+            <title> Profile Page</title>
+            <meta name="description" content="Lit-Dapp" />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <main>
+            <div className="dasboard dashnav">
+              <div className="navbars">
+                <div className="nav">
                   <img
-                    src="images/create-post.png"
-                    alt="create post"
-                    className="createpost2"
+                    src="images/Logo.png"
+                    alt="logo"
+                    width="32px"
+                    height="32px"
+                    className="dashlogo"
                   />
-                  <p>Create Post</p>
+                  <Link href={`/my-profile`}>
+                    <div className={"hand"}>
+                      <img
+                        src="images/profile-picture.png"
+                        alt="profile"
+                        width="32px"
+                        height="32px"
+                        id="side-p"
+                      />
+                      {/* {ensName && <span>{ensName}</span>}
+                  {!ensName && <span>{truncateEthAddress(userAddress)}</span>} */}
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-        {userProfile && (
-          <div className="profile-page">
-            <Head>
-              <title> Profile Page</title>
-              <meta name="description" content="Lit-Dapp" />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <main>
-              <div className="profilep">
-                <img
-                  src="images/profile-picture.png"
-                  alt="profile"
-                  width="45px"
-                  height="45px"
-                />
-                <h4 className="userprofile">
-                  {userProfile.handle}
-                  {userProfile.name && <span> || {userProfile.name}</span>}
-                </h4>
-                <p className="aboutuser">
-                  {userProfile.bio
-                    ? userProfile.bio
-                    : "Web3 babe breaking barriers and building cool stuff @Web3ladies"}
-                </p>
-
-                <div className="followers">
-                  <p>
-                    {userProfile.stats.totalFollowing} <span>Following</span>
-                  </p>
-                  <p>
-                    {userProfile.stats.totalFollowers} <span>Followers</span>
-                  </p>
-                </div>
-                <div className="followers">
-                  <p>
-                    {userProfile.stats.totalPosts} <span>Posts</span>
-                  </p>
-                  <p>
-                    {userProfile.stats.totalComments} <span>Comments</span>
-                  </p>
-                </div>
-                {/* <button onClick={routeEditProfile} className="editprofilebtn">
-                  Edit Profile
-                </button> */}
-                <Button
-                  onClick={routeEditProfile}
-                  buttonText="Edit Profile"
-                />
+                <Sidebar />
               </div>
-              {/* <div className="addingpost">
-              <img
-                src="images/create-post.png"
-                alt="create post"
-                className="addpost"
-              />
-              <p>Add Post</p>
-            </div> */}
-            </main>
-          </div>
-        )}
-      </main>
+              <div className="maincontent grow">
+                <div className="content removeMargin grow">
+                  <div className="profilep grow">
+                    <img
+                      src="images/profile-picture.png"
+                      alt="profile"
+                      width="45px"
+                      height="45px"
+                    />
+                    <h4 className="userprofile">
+                      {userProfile.handle}
+                      {userProfile.name && <span> || {userProfile.name}</span>}
+                    </h4>
+                    <p className="aboutuser">
+                      {userProfile.bio
+                        ? userProfile.bio
+                        : "Web3 babe breaking barriers and building cool stuff @Web3ladies"}
+                    </p>
+
+                    <div className="followers">
+                      <p>
+                        {userProfile.stats.totalFollowing}{" "}
+                        <span>Following</span>
+                      </p>
+                      <p>
+                        {userProfile.stats.totalFollowers}{" "}
+                        <span>Followers</span>
+                      </p>
+                    </div>
+                    <div className="followers">
+                      <p>
+                        {userProfile.stats.totalPosts} <span>Posts</span>
+                      </p>
+                      <p>
+                        {userProfile.stats.totalComments} <span>Comments</span>
+                      </p>
+                    </div>
+
+                    <Button
+                      onClick={routeEditProfile}
+                      buttonText="Edit Profile"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      )}
     </div>
   );
 }
@@ -212,5 +168,5 @@ export default function Layout() {
 const cont = css`
   display: block;
   margin: 0 auto;
-  width: 80%
-`
+  width: 80%;
+`;
